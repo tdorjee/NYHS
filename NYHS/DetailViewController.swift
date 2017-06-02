@@ -18,7 +18,8 @@ class DetailViewController: UIViewController {
         
         view.backgroundColor = .white
         self.title = detailSchool?.name
-        view.backgroundColor = .red
+        
+        view.backgroundColor = .green
     
         viewHierarchy()
         constraintConfiguration()
@@ -26,20 +27,13 @@ class DetailViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(handleBackButton))
         
-//        scrollViewDidScroll(scrollView: scroolView)
         
     }
-    
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-//        if scrollView.contentOffset.x>0 {
-//            scrollView.contentOffset.x = 0
-//        }
-//    }
+
     func viewHierarchy(){
         
         view.addSubview(scroolView)
         scroolView.addSubview(mainContainer)
-       
        mainContainer.addSubview(overviewLabel)
        mainContainer.addSubview(overviewText)
        
@@ -63,12 +57,12 @@ class DetailViewController: UIViewController {
         self.edgesForExtendedLayout = []
         
         scroolView.snp.makeConstraints { (scrool) in
-            scrool.width.equalToSuperview()
-            scrool.height.greaterThanOrEqualTo(1000)
+            scrool.top.left.right.bottom.equalToSuperview()
         }
         
         mainContainer.snp.makeConstraints { (container) in
             container.left.right.top.bottom.equalToSuperview()
+            container.width.equalTo(self.view.frame.width)
             
         }
         
@@ -83,7 +77,7 @@ class DetailViewController: UIViewController {
             text.top.equalTo(overviewLabel.snp.bottom).offset(8)
             text.right.equalToSuperview().inset(8)
             text.left.equalToSuperview().offset(8)
-            text.bottom.equalToSuperview()
+            
         }
         
         // schoolSize
@@ -133,6 +127,7 @@ class DetailViewController: UIViewController {
         
         extracurricularActiviesText.snp.makeConstraints { (text) in
             text.top.equalTo(extracurricularActiviesLabel.snp.bottom).offset(8)
+            text.bottom.equalToSuperview()
             text.left.equalToSuperview().offset(8)
             text.right.equalToSuperview().inset(8)
         }
@@ -183,7 +178,6 @@ class DetailViewController: UIViewController {
     
     internal lazy var scroolView: UIScrollView = {
        let scroolView = UIScrollView()
-        scroolView.backgroundColor = .green
         scroolView.isDirectionalLockEnabled = true
         return scroolView
     }()
@@ -192,7 +186,6 @@ class DetailViewController: UIViewController {
     
     internal lazy var mainContainer: UIView = {
         let container = UIView()
-        container.backgroundColor = .yellow
         return container
     }()
     
@@ -216,13 +209,11 @@ class DetailViewController: UIViewController {
     internal lazy var schoolSizeLabel: UILabel = {
         let label = UILabel()
         label.text = "School Size: "
-        label.backgroundColor = .red
         return label
     }()
     
     internal lazy var schoolSizeText: UILabel = {
         let text = UILabel()
-        text.backgroundColor = .red
         return text
     }()
     
@@ -230,13 +221,11 @@ class DetailViewController: UIViewController {
     internal lazy var schoolTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "School Time: "
-        label.backgroundColor = .green
         return label
     }()
     
     internal lazy var schoolTimeText: UILabel = {
         let text = UILabel()
-        text.backgroundColor = .green
         return text
     }()
     

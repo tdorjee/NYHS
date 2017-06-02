@@ -16,28 +16,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let tabVC = UITabBarController()
-        
-        let home: HomeViewController = HomeViewController()
-        let map: MapViewController = MapViewController()
-        
-        let firstVC = UINavigationController(rootViewController: home)
-        let seconVC = UINavigationController(rootViewController: map)
-        
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tabVC
-        
-        
-        let firstVCLable = UITabBarItem(title: "Home", image: nil, tag: 0)
-        let secondVCLable = UITabBarItem(title: "Map", image: nil, tag: 1)
-        
-        firstVC.tabBarItem = firstVCLable
-        seconVC.tabBarItem = secondVCLable
-
-        tabVC.viewControllers = [firstVC, seconVC]
-        
+        let nav = UINavigationController(rootViewController: MainViewController())
+        self.window?.rootViewController = nav
         window?.makeKeyAndVisible()
+        
+        
+//        window?.rootViewController = tabVC
+        
+//        let tabVC = UITabBarController()
+//        
+//        let home: HomeViewController = HomeViewController()
+//        let map: MapViewController = MapViewController()
+//        
+//        let firstVC = UINavigationController(rootViewController: home)
+//        let seconVC = UINavigationController(rootViewController: map)
+//        
+//        
+//        
+//        
+//        let firstVCLable = UITabBarItem(title: "Home", image: nil, tag: 0)
+//        let secondVCLable = UITabBarItem(title: "Map", image: nil, tag: 1)
+//        
+//        firstVC.tabBarItem = firstVCLable
+//        seconVC.tabBarItem = secondVCLable
+//
+//        tabVC.viewControllers = [firstVC, seconVC]
+        
+        
         
         return true
     }

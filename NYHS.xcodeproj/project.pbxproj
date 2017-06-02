@@ -18,6 +18,8 @@
 		B9863E931EB9816500A00ABD /* NYHSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E921EB9816500A00ABD /* NYHSHelper.swift */; };
 		B9863E951EB98A4100A00ABD /* NYHS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E941EB98A4100A00ABD /* NYHS.swift */; };
 		B9863E981EBC3B7000A00ABD /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E971EBC3B7000A00ABD /* Utility.swift */; };
+		B9997D1E1EE227BD00CCFEC2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D1D1EE227BD00CCFEC2 /* MainViewController.swift */; };
+		B9997D211EE2290400CCFEC2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D201EE2290400CCFEC2 /* Utilities.swift */; };
 		C0D36FBADD14EBB6B8FA5A6A /* Pods_NYHS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +38,8 @@
 		B9863E921EB9816500A00ABD /* NYHSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NYHSHelper.swift; sourceTree = "<group>"; };
 		B9863E941EB98A4100A00ABD /* NYHS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NYHS.swift; sourceTree = "<group>"; };
 		B9863E971EBC3B7000A00ABD /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		B9997D1D1EE227BD00CCFEC2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B9997D201EE2290400CCFEC2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYHS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4E15C7B492ACD9350A77E0 /* Pods-NYHS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +69,7 @@
 		B974D6C41ECEC06C006FB89C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B974D6C21ECEBFAE006FB89C /* HomeTableViewCell.swift */,
+				B9997D1D1EE227BD00CCFEC2 /* MainViewController.swift */,
 				B9863E811EB97C9C00A00ABD /* HomeViewController.swift */,
 				B974D6C51ED01786006FB89C /* MapViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
@@ -106,6 +110,7 @@
 				B9863E7F1EB97C9C00A00ABD /* AppDelegate.swift */,
 				B9863E991EBC3B8700A00ABD /* color scheme */,
 				B9863E961EB9953100A00ABD /* Model */,
+				B9997D1F1EE227CF00CCFEC2 /* View */,
 				B974D6C41ECEC06C006FB89C /* Controller */,
 				B9863E911EB97D2600A00ABD /* Supporing File */,
 			);
@@ -118,6 +123,7 @@
 				B9863E861EB97C9C00A00ABD /* Assets.xcassets */,
 				B9863E881EB97C9C00A00ABD /* LaunchScreen.storyboard */,
 				B9863E8B1EB97C9C00A00ABD /* Info.plist */,
+				B9997D201EE2290400CCFEC2 /* Utilities.swift */,
 			);
 			name = "Supporing File";
 			sourceTree = "<group>";
@@ -137,6 +143,14 @@
 				B9863E971EBC3B7000A00ABD /* Utility.swift */,
 			);
 			name = "color scheme";
+			sourceTree = "<group>";
+		};
+		B9997D1F1EE227CF00CCFEC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B974D6C21ECEBFAE006FB89C /* HomeTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +287,9 @@
 				B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */,
 				B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */,
 				B9863E951EB98A4100A00ABD /* NYHS.swift in Sources */,
+				B9997D1E1EE227BD00CCFEC2 /* MainViewController.swift in Sources */,
 				B9863E981EBC3B7000A00ABD /* Utility.swift in Sources */,
+				B9997D211EE2290400CCFEC2 /* Utilities.swift in Sources */,
 				B974D6C61ED01786006FB89C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
