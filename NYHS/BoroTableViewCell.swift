@@ -1,5 +1,5 @@
 //
-//  HomeTableViewCell.swift
+//  BoroTableViewCell.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 5/5/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeTableViewCell: UITableViewCell {
+class BoroTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

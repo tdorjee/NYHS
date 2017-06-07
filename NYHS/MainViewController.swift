@@ -91,7 +91,7 @@ class MainViewController: UIViewController {
         
         // associate the 2 barItems in 2 navVC
         firstVC.tabBarItem = firstTabBarItem
-        firstVC.tabBarItem = secondTabBarItem
+        secondVC.tabBarItem = secondTabBarItem
         
         // add 2 nav in the main tabVc
         tabVC.viewControllers = [firstVC, secondVC]

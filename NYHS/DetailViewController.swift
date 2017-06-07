@@ -32,8 +32,8 @@ class DetailViewController: UIViewController {
 
     func viewHierarchy(){
         
-        view.addSubview(scroolView)
-        scroolView.addSubview(mainContainer)
+       view.addSubview(scroolView)
+       scroolView.addSubview(mainContainer)
        mainContainer.addSubview(overviewLabel)
        mainContainer.addSubview(overviewText)
        
@@ -48,6 +48,8 @@ class DetailViewController: UIViewController {
        
        mainContainer.addSubview(extracurricularActiviesLabel)
        mainContainer.addSubview(extracurricularActiviesText)
+        
+       mainContainer.addSubview(moreButton)
        
  
     }
@@ -127,9 +129,18 @@ class DetailViewController: UIViewController {
         
         extracurricularActiviesText.snp.makeConstraints { (text) in
             text.top.equalTo(extracurricularActiviesLabel.snp.bottom).offset(8)
-            text.bottom.equalToSuperview()
+            text.bottom.equalTo(moreButton.snp.top).inset(8)
             text.left.equalToSuperview().offset(8)
             text.right.equalToSuperview().inset(8)
+        }
+        
+        // More button
+        
+        moreButton.snp.makeConstraints { (button) in
+            button.top.equalTo(extracurricularActiviesText.snp.bottom).offset(8)
+            button.leading.equalToSuperview()
+            button.width.equalTo(mainContainer.snp.width)
+            button.bottom.equalToSuperview()
         }
         
     }
@@ -172,6 +183,14 @@ class DetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    func toWebVC(){
+        
+        let webVC = WebViewController()
+        webVC.url = self.detailSchool?.website
+        present(webVC, animated: true, completion: nil)
+        
+    }
+    
     //MARK: - Outlets
     
     // scroolview
@@ -246,7 +265,7 @@ class DetailViewController: UIViewController {
         return text
     }()
     
-    //Extracurricular Activies
+    // Extracurricular Activies
     internal lazy var extracurricularActiviesLabel: UILabel = {
         let text = UILabel()
         text.text = "Extracurricular Activies"
@@ -260,6 +279,15 @@ class DetailViewController: UIViewController {
         text.textAlignment = .center
         text.isEditable = false
         return text
+    }()
+    
+    // More button
+    internal lazy var moreButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .red
+        button.setTitle("More", for: .normal)
+        button.addTarget(self, action: #selector(toWebVC), for: .touchUpInside)
+        return button
     }()
     
  

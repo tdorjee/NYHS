@@ -37,7 +37,7 @@ class BoroViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         
         
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(moveBack))
@@ -92,6 +92,23 @@ class BoroViewController: UITableViewController {
         
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let currentSchool: School
+        if searchController.isActive && searchController.searchBar.text != "" {
+            currentSchool = filteredSchool[indexPath.row]
+        }else{
+            currentSchool = sortSchool[indexPath.row]
+        }
+        
+        let detailVC = DetailViewController()
+        detailVC.detailSchool = currentSchool
+        let nav = UINavigationController(rootViewController: detailVC)
+        present(nav, animated: true, completion: nil)
+        
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
