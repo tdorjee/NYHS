@@ -2,56 +2,147 @@
 //  MainViewController.swift
 //  NYHS
 //
-//  Created by Thinley Dorjee on 6/2/17.
+//  Created by Thinley Dorjee on 6/3/17.
 //  Copyright © 2017 C4Q. All rights reserved.
 //
 
 import UIKit
+import SnapKit
 
-class MainViewController: UITableViewController {
+class MainViewController: UIViewController {
 
-    let cellId = "MainCellId"
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        self.title = "NYCHS"
         
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellId)
+        viewHierarchy()
+        constrainConfiguration()
+   
+    }
+    
+    func viewHierarchy(){
+        view.addSubview(bronxButton)
+        view.addSubview(brooklynButton)
+        view.addSubview(manhattanButton)
+        view.addSubview(queensButton)
+        view.addSubview(statenIslandButton)
+    }
+    
+    func constrainConfiguration(){
+        
+        self.edgesForExtendedLayout = []
+        
+        bronxButton.snp.makeConstraints { (button) in
+            button.top.equalToSuperview()
+            button.width.equalTo(self.view.frame.width)
+            button.height.equalToSuperview().multipliedBy(0.20)
+        }
+        
+        brooklynButton.snp.makeConstraints { (button) in
+            button.top.equalTo(bronxButton.snp.bottom)
+            button.width.equalTo(bronxButton.snp.width)
+            button.height.equalTo(bronxButton.snp.height)
+        }
+        
+        manhattanButton.snp.makeConstraints { (button) in
+            button.top.equalTo(brooklynButton.snp.bottom)
+            button.width.equalTo(bronxButton.snp.width)
+            button.height.equalTo(bronxButton.snp.height)
+        }
+        
+        queensButton.snp.makeConstraints { (button) in
+            button.top.equalTo(manhattanButton.snp.bottom)
+            button.width.equalTo(bronxButton.snp.width)
+            button.height.equalTo(bronxButton.snp.height)
+        }
+        
+        statenIslandButton.snp.makeConstraints { (button) in
+            button.top.equalTo(queensButton.snp.bottom)
+            button.width.equalTo(bronxButton.snp.width)
+            button.height.equalTo(bronxButton.snp.height)
+        }
+        
+    }
+    
+    // Add action and segue to MainVC
+    
+    func selectBoroAction(sender: UIButton){
+        
+        let labelTitle = sender.currentTitle
+        let mainVC = BoroViewController()
+
+        mainVC.boroSelected = labelTitle!
+        let nav = UINavigationController(rootViewController: mainVC)
+        present(nav, animated: true, completion: nil)
 
     }
     
+    // Do sth with this repeatation. Maybe making a func and calling it in viewdidload()
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return Boro.totalSection
-    }
+//    func buttons(name: UIButton, title: String) {
+//        
+//        var name: UIButton = {
+//            
+//            let button = UIButton()
+//            button.setTitle(title, for: .normal)
+//            button.backgroundColor = .blue
+//            button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
+//            return button
+//            
+//        }()
+//    }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+    // MARK: Outlets
+    
+    internal lazy var bronxButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Bronx", for: .normal)
+        button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
+        return button
+    }()
+    
+    internal lazy var brooklynButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Brooklyn", for: .normal)
+        button.backgroundColor = .red
+        button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         
-        //var sectionLabelText = UILabel()
+        return button
+    }()
+    
+    internal lazy var manhattanButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Manhattan", for: .normal)
+        button.backgroundColor = .green
+        button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         
-        switch indexPath.section {
-        case 0:
-            cell.textLabel?.text = Boro.section[0]
-        case 1:
-            cell.textLabel?.text = Boro.section[1]
-        case 2:
-            cell.textLabel?.text = Boro.section[2]
-        case 3:
-            cell.textLabel?.text = Boro.section[3]
-        default:
-            cell.textLabel?.text = Boro.section[4]
-      
-        }
+        return button
+    }()
+
+    
+    internal lazy var queensButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Queens", for: .normal)
+        button.backgroundColor = .gray
+        button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         
-        return cell
-    }
+        return button
+    }()
+
+    
+    internal lazy var statenIslandButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Staten Island", for: .normal)
+        button.backgroundColor = .orange
+        button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
+        
+        return button
+    }()
 
 
 }

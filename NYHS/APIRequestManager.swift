@@ -8,14 +8,12 @@
 
 import Foundation
 
-class NYHSHelper{
+class APIRequestManager{
     
-    static let manager = NYHSHelper()
+    static let manager = APIRequestManager()
     private init(){}
     
-    let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
-    
-    func getData(apiEndPoint: String, callBack: @escaping (Data) -> Data){
+    func getData(apiEndPoint: String, callBack: @escaping (Data?) -> Void){
         guard let url = URL(string: apiEndPoint) else { return }
         
         let session = URLSession(configuration: .default)
@@ -26,9 +24,8 @@ class NYHSHelper{
             
             //MARK: - Comment our becouse of the warning
             
-//            guard let validData = data else { return }
-//        
-//            callBack(validData)
+            guard let validData = data else { return }
+            callBack(validData)
         }.resume()
     }
     

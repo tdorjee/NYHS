@@ -117,6 +117,7 @@ class HomeViewController: UITableViewController {
         detailViewController.detailSchool = school
         
         let navController = UINavigationController(rootViewController: detailViewController)
+        
         present(navController, animated: true, completion: nil)
     }
     
