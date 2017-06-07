@@ -73,9 +73,9 @@
 			children = (
 				B9997D221EE3651900CCFEC2 /* MainViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
+				B974D6C51ED01786006FB89C /* MapViewController.swift */,
 				B9863E811EB97C9C00A00ABD /* HomeViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
-				B974D6C51ED01786006FB89C /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

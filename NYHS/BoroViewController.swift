@@ -31,7 +31,7 @@ class BoroViewController: UITableViewController {
         self.title = self.boroSelected
         
         // Search stuffs
-        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
@@ -80,12 +80,7 @@ class BoroViewController: UITableViewController {
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
  
                 }
-                
-                // MARK: Optional way of filtering the schools by boro
-                
-                //self.schoolsInSelectedBoro = self.schools.filter{ $0.boro == self.boroSelected}
 
-                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

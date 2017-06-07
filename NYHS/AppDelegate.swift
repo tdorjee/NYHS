@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         
-//        window?.rootViewController = tabVC
+
         
 //        let tabVC = UITabBarController()
 //        
@@ -32,10 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        let firstVC = UINavigationController(rootViewController: home)
 //        let seconVC = UINavigationController(rootViewController: map)
-//        
-//        
-//        
-//        
+        
 //        let firstVCLable = UITabBarItem(title: "Home", image: nil, tag: 0)
 //        let secondVCLable = UITabBarItem(title: "Map", image: nil, tag: 1)
 //        
@@ -43,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        seconVC.tabBarItem = secondVCLable
 //
 //        tabVC.viewControllers = [firstVC, seconVC]
+//        window?.rootViewController = tabVC
         
         
         

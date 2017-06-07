@@ -75,8 +75,29 @@ class MainViewController: UIViewController {
         let mainVC = BoroViewController()
 
         mainVC.boroSelected = labelTitle!
-        let nav = UINavigationController(rootViewController: mainVC)
-        present(nav, animated: true, completion: nil)
+        
+       // let nav = UINavigationController(rootViewController: mainVC)
+        
+        // initail tabVC
+        let tabVC = UITabBarController()
+        
+        // set first and second VC as rootVc of NavVC
+        let firstVC = UINavigationController(rootViewController: mainVC)
+        let secondVC = UINavigationController(rootViewController: MapViewController())
+        
+        // make 2 tabBarItems label
+        let firstTabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "home"), tag: 0)
+        let secondTabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "map"), tag: 1)
+        
+        // associate the 2 barItems in 2 navVC
+        firstVC.tabBarItem = firstTabBarItem
+        firstVC.tabBarItem = secondTabBarItem
+        
+        // add 2 nav in the main tabVc
+        tabVC.viewControllers = [firstVC, secondVC]
+        
+        // present it
+        present(tabVC, animated: true, completion: nil)
 
     }
     
