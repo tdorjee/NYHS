@@ -8,28 +8,40 @@
 
 import UIKit
 import SnapKit
+import WebKit
 
 class WebViewController: UIViewController {
 
     var url: String?
-    let webView = UIWebView()
+    let webView = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        viewHierarchy()
+        constraintConfiguration()
+    
+        let finalURL = NSURL(string: url!)
+        let request = NSURLRequest(url: finalURL! as URL)
+        webView.load(request as URLRequest)
+        
+        //print("The website is: \(url)")
+    }
+    
+    func viewHierarchy(){
         view.addSubview(webView)
         
+    }
+    
+    func constraintConfiguration(){
+        
+        self.edgesForExtendedLayout = []
         webView.snp.makeConstraints { (webView) in
             webView.right.top.left.bottom.equalToSuperview()
         }
         
-        guard let URL = self.url else { return }
-        let finalURL = NSURL(string: URL)
-        let request = NSURLRequest(url: finalURL! as URL)
-        webView.loadRequest(request as URLRequest)
-
     }
+
 
 
 }

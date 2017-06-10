@@ -7,5 +7,7 @@ target 'NYHS' do
 
   # Pods for NYHS
 pod 'SnapKit', '~> 3.2.0'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
 
 end

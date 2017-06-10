@@ -1,6 +1,14 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## GoogleMaps
+
+Copyright 2017 Google
+
+## GooglePlaces
+
+Copyright 2017 Google
+
 ## SnapKit
 
 Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit

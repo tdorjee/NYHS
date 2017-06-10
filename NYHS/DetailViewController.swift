@@ -186,8 +186,8 @@ class DetailViewController: UIViewController {
     func toWebVC(){
         
         let webVC = WebViewController()
-        webVC.url = self.detailSchool?.website
-        present(webVC, animated: true, completion: nil)
+        webVC.url = (self.detailSchool?.website)!
+        self.navigationController?.pushViewController(webVC, animated: true)
         
     }
     

@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
 
 class MapViewController: UIViewController {
+    
+    //let schools: LatAndLng?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,32 +19,72 @@ class MapViewController: UIViewController {
         view.backgroundColor = .white
         self.title = "Map"
         
-        view.addSubview(map)
+        viewHierarchy()
+        constrainConfiguration()
         
-        let location = CLLocationCoordinate2DMake(51.50007773, 0.1246402)
-        let span = MKCoordinateSpanMake(0.05, 0.04)
+        // MARK: Displaying map
         
-        let region = MKCoordinateRegion(center: location, span: span)
-        map.setRegion(region, animated: true)
+        let lat = -33.86
+        let long = 151.20
         
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "London"
-        annotation.subtitle = "Unknown Place"
-        map.addAnnotation(annotation)
+        //Terrain effet would improve the UI
+        
+        let camera = GMSCameraPosition.camera(withLatitude: lat , longitude: long , zoom: 6.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        // mapView.mapType = kGMSTypeTerrain
+        view = mapView
+        
+        // MARK: Mark place
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(lat, long)
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        marker.map = mapView
+        
+//        let address = "4703 50th Avenue, woodside NY, 11377"
+//        let geoCoder = CLGeocoder()
+        
+//        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+//            let placeMarked = placemarks?.first
+//            let lat = placeMarked?.location?.coordinate.latitude
+//            let log = placeMarked?.location?.coordinate.longitude
+//        
+//            // Use your location
+//            //let locationByAdd = CLLocationC
+//            
+//            let location = CLLocationCoordinate2DMake(lat!, log!)
+//            let span = MKCoordinateSpanMake(0.05, 0.04)
+//    
+//            let region = MKCoordinateRegion(center: location, span: span)
+//            self.map.setRegion(region, animated: true)
+//            
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = location
+//            annotation.title = "London"
+//            annotation.subtitle = "Unknown Place"
+//        
+//        self.map.addAnnotation(annotation)
+//    }
         
         
-        map.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        map.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        map.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        map.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
     }
     
-    internal lazy var map: MKMapView = {
-        let map = MKMapView()
-        map.translatesAutoresizingMaskIntoConstraints = false
-        return map
-    }()
+    func viewHierarchy(){
+        //view.addSubview(map)
+    }
+    
+    func constrainConfiguration(){
+//        map.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        map.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        map.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+//        map.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+//    internal lazy var map: MKMapView = {
+//        let map = MKMapView()
+//        map.translatesAutoresizingMaskIntoConstraints = false
+//        return map
+//    }()
     
 }

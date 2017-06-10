@@ -74,6 +74,7 @@ class MainViewController: UIViewController {
         let labelTitle = sender.currentTitle
         let mainVC = BoroViewController()
 
+        
         mainVC.boroSelected = labelTitle!
         
        // let nav = UINavigationController(rootViewController: mainVC)
@@ -86,8 +87,8 @@ class MainViewController: UIViewController {
         let secondVC = UINavigationController(rootViewController: MapViewController())
         
         // make 2 tabBarItems label
-        let firstTabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "home"), tag: 0)
-        let secondTabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "map"), tag: 1)
+        let firstTabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
+        let secondTabBarItem = UITabBarItem(title: "Map", image: nil, tag: 1)
         
         // associate the 2 barItems in 2 navVC
         firstVC.tabBarItem = firstTabBarItem
@@ -122,6 +123,7 @@ class MainViewController: UIViewController {
     internal lazy var bronxButton: UIButton = {
         let button = UIButton()
         button.setTitle("Bronx", for: .normal)
+        //button.setImage(#imageLiteral(resourceName: "bronx"), for: .normal)
         button.backgroundColor = .blue
         button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         return button
@@ -130,6 +132,7 @@ class MainViewController: UIViewController {
     internal lazy var brooklynButton: UIButton = {
         let button = UIButton()
         button.setTitle("Brooklyn", for: .normal)
+        //button.setImage(#imageLiteral(resourceName: "brooklyn"), for: .normal)
         button.backgroundColor = .red
         button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         
@@ -139,6 +142,7 @@ class MainViewController: UIViewController {
     internal lazy var manhattanButton: UIButton = {
         let button = UIButton()
         button.setTitle("Manhattan", for: .normal)
+        //button.setImage(#imageLiteral(resourceName: "manhattan"), for: .normal)
         button.backgroundColor = .green
         button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         
@@ -149,6 +153,7 @@ class MainViewController: UIViewController {
     internal lazy var queensButton: UIButton = {
         let button = UIButton()
         button.setTitle("Queens", for: .normal)
+        //button.setImage(#imageLiteral(resourceName: "queens"), for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         
@@ -159,6 +164,7 @@ class MainViewController: UIViewController {
     internal lazy var statenIslandButton: UIButton = {
         let button = UIButton()
         button.setTitle("Staten Island", for: .normal)
+        //button.setImage(#imageLiteral(resourceName: "statenIsland"), for: .normal)
         button.backgroundColor = .orange
         button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
         

@@ -15,6 +15,7 @@ class BoroViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     var filteredSchool: [School] = []
+    var arrOfLatAndLng: [LatAndLng] = []
     
     
     let cellId = "MainCellId"
@@ -75,6 +76,46 @@ class BoroViewController: UITableViewController {
                     
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
+                 
+                        
+                        let addr = school.primary_address_line_1
+                        let separatedAddr = addr.components(separatedBy: " ")
+                        //Refactor into a forloop or mapping it
+                        var addressStrSearch = ""
+                        for i in 0..<separatedAddr.count {
+                            if i == separatedAddr.count - 1 {
+                                addressStrSearch.append(separatedAddr[i])
+                                }else{
+                                addressStrSearch.append(separatedAddr[i]+"+")
+                            }
+                        }
+       
+                        APIRequestManager.manager.getData(apiEndPoint: "https://maps.googleapis.com/maps/api/geocode/json?address=\(addressStrSearch)&key=AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ") { (data) in
+                            
+                            guard let data = data else { return }
+                            
+                            do{
+                                guard let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return }
+                                
+                                guard let results = jsonDict["results"] as? [[String: Any]] else { return}
+                                
+                                for result in results {
+                                    guard let geometry = result["geometry"] as? [String: Any] else { return }
+                                    guard let location = geometry["location"] as? [String: Double] else { return }
+                                    
+                                    let theLocation = LatAndLng(dictionary: location)
+                                    
+                                    self.arrOfLatAndLng.append(theLocation)
+                                    //print(self.arrOfLatAndLng)
+                                }
+                            
+                                
+                            } catch {
+                                print(error)
+                            }
+                            
+                        }
+                        
                     }
                     
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
@@ -89,6 +130,7 @@ class BoroViewController: UITableViewController {
                 print("Error encountered at do & chatch")
             }
         }
+        
         
     }
 

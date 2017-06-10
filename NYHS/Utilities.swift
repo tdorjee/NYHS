@@ -10,6 +10,9 @@ import Foundation
 
 // enum boro
 
+// MARK: googleMap API Key: AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8
+// MARK: GoogleMaps geocoding API key: AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ
+
 public enum Boro : String {
     case Bronx = "Bronx"
     case Brooklyn = "Brooklyn"

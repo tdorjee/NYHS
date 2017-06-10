@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B952B4E11EE87F3B008B80AA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952B4E01EE87F3B008B80AA /* WebViewController.swift */; };
+		B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952B4E21EE9C720008B80AA /* LatAndLng.swift */; };
 		B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C01ECEBF72006FB89C /* DetailViewController.swift */; };
 		B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */; };
 		B974D6C61ED01786006FB89C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C51ED01786006FB89C /* MapViewController.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		941D5E46DF9B06DA95ED8200 /* Pods-NYHS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.debug.xcconfig"; sourceTree = "<group>"; };
 		B952B4E01EE87F3B008B80AA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		B952B4E21EE9C720008B80AA /* LatAndLng.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatAndLng.swift; sourceTree = "<group>"; };
 		B974D6C01ECEBF72006FB89C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroTableViewCell.swift; sourceTree = "<group>"; };
 		B974D6C51ED01786006FB89C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				B9863E921EB9816500A00ABD /* APIRequestManager.swift */,
 				B9863E941EB98A4100A00ABD /* NYHS.swift */,
+				B952B4E21EE9C720008B80AA /* LatAndLng.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				B9863E931EB9816500A00ABD /* APIRequestManager.swift in Sources */,
 				B952B4E11EE87F3B008B80AA /* WebViewController.swift in Sources */,
 				B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */,
+				B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */,
 				B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */,
 				B9997D231EE3651900CCFEC2 /* MainViewController.swift in Sources */,
 				B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */,
