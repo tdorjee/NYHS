@@ -9,5 +9,6 @@ target 'NYHS' do
 pod 'SnapKit', '~> 3.2.0'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'GooglePlacePicker'
 
 end

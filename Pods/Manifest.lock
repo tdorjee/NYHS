@@ -4,20 +4,25 @@ PODS:
   - GoogleMaps/Base (2.2.0)
   - GoogleMaps/Maps (2.2.0):
     - GoogleMaps/Base
+  - GooglePlacePicker (2.2.0):
+    - GoogleMaps (= 2.2.0)
+    - GooglePlaces (= 2.2.0)
   - GooglePlaces (2.2.0):
     - GoogleMaps/Base (= 2.2.0)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - GoogleMaps
+  - GooglePlacePicker
   - GooglePlaces
   - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: c4651768f73c079a84f097d6e408b4648f938e41
+PODFILE CHECKSUM: a06d6f6ac082939ddbafe2694fec554fa3172416
 
 COCOAPODS: 1.1.1

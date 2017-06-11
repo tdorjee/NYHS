@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+import GoogleMaps
+import GooglePlaces
+import CoreLocation
+import SnapKit
 
 // Make it UITabBarController eventually 
 
@@ -20,7 +23,8 @@ class BoroViewController: UITableViewController {
     
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
-    
+    // Map
+    let mapView = GMSMapView()
     var boroSelected: String = ""
     var schools: [School] = []
     var sortSchool: [School] = []
@@ -147,6 +151,8 @@ class BoroViewController: UITableViewController {
         detailVC.detailSchool = currentSchool
         let nav = UINavigationController(rootViewController: detailVC)
         present(nav, animated: true, completion: nil)
+        
+        // Add map here
         
         
     }
