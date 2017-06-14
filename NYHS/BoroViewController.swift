@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
-import GooglePlaces
-import CoreLocation
 import SnapKit
 
 // Make it UITabBarController eventually 
@@ -18,13 +15,10 @@ class BoroViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     var filteredSchool: [School] = []
-    var arrOfLatAndLng: [LatAndLng] = []
-    
     
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
-    // Map
-    let mapView = GMSMapView()
+
     var boroSelected: String = ""
     var schools: [School] = []
     var sortSchool: [School] = []
@@ -37,8 +31,10 @@ class BoroViewController: UITableViewController {
         
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
+        
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+//        let searchB = searchBar.placeholder = "School Name, extracurricular activities"
         tableView.tableHeaderView = searchController.searchBar
         
         
@@ -54,7 +50,8 @@ class BoroViewController: UITableViewController {
     
     func filterContentInSearchBar(searchText: String, scope: String = "All") {
         filteredSchool = schools.filter { school in
-            return school.name.lowercased().contains(searchText.lowercased())
+            return school.name.lowercased().contains(searchText.lowercased()) ||
+            school.extracurricular_activities.lowercased().contains(searchText.lowercased())
         }
         
         tableView.reloadData()
@@ -82,44 +79,6 @@ class BoroViewController: UITableViewController {
                         self.schools.append(school)
                  
                         
-                        let addr = school.primary_address_line_1
-                        let separatedAddr = addr.components(separatedBy: " ")
-                        //Refactor into a forloop or mapping it
-                        var addressStrSearch = ""
-                        for i in 0..<separatedAddr.count {
-                            if i == separatedAddr.count - 1 {
-                                addressStrSearch.append(separatedAddr[i])
-                                }else{
-                                addressStrSearch.append(separatedAddr[i]+"+")
-                            }
-                        }
-       
-                        APIRequestManager.manager.getData(apiEndPoint: "https://maps.googleapis.com/maps/api/geocode/json?address=\(addressStrSearch)&key=AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ") { (data) in
-                            
-                            guard let data = data else { return }
-                            
-                            do{
-                                guard let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return }
-                                
-                                guard let results = jsonDict["results"] as? [[String: Any]] else { return}
-                                
-                                for result in results {
-                                    guard let geometry = result["geometry"] as? [String: Any] else { return }
-                                    guard let location = geometry["location"] as? [String: Double] else { return }
-                                    
-                                    let theLocation = LatAndLng(dictionary: location)
-                                    
-                                    self.arrOfLatAndLng.append(theLocation)
-                                    //print(self.arrOfLatAndLng)
-                                }
-                            
-                                
-                            } catch {
-                                print(error)
-                            }
-                            
-                        }
-                        
                     }
                     
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
@@ -141,11 +100,16 @@ class BoroViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let currentSchool: School
+        //let currentlatAndLng: LatAndLng
+        
         if searchController.isActive && searchController.searchBar.text != "" {
             currentSchool = filteredSchool[indexPath.row]
+            //currentlatAndLng = arrOfLatAndLng[indexPath.row]
+            
         }else{
             currentSchool = sortSchool[indexPath.row]
         }
+        
         
         let detailVC = DetailViewController()
         detailVC.detailSchool = currentSchool
@@ -171,7 +135,7 @@ class BoroViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BoroTableViewCell
         
         let school: School
         
@@ -182,9 +146,17 @@ class BoroViewController: UITableViewController {
             school = sortSchool[indexPath.row]
         }
         cell.textLabel?.text = school.name
+        cell.textLabel?.numberOfLines = 0
+        
+        cell.detailLabel.text = "Test"
  
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
 }
 
 // MARK: Extension

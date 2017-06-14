@@ -77,28 +77,30 @@ class MainViewController: UIViewController {
         
         mainVC.boroSelected = labelTitle!
         
-       // let nav = UINavigationController(rootViewController: mainVC)
+        let nav = UINavigationController(rootViewController: mainVC)
         
-        // initail tabVC
-        let tabVC = UITabBarController()
-        
-        // set first and second VC as rootVc of NavVC
-        let firstVC = UINavigationController(rootViewController: mainVC)
-        let secondVC = UINavigationController(rootViewController: MapViewController())
-        
-        // make 2 tabBarItems label
-        let firstTabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
-        let secondTabBarItem = UITabBarItem(title: "Map", image: nil, tag: 1)
-        
-        // associate the 2 barItems in 2 navVC
-        firstVC.tabBarItem = firstTabBarItem
-        secondVC.tabBarItem = secondTabBarItem
-        
-        // add 2 nav in the main tabVc
-        tabVC.viewControllers = [firstVC, secondVC]
-        
-        // present it
-        present(tabVC, animated: true, completion: nil)
+//       // let nav = UINavigationController(rootViewController: mainVC)
+//        
+//        // initail tabVC
+//        let tabVC = UITabBarController()
+//        
+//        // set first and second VC as rootVc of NavVC
+//        let firstVC = UINavigationController(rootViewController: mainVC)
+//        let secondVC = UINavigationController(rootViewController: MapViewController())
+//        
+//        // make 2 tabBarItems label
+//        let firstTabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
+//        let secondTabBarItem = UITabBarItem(title: "Map", image: nil, tag: 1)
+//        
+//        // associate the 2 barItems in 2 navVC
+//        firstVC.tabBarItem = firstTabBarItem
+//        secondVC.tabBarItem = secondTabBarItem
+//        
+//        // add 2 nav in the main tabVc
+//        tabVC.viewControllers = [firstVC, secondVC]
+//        
+//        // present it
+        present(nav, animated: true, completion: nil)
 
     }
     

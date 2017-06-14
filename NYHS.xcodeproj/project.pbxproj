@@ -11,7 +11,6 @@
 		B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952B4E21EE9C720008B80AA /* LatAndLng.swift */; };
 		B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C01ECEBF72006FB89C /* DetailViewController.swift */; };
 		B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */; };
-		B974D6C61ED01786006FB89C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C51ED01786006FB89C /* MapViewController.swift */; };
 		B974D6C91ED028D1006FB89C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B974D6C81ED028D1006FB89C /* MapKit.framework */; };
 		B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E7F1EB97C9C00A00ABD /* AppDelegate.swift */; };
 		B9863E871EB97C9C00A00ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9863E861EB97C9C00A00ABD /* Assets.xcassets */; };
@@ -31,7 +30,6 @@
 		B952B4E21EE9C720008B80AA /* LatAndLng.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatAndLng.swift; sourceTree = "<group>"; };
 		B974D6C01ECEBF72006FB89C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroTableViewCell.swift; sourceTree = "<group>"; };
-		B974D6C51ED01786006FB89C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B974D6C81ED028D1006FB89C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B9863E7C1EB97C9C00A00ABD /* NYHS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYHS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9863E7F1EB97C9C00A00ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 			children = (
 				B9997D221EE3651900CCFEC2 /* MainViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
-				B974D6C51ED01786006FB89C /* MapViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
 				B952B4E01EE87F3B008B80AA /* WebViewController.swift */,
 			);
@@ -298,7 +295,6 @@
 				B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */,
 				B9863E981EBC3B7000A00ABD /* Utility.swift in Sources */,
 				B9997D211EE2290400CCFEC2 /* Utilities.swift in Sources */,
-				B974D6C61ED01786006FB89C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
