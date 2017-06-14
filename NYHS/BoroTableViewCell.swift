@@ -32,6 +32,8 @@ class BoroTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        detailLabel.font = UIFont.systemFont(ofSize: 16.0)
+        
         self.addSubview(titleLabel)
         self.addSubview(detailLabel)
         

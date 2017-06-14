@@ -40,8 +40,6 @@ class BoroViewController: UITableViewController {
         
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(moveBack))
     
     }
     
@@ -55,12 +53,6 @@ class BoroViewController: UITableViewController {
         }
         
         tableView.reloadData()
-    }
-    
-    
-    func moveBack(){
-        dismiss(animated: true, completion: nil)
-        
     }
     
     func loadData(){
@@ -113,8 +105,11 @@ class BoroViewController: UITableViewController {
         
         let detailVC = DetailViewController()
         detailVC.detailSchool = currentSchool
-        let nav = UINavigationController(rootViewController: detailVC)
-        present(nav, animated: true, completion: nil)
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
+        
+//        let nav = UINavigationController(rootViewController: detailVC)
+//        present(nav, animated: true, completion: nil)
         
         // Add map here
         

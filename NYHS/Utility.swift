@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Color {
+    static let darkGreenBG: UIColor = UIColor(red: 27/255, green: 142/255, blue: 85/255, alpha: 1.0)
     static let darkBlue: UIColor = UIColor(red: 0/255, green: 48/255, blue: 74/255, alpha: 1.0)
     static let yellow: UIColor = UIColor(red: 255/255, green: 210/255, blue: 92/255, alpha: 1.0)
     static let green: UIColor = UIColor(red: 0/255, green: 215/255, blue: 159/255, alpha: 1.0)
@@ -20,3 +21,9 @@ struct Color {
     
     static let lightGrey: UIColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 0.9)
 }
+
+/*
+ 
+ REUSE LATER
+ 
+ */
