@@ -135,6 +135,7 @@ class BoroViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BoroTableViewCell
         
         let school: School
@@ -145,16 +146,16 @@ class BoroViewController: UITableViewController {
             
             school = sortSchool[indexPath.row]
         }
-        cell.textLabel?.text = school.name
-        cell.textLabel?.numberOfLines = 0
+        cell.titleLabel.text = school.name
+        cell.titleLabel.numberOfLines = 0
         
-        cell.detailLabel.text = "Test"
- 
+        cell.detailLabel.text = school.phone_number
+    
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
     
 }
