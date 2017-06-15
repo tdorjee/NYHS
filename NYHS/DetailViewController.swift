@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        self.title = detailSchool?.name
+        //self.title = detailSchool?.name
         view.backgroundColor = ColorScheme.darkGreenBG
         
         getLatAndLgn()
@@ -29,6 +29,28 @@ class DetailViewController: UIViewController {
  
         viewHierarchy()
         constraintConfiguration()
+        
+        let favourite = "Fav."
+        let contactNum = "Con."
+        
+        let favouriteSchool = UIBarButtonItem(title: favourite, style: .plain, target: self, action: #selector(addToFavourite))
+        
+        let contact = UIBarButtonItem(title: contactNum, style: .plain, target: self, action: #selector(makeACall))
+        navigationItem.rightBarButtonItems = [favouriteSchool, contact]
+    }
+    
+    func addToFavourite(){
+        
+        UserDefaults.standard.setValue(detailSchool.name, forKey: detailSchool.name)
+   
+        let favouriteVC = FavouriteTableViewController()
+        favouriteVC.favouriteSchools = detailSchool.name
+        self.navigationController?.pushViewController(favouriteVC, animated: true)
+        
+    }
+    
+    func makeACall(){
+        print("Call button pressed")
     }
     
     func setupMaps() {
@@ -41,10 +63,8 @@ class DetailViewController: UIViewController {
     
     func getLatAndLgn(){
         let addr = detailSchool.primary_address_line_1
-        print("Current address: \(addr)")
         
         let separatedAddr = addr.components(separatedBy: " ")
-        print("Current address separated: \(separatedAddr)")
         
         var addressStrSearch = ""
         
@@ -55,19 +75,15 @@ class DetailViewController: UIViewController {
                 addressStrSearch.append(separatedAddr[i]+"+")
             }
         }
-        print("Address to search: \(addressStrSearch)")
-        print("SPOT 1")
+
 
         APIRequestManager.manager.getData(apiEndPoint: "https://maps.googleapis.com/maps/api/geocode/json?address=\(addressStrSearch)&key=AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ") { (data) in
-            print("SPOT 2")
 
-            print("This is current address: \(addressStrSearch)")
             guard let data = data else { print("Something is going wroing here guard data")
                 return }
             
             do{
                 
-                print("Inside the do and chatch")
                 guard let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return }
                 
                 guard let results = jsonDict["results"] as? [[String: Any]] else { return}
@@ -112,6 +128,8 @@ class DetailViewController: UIViewController {
         
         self.edgesForExtendedLayout = []
         
+        
+        
         scroolView.snp.makeConstraints { (scrool) in
             scrool.top.left.right.bottom.equalToSuperview()
         }
@@ -145,7 +163,6 @@ class DetailViewController: UIViewController {
             
         }
         
-      
 //      More button
 
         moreButton.snp.makeConstraints { (button) in
@@ -185,7 +202,7 @@ class DetailViewController: UIViewController {
     // overView
     internal lazy var overviewLabel: UILabel = {
         let label = UILabel()
-        label.text = "Overview"
+        label.text = "\(self.detailSchool.name)"
         return label
     }()
     
@@ -194,7 +211,7 @@ class DetailViewController: UIViewController {
         label.sizeToFit()
         label.layer.cornerRadius = 10
         label.numberOfLines = 0
-        label.text = self.detailSchool.overview_paragraph
+        label.text = "Overview: \n\(self.detailSchool.overview_paragraph)"
         label.backgroundColor = .white
         label.layer.cornerRadius = 15
         label.textAlignment = .center
