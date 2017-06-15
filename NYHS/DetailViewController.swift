@@ -15,7 +15,6 @@ class DetailViewController: UIViewController {
     
     var detailSchool: School!
     var locationManager = CLLocationManager()
-
     var mapView: GMSMapView!
 
     override func viewDidLoad() {
@@ -31,26 +30,32 @@ class DetailViewController: UIViewController {
         constraintConfiguration()
         
         let favourite = "Fav."
-        let contactNum = "Con."
+        let contactNum = "View Fav."
         
         let favouriteSchool = UIBarButtonItem(title: favourite, style: .plain, target: self, action: #selector(addToFavourite))
         
         let contact = UIBarButtonItem(title: contactNum, style: .plain, target: self, action: #selector(makeACall))
+        
         navigationItem.rightBarButtonItems = [favouriteSchool, contact]
+
     }
     
     func addToFavourite(){
         
-        UserDefaults.standard.setValue(detailSchool.name, forKey: detailSchool.name)
-   
-        let favouriteVC = FavouriteTableViewController()
-        favouriteVC.favouriteSchools = detailSchool.name
-        self.navigationController?.pushViewController(favouriteVC, animated: true)
-        
+        if var dict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") {
+            dict[detailSchool.name] = detailSchool.name
+            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+        }else {
+            let dict = [detailSchool.name : detailSchool.name]
+            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+        }
     }
     
     func makeACall(){
-        print("Call button pressed")
+
+        let favouriteVC = FavouriteTableViewController()
+        self.navigationController?.pushViewController(favouriteVC, animated: true)
+        
     }
     
     func setupMaps() {

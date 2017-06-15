@@ -11,21 +11,21 @@ import UIKit
 class FavouriteTableViewController: UITableViewController {
 
     let cellId = "cellId"
-    var favouriteSchools: String?
+    var theFavouriteSchools: [String] = []
     
-    var listOfFavouriteSchool: [String]?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dump(favouriteSchools)
+        guard let favDict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") else { return }
+        theFavouriteSchools = Array(favDict.keys)
+ 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        let name = UserDefaults.standard.object(forKey: favouriteSchools!)
-        listOfFavouriteSchool?.append(name as! String)
-        dump(listOfFavouriteSchool)
-        
-        
+
     }
+    
+    
 
     // MARK: - Table view data source
 
@@ -36,15 +36,15 @@ class FavouriteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return theFavouriteSchools.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
 
-        let thisCell = listOfFavouriteSchool?[indexPath.row]
-        cell.textLabel?.text = thisCell
+        let thisSchool = theFavouriteSchools[indexPath.row]
+        cell.textLabel?.text = thisSchool
 
         return cell
     }
