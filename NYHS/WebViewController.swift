@@ -26,7 +26,7 @@ class WebViewController: UIViewController {
         webView.load(request as URLRequest)
         
         //print("The website is: \(url)")
-    }
+    } 
     
     func viewHierarchy(){
         view.addSubview(webView)

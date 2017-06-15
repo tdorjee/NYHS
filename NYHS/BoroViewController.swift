@@ -13,15 +13,15 @@ import SnapKit
 
 class BoroViewController: UITableViewController {
 
-    let searchController = UISearchController(searchResultsController: nil)
-    var filteredSchool: [School] = []
-    
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
-
+    
     var boroSelected: String = ""
     var schools: [School] = []
     var sortSchool: [School] = []
+    var filteredSchool: [School] = []
+    
+    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +31,9 @@ class BoroViewController: UITableViewController {
         
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
-        
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-//        let searchB = searchBar.placeholder = "School Name, extracurricular activities"
         tableView.tableHeaderView = searchController.searchBar
-        
         
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
@@ -45,7 +42,6 @@ class BoroViewController: UITableViewController {
     
     
     // Search func
-    
     func filterContentInSearchBar(searchText: String, scope: String = "All") {
         filteredSchool = schools.filter { school in
             return school.name.lowercased().contains(searchText.lowercased()) ||
@@ -92,12 +88,9 @@ class BoroViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let currentSchool: School
-        //let currentlatAndLng: LatAndLng
         
         if searchController.isActive && searchController.searchBar.text != "" {
             currentSchool = filteredSchool[indexPath.row]
-            //currentlatAndLng = arrOfLatAndLng[indexPath.row]
-            
         }else{
             currentSchool = sortSchool[indexPath.row]
         }
@@ -106,14 +99,7 @@ class BoroViewController: UITableViewController {
         let detailVC = DetailViewController()
         detailVC.detailSchool = currentSchool
         self.navigationController?.pushViewController(detailVC, animated: true)
-        
-        
-//        let nav = UINavigationController(rootViewController: detailVC)
-//        present(nav, animated: true, completion: nil)
-        
-        // Add map here
-        
-        
+
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

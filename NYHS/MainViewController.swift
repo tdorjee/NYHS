@@ -74,30 +74,11 @@ class MainViewController: UIViewController {
         let labelTitle = sender.currentTitle
         let mainVC = BoroViewController()
 
-        
         mainVC.boroSelected = labelTitle!
-        
         self.navigationController?.pushViewController(mainVC, animated: true)
-//        let nav = UINavigationController(rootViewController: mainVC)
-//        present(nav, animated: true, completion: nil)
+
 
     }
-    
-    // Do sth with this repeatation. Maybe making a func and calling it in viewdidload()
-    
-//    func buttons(name: UIButton, title: String) {
-//        
-//        var name: UIButton = {
-//            
-//            let button = UIButton()
-//            button.setTitle(title, for: .normal)
-//            button.backgroundColor = .blue
-//            button.addTarget(self, action: #selector(selectBoroAction), for: .touchUpInside)
-//            return button
-//            
-//        }()
-//    }
-    
     
     // MARK: Outlets
     

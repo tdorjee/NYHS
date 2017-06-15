@@ -1,5 +1,5 @@
 //
-//  Utilities.swift
+//  BoroCatagory.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 6/2/17.
@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-// enum boro
 
 // MARK: googleMap API Key: AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8
 // MARK: GoogleMaps geocoding API key: AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ
