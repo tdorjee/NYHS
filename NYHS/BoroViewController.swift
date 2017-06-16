@@ -139,6 +139,25 @@ class BoroViewController: UITableViewController {
         return 60
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
+            print("More action pressed")
+        }
+        more.backgroundColor = .gray
+        
+        let email = UITableViewRowAction(style: .normal, title: "Mail") { action, index in
+            print("Mail button pressed")
+        }
+        email.backgroundColor = .white
+        
+        let phone = UITableViewRowAction(style: .normal, title: "Call") { action, index in
+            print("Make phone call")
+        }
+        phone.backgroundColor = .green
+        
+        return [more, email, phone]
+    }
+    
 }
 
 // MARK: Extension

@@ -271,4 +271,11 @@ class DetailViewController: UIViewController {
         button.addTarget(self, action: #selector(toWebVC), for: .touchUpInside)
         return button
     }()
+
 }
+
+
+
+
+
+

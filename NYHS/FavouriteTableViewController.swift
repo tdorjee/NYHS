@@ -72,14 +72,12 @@ class FavouriteTableViewController: UITableViewController {
             theFavouriteSchools.remove(at: indexPath.row)
             tableView.reloadData()
             UserDefaults.standard.set(theFavouriteSchools, forKey: "items")
-     
         default:
             break
         }
-
-
-
     }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
