@@ -30,28 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
-        
-        //GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
-        
-//        let tabVC = UITabBarController()
-//        
-//        let home: HomeViewController = HomeViewController()
-//        let map: MapViewController = MapViewController()
-//        
-//        let firstVC = UINavigationController(rootViewController: home)
-//        let seconVC = UINavigationController(rootViewController: map)
-        
-//        let firstVCLable = UITabBarItem(title: "Home", image: nil, tag: 0)
-//        let secondVCLable = UITabBarItem(title: "Map", image: nil, tag: 1)
-//        
-//        firstVC.tabBarItem = firstVCLable
-//        seconVC.tabBarItem = secondVCLable
-//
-//        tabVC.viewControllers = [firstVC, seconVC]
-//        window?.rootViewController = tabVC
-        
-        
-        
+
         return true
     }
 

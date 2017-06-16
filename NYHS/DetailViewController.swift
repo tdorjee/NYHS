@@ -40,15 +40,55 @@ class DetailViewController: UIViewController {
 
     }
     
+    /*
+     
+     let itemsObject = UserDefaults.standard.object(forKey: "items")
+     
+     var items:[String]
+     
+     if let tempItems = itemsObject as? [String] {
+     
+     items = tempItems
+     
+     items.append(itemTextField.text!)
+     
+     print(items)
+     
+     } else {
+     
+     items = [itemTextField.text!]
+     
+     }
+     
+     UserDefaults.standard.set(items, forKey: "items")
+     
+     itemTextField.text = ""
+
+     
+     */
+    
     func addToFavourite(){
         
-        if var dict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") {
-            dict[detailSchool.name] = detailSchool.name
-            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+        let favSchool = UserDefaults.standard.object(forKey: "items")
+        
+        var favSchoolAdd: [String]
+        
+        if let tempSchool = favSchool as? [String]{
+            favSchoolAdd = tempSchool
+            favSchoolAdd.append(detailSchool.name)
+            print("Check to see if the school is saved: \(favSchoolAdd)")
         }else {
-            let dict = [detailSchool.name : detailSchool.name]
-            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+            favSchoolAdd = [detailSchool.name]
         }
+        
+        UserDefaults.standard.set(favSchoolAdd, forKey: "items")
+//        if var dict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") {
+//            dict[detailSchool.name] = detailSchool.name
+//            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+//        }else {
+//            let dict = [detailSchool.name : detailSchool.name]
+//            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+//        }
     }
     
     func makeACall(){

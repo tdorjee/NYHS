@@ -11,21 +11,29 @@ import UIKit
 class FavouriteTableViewController: UITableViewController {
 
     let cellId = "cellId"
-    var theFavouriteSchools: [String] = []
     
-
+    var theFavouriteSchools: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let favDict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") else { return }
-        theFavouriteSchools = Array(favDict.keys)
- 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-
+        
+        navigationItem.rightBarButtonItem = editButtonItem
     }
-    
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        let favSchool = UserDefaults.standard.object(forKey: "items")
+        
+        if let tempSchool = favSchool as? [String] {
+            
+            theFavouriteSchools = tempSchool
+            
+            print("School in favorite list: \(theFavouriteSchools)")
+        }
+        
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -49,7 +57,29 @@ class FavouriteTableViewController: UITableViewController {
         return cell
     }
     
+    
+    // MARK: - Edit section
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        switch editingStyle {
+        case .delete:
+            
+            theFavouriteSchools.remove(at: indexPath.row)
+            tableView.reloadData()
+            UserDefaults.standard.set(theFavouriteSchools, forKey: "items")
+     
+        default:
+            break
+        }
 
+
+
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
