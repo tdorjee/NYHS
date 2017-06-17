@@ -10,12 +10,16 @@ import UIKit
 
 class BoroTableViewCell: UITableViewCell {
 
-    internal lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        return label
-    }()
+//    internal lazy var titleLabel: UILabel = {
+//        let label = UILabel()
+//        label.lineBreakMode = .byWordWrapping
+//        //label.font = UIFont.systemFont(ofSize: 16)
+//        label.textColor = UIColor.init(white: 2.0, alpha: 1)
+//        label.numberOfLines = 0
+//        return label
+//    }()
+    
+    var titleLabel = UILabel()
     var detailLabel = UILabel()
     
     
@@ -38,13 +42,15 @@ class BoroTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        detailLabel.font = UIFont.systemFont(ofSize: 16.0)
+        //detailLabel.font = UIFont.systemFont(ofSize: 16.0)
         
         self.addSubview(titleLabel)
         self.addSubview(detailLabel)
         
         titleLabel.snp.makeConstraints { (label) in
-            label.leading.top.equalToSuperview().offset(8)
+            label.left.top.equalToSuperview().offset(8)
+            label.right.equalToSuperview().inset(8)
+            label.centerY.equalToSuperview()
             
         }
         

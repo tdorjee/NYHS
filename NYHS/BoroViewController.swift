@@ -29,8 +29,6 @@ class BoroViewController: UITableViewController {
         view.backgroundColor = .white
         self.title = self.boroSelected
         
-        navigationItem.rightBarButtonItem = editButtonItem
-        
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
@@ -39,7 +37,19 @@ class BoroViewController: UITableViewController {
         
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
-    
+        
+        // Back button icon
+        
+       // navigationItem.backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "backIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+        self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backIcon").withRenderingMode(.alwaysOriginal)
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "backIcon")
+        self.navigationItem.backBarButtonItem?.title = ""
+        //self.navigationController?.navigationBar.backItem?.title = "custom"
+      
+ 
+
     }
     
     
@@ -70,7 +80,6 @@ class BoroViewController: UITableViewController {
                     }
                     
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
-                    print("Number of schools in \(self.boroSelected): \(self.sortSchool.count)")
  
                 }
 
@@ -128,12 +137,16 @@ class BoroViewController: UITableViewController {
             
             school = sortSchool[indexPath.row]
         }
-        //cell.titleLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-        //cell.titleLabel.numberOfLines = 0
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = school.name
-        //cell.titleLabel.symbo
-        //cell.detailLabel.text = school.phone_number
+        
+        
+        //cell.textLabel?.text = school.name
+        
+        cell.titleLabel.numberOfLines = 0
+        cell.titleLabel.lineBreakMode = .byWordWrapping
+        cell.titleLabel.text = school.name
+        //cell.titleLabel.textColor = UIColor(white: 2.0, alpha: 1)
+        cell.titleLabel.font = UIFont.systemFont(ofSize: 16)
+//        cell.detailLabel.text = school.phone_number
     
         return cell
     }

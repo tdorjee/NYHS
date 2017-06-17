@@ -16,6 +16,8 @@ class MianTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "NYCHS"
 
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
     }

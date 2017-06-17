@@ -23,51 +23,21 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
      
         //self.title = detailSchool?.name
-        view.backgroundColor = ColorScheme.darkGreenBG
+        view.backgroundColor = .white
         
         getLatAndLgn()
         setupMaps()
  
         viewHierarchy()
         constraintConfiguration()
+    
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: ))
+    
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "favoriteIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
         
-        let favourite = "Fav."
-        let contactNum = "View Fav."
-        
-        let favouriteSchool = UIBarButtonItem(title: favourite, style: .plain, target: self, action: #selector(addToFavourite))
-        
-        let contact = UIBarButtonItem(title: contactNum, style: .plain, target: self, action: #selector(makeACall))
-        
-        navigationItem.rightBarButtonItems = [favouriteSchool, contact]
+        //navigationItem.rightBarButtonItem(favSchools)
 
     }
-    
-    /*
-     
-     let itemsObject = UserDefaults.standard.object(forKey: "items")
-     
-     var items:[String]
-     
-     if let tempItems = itemsObject as? [String] {
-     
-     items = tempItems
-     
-     items.append(itemTextField.text!)
-     
-     print(items)
-     
-     } else {
-     
-     items = [itemTextField.text!]
-     
-     }
-     
-     UserDefaults.standard.set(items, forKey: "items")
-     
-     itemTextField.text = ""
-
-     
-     */
     
     func addToFavourite(){
         
@@ -93,7 +63,7 @@ class DetailViewController: UIViewController {
 //        }
     }
     
-    func makeACall(){
+    func viewFavoriteSchools(){
 
         let favouriteVC = FavouriteTableViewController()
         self.navigationController?.pushViewController(favouriteVC, animated: true)
@@ -141,7 +111,7 @@ class DetailViewController: UIViewController {
                     let theLocation = LatAndLng(dictionary: location)
             
                     DispatchQueue.main.async {
-                        self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 18)
+                        self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
 
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng )
@@ -165,6 +135,7 @@ class DetailViewController: UIViewController {
         scroolView.addSubview(mainContainer)
         
         mainContainer.addSubview(mapView!)
+        mainContainer.addSubview(favoriteButton)
         mainContainer.addSubview(overviewLabel)
         mainContainer.addSubview(overviewText)
         mainContainer.addSubview(moreButton)
@@ -190,29 +161,35 @@ class DetailViewController: UIViewController {
         // mapView
         mapView?.snp.makeConstraints { (map) in
             map.leading.top.trailing.equalToSuperview()
-            map.height.equalTo(300)
+            map.height.equalTo(150)
         }
 
         
+        // favorite button
+        
+        favoriteButton.snp.makeConstraints { (button) in
+            button.centerY.equalTo(overviewLabel)
+            button.right.equalToSuperview().inset(8)
+            button.height.width.equalTo(40)
+        }
+        
         // overView
         overviewLabel.snp.makeConstraints { (label) in
-            label.centerX.equalToSuperview()
+            label.left.equalToSuperview().offset(8)
             label.top.equalTo((mapView?.snp.bottom)!).offset(8)
+            label.right.equalTo(favoriteButton.snp.left).inset(8)
         }
         
         overviewText.snp.makeConstraints { (label) in
-            label.top.equalTo(overviewLabel.snp.bottom).offset(8)
-            label.right.equalToSuperview().inset(8)
             label.left.equalToSuperview().offset(8)
-            label.height.equalTo(400)
-            
-            
+            label.top.equalTo(overviewLabel.snp.bottom).offset(10)
+            label.right.equalToSuperview().inset(8)
         }
         
 //      More button
 
         moreButton.snp.makeConstraints { (button) in
-            button.top.equalTo(overviewText.snp.bottom).offset(8)
+            button.top.equalTo(overviewText.snp.bottom).offset(10)
             button.leading.equalToSuperview()
             button.width.equalTo(mainContainer.snp.width)
             button.bottom.equalToSuperview().inset(8)
@@ -249,18 +226,30 @@ class DetailViewController: UIViewController {
     internal lazy var overviewLabel: UILabel = {
         let label = UILabel()
         label.text = "\(self.detailSchool.name)"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
+    }()
+    
+    // favorite button
+    internal lazy var favoriteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "starIcon"), for: .normal)
+        button.backgroundColor = .yellow
+        button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+        return button
     }()
     
     internal lazy var overviewText: UILabel = {
         let label = UILabel()
-        label.sizeToFit()
-        label.layer.cornerRadius = 10
+        //label.sizeToFit()
+        label.text = self.detailSchool.overview_paragraph
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = ColorScheme.subtitleTextColor
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-        label.text = "Overview: \n\(self.detailSchool.overview_paragraph)"
-        label.backgroundColor = .white
-        label.layer.cornerRadius = 15
-        label.textAlignment = .center
+        
         return label
     }()
     
@@ -273,6 +262,17 @@ class DetailViewController: UIViewController {
         return button
     }()
 
+}
+
+extension String {
+    func height(constraintedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let label =  UILabel(frame: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.text = self
+        label.sizeToFit()
+        
+        return label.frame.height
+    }
 }
 
 
