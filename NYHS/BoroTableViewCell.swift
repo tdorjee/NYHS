@@ -10,8 +10,14 @@ import UIKit
 
 class BoroTableViewCell: UITableViewCell {
 
-    var titleLabel = UILabel()
+    internal lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        return label
+    }()
     var detailLabel = UILabel()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +45,7 @@ class BoroTableViewCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints { (label) in
             label.leading.top.equalToSuperview().offset(8)
+            
         }
         
         detailLabel.snp.makeConstraints { (label) in

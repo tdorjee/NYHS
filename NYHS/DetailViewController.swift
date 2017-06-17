@@ -16,6 +16,8 @@ class DetailViewController: UIViewController {
     var detailSchool: School!
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
+    
+    var currentLocation = CLLocationCoordinate2D()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,6 +163,7 @@ class DetailViewController: UIViewController {
         
         view.addSubview(scroolView)
         scroolView.addSubview(mainContainer)
+        
         mainContainer.addSubview(mapView!)
         mainContainer.addSubview(overviewLabel)
         mainContainer.addSubview(overviewText)
@@ -172,8 +175,6 @@ class DetailViewController: UIViewController {
     func constraintConfiguration(){
         
         self.edgesForExtendedLayout = []
-        
-        
         
         scroolView.snp.makeConstraints { (scrool) in
             scrool.top.left.right.bottom.equalToSuperview()

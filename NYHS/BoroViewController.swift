@@ -29,6 +29,8 @@ class BoroViewController: UITableViewController {
         view.backgroundColor = .white
         self.title = self.boroSelected
         
+        navigationItem.rightBarButtonItem = editButtonItem
+        
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
@@ -127,16 +129,22 @@ class BoroViewController: UITableViewController {
             
             school = sortSchool[indexPath.row]
         }
-        cell.titleLabel.text = school.name
-        cell.titleLabel.numberOfLines = 0
-        
-        cell.detailLabel.text = school.phone_number
+        //cell.titleLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        //cell.titleLabel.numberOfLines = 0
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = school.name
+        //cell.titleLabel.symbo
+        //cell.detailLabel.text = school.phone_number
     
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -148,10 +156,13 @@ class BoroViewController: UITableViewController {
         let email = UITableViewRowAction(style: .normal, title: "Mail") { action, index in
             print("Mail button pressed")
         }
-        email.backgroundColor = .white
+        email.backgroundColor = .red
         
         let phone = UITableViewRowAction(style: .normal, title: "Call") { action, index in
             print("Make phone call")
+            
+            if let phoneUrl = URL(string: self.sortSchool[indexPath.row].phone_number){                UIApplication.shared.open(phoneUrl, options: [:], completionHandler: nil)
+            }
         }
         phone.backgroundColor = .green
         
