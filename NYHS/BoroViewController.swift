@@ -67,11 +67,10 @@ class BoroViewController: UITableViewController {
                     
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
-                 
-                        
                     }
                     
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
+                    print("Number of schools in \(self.boroSelected): \(self.sortSchool.count)")
  
                 }
 

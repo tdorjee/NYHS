@@ -12,7 +12,7 @@ class MianTableViewController: UITableViewController {
 
     let cellId = "cellId"
     
-    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "bronx")), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "brooklynHD")), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "mahattanHD")), (Boro.Queens.rawValue, #imageLiteral(resourceName: "queenHD")), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "statenIslandHD")) ]
+    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "bronx"), "Schools: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "brooklynHD3"), "Schools: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "mahattanHD"), "Schools: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "queenHD"), "Schools: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "statenIslandHD"), "Schools: \(10)") ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +50,7 @@ class MianTableViewController: UITableViewController {
         
         cell.cellImage.image = thisBoro.1
         cell.cellLabel.text = thisBoro.0
+        cell.schoolNumberLabel.text = thisBoro.2
         
 
         return cell

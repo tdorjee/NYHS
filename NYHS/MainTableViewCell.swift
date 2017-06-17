@@ -29,9 +29,10 @@ class MainTableViewCell: UITableViewCell {
     
     func viewHierarchy(){
         self.addSubview(cellImage)
-        self.addSubview(cellLabel)
-        
-        //self.addSubview(blackView)
+    
+        self.addSubview(blackView)
+        blackView.addSubview(cellLabel)
+        blackView.addSubview(schoolNumberLabel)
     }
     
     func configureConstraints(){
@@ -40,40 +41,52 @@ class MainTableViewCell: UITableViewCell {
             view.bottom.top.leading.trailing.equalToSuperview()
         }
         
-        cellLabel.snp.makeConstraints { (label) in
-            label.center.equalToSuperview()
-            label.top.equalToSuperview().offset(80.0)
-            label.bottom.equalToSuperview().inset(80.0)
-            label.width.equalToSuperview().multipliedBy(0.60)
+        blackView.snp.makeConstraints { (view) in
+            view.bottom.leading.trailing.equalToSuperview()
+            view.height.equalTo(50)
         }
         
-//        blackView.snp.makeConstraints { (view) in
-//            view.bottom.leading.trailing.equalToSuperview()
-//        }
+        cellLabel.snp.makeConstraints { (label) in
+            label.left.equalToSuperview().offset(8)
+            label.centerY.equalToSuperview()
+
+        }
+        
+        schoolNumberLabel.snp.makeConstraints { (label) in
+            label.centerY.equalToSuperview()
+            label.right.equalToSuperview().inset(8)
+        }
+        
     }
     
     // Outlets
-    
-    lazy var cellLabel: UILabel = {
-        let label: UILabel = UILabel ()
-        label.textAlignment = .center
-        label.layer.borderColor = UIColor.white.cgColor
-        label.layer.borderWidth = 3
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .white
-        return label
-    }()
-    lazy var blackView: UIView  = {
-        let view : UIView = UIView()
-        view.backgroundColor = .black
-        view.alpha = 0.25
-        return view
-    }()
-    
     lazy var cellImage: UIImageView  = {
         let image : UIImageView = UIImageView()
         image.contentMode = .scaleToFill
         return image
     }()
+    
+    lazy var blackView: UIView  = {
+        let view : UIView = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0.50
+        return view
+    }()
+    
+    lazy var cellLabel: UILabel = {
+        let label: UILabel = UILabel ()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var schoolNumberLabel: UILabel = {
+        let label: UILabel = UILabel ()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .white
+        return label
+    }()
+    
+    
 
 }
