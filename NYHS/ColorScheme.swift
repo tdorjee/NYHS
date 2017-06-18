@@ -186,6 +186,19 @@ struct ColorScheme {
  //        return text
  //    }()
  
+// function for lineSeparator
+ 
+ func lineSep(name: UIView) -> UIView {
+ 
+ var name: UIView = {
+ let line = UIView()
+ line.backgroundColor = UIColor(white: 0.2, alpha: 1)
+ return line
+ }()
+ 
+ return name
+ 
+ }
  
  
  */

@@ -30,15 +30,27 @@ class DetailViewController: UIViewController {
  
         viewHierarchy()
         constraintConfiguration()
-    
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: ))
-    
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "favoriteIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
         
-        //navigationItem.rightBarButtonItem(favSchools)
-
+        SetBackBarButtonCustom()
+        
     }
     
+    func SetBackBarButtonCustom() {
+        
+        let btnLeftMenu: UIButton = UIButton()
+        btnLeftMenu.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
+        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 40/2, height: 40/2)
+        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+        self.navigationItem.leftBarButtonItem = barButton
+    }
+    
+    func onClcikBack(){
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+
     func addToFavourite(){
         
         let favSchool = UserDefaults.standard.object(forKey: "items")
@@ -136,9 +148,32 @@ class DetailViewController: UIViewController {
         
         mainContainer.addSubview(mapView!)
         mainContainer.addSubview(favoriteButton)
+        mainContainer.addSubview(schoolNameLabel)
+        
+        mainContainer.addSubview(lineSeparator1)
+        
+        mainContainer.addSubview(diplomaImage)
+        mainContainer.addSubview(diplomaLable)
+        mainContainer.addSubview(schoolSizeImage)
+        mainContainer.addSubview(schoolSizeLabel)
+        mainContainer.addSubview(timeImage)
+        mainContainer.addSubview(timeLabel)
+        
+        
+        mainContainer.addSubview(lineSeparator2)
+        
         mainContainer.addSubview(overviewLabel)
         mainContainer.addSubview(overviewText)
+        
+        mainContainer.addSubview(lineSeparator3)
+        
+        mainContainer.addSubview(extracurricularActiviesLabel)
+        mainContainer.addSubview(extracurricularActiviesText)
+        
+        mainContainer.addSubview(lineSeparator4)
+        
         mainContainer.addSubview(moreButton)
+    
         
         
     }
@@ -168,28 +203,122 @@ class DetailViewController: UIViewController {
         // favorite button
         
         favoriteButton.snp.makeConstraints { (button) in
-            button.centerY.equalTo(overviewLabel)
-            button.right.equalToSuperview().inset(8)
+            button.centerY.equalTo(schoolNameLabel)
+            button.right.equalToSuperview().inset(12)
             button.height.width.equalTo(40)
         }
         
-        // overView
-        overviewLabel.snp.makeConstraints { (label) in
-            label.left.equalToSuperview().offset(8)
-            label.top.equalTo((mapView?.snp.bottom)!).offset(8)
+        // school name
+        schoolNameLabel.snp.makeConstraints { (label) in
+            label.left.equalToSuperview().offset(12)
+            label.top.equalTo((mapView?.snp.bottom)!).offset(15)
             label.right.equalTo(favoriteButton.snp.left).inset(8)
         }
         
-        overviewText.snp.makeConstraints { (label) in
-            label.left.equalToSuperview().offset(8)
-            label.top.equalTo(overviewLabel.snp.bottom).offset(10)
-            label.right.equalToSuperview().inset(8)
+        // lineSeparator 1
+        
+        lineSeparator1.snp.makeConstraints { (line) in
+            line.top.equalTo(schoolNameLabel.snp.bottom).offset(15)
+            line.left.equalTo(schoolNameLabel.snp.left)
+            line.right.equalTo(favoriteButton.snp.right)
+            line.height.equalTo(0.5)
         }
+        
+        // diploma endorsment
+        diplomaImage.snp.makeConstraints { (label) in
+            label.top.equalTo(lineSeparator1.snp.bottom).offset(15)
+            label.left.equalTo(schoolNameLabel.snp.left)
+        }
+        
+        diplomaLable.snp.makeConstraints { (label) in
+           label.top.equalTo(lineSeparator1.snp.bottom).offset(15)
+           label.left.equalTo(diplomaImage.snp.right).offset(8)
+           label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        // school size
+        
+        schoolSizeImage.snp.makeConstraints { (label) in
+            label.top.equalTo(diplomaLable.snp.bottom).offset(8)
+            label.left.equalTo(schoolNameLabel.snp.left)
+        }
+        
+        schoolSizeLabel.snp.makeConstraints { (label) in
+            label.top.equalTo(schoolSizeImage.snp.top)
+            label.left.equalTo(schoolSizeImage.snp.right).offset(8)
+            label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        // school time 
+        
+        timeImage.snp.makeConstraints { (label) in
+            label.top.equalTo(schoolSizeLabel.snp.bottom).offset(8)
+            label.left.equalTo(schoolNameLabel.snp.left)
+        }
+        
+        timeLabel.snp.makeConstraints { (label) in
+            label.top.equalTo(timeImage.snp.top)
+            label.left.equalTo(timeImage.snp.right).offset(8)
+            label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        // lineSeparator 2
+        
+        lineSeparator2.snp.makeConstraints { (line) in
+            line.top.equalTo(timeLabel.snp.bottom).offset(15)
+            line.left.equalTo(schoolNameLabel.snp.left)
+            line.right.equalTo(favoriteButton.snp.right)
+            line.height.equalTo(0.5)
+        }
+        
+        // overviewLabel
+        
+        overviewLabel.snp.makeConstraints { (label) in
+            label.top.equalTo(lineSeparator2.snp.bottom).offset(15)
+            label.left.equalTo(schoolNameLabel.snp.left)
+            label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        overviewText.snp.makeConstraints { (label) in
+            label.top.equalTo(overviewLabel.snp.bottom).offset(8)
+            label.left.equalTo(schoolNameLabel.snp.left)
+            label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        
+        lineSeparator3.snp.makeConstraints { (line) in
+            line.top.equalTo(overviewText.snp.bottom).offset(15)
+            line.left.equalTo(schoolNameLabel.snp.left)
+            line.right.equalTo(favoriteButton.snp.right)
+            line.height.equalTo(0.5)
+        }
+    
+        // extracurricular activity
+        
+        extracurricularActiviesLabel.snp.makeConstraints { (label) in
+           label.top.equalTo(lineSeparator3.snp.bottom).offset(15)
+           label.left.equalTo(schoolNameLabel.snp.left)
+           label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        extracurricularActiviesText.snp.makeConstraints { (label) in
+            label.top.equalTo(extracurricularActiviesLabel.snp.bottom).offset(8)
+            label.left.equalTo(schoolNameLabel.snp.left)
+            label.right.equalTo(favoriteButton.snp.right)
+        }
+        
+        lineSeparator4.snp.makeConstraints { (line) in
+            line.top.equalTo(extracurricularActiviesText.snp.bottom).offset(15)
+            line.left.equalTo(schoolNameLabel.snp.left)
+            line.right.equalTo(favoriteButton.snp.right)
+            line.height.equalTo(0.5)
+        }
+        
         
 //      More button
 
         moreButton.snp.makeConstraints { (button) in
-            button.top.equalTo(overviewText.snp.bottom).offset(10)
+            button.top.equalTo(lineSeparator4.snp.bottom).offset(15)
             button.leading.equalToSuperview()
             button.width.equalTo(mainContainer.snp.width)
             button.bottom.equalToSuperview().inset(8)
@@ -207,6 +336,33 @@ class DetailViewController: UIViewController {
 
     //MARK: - Outlets
     
+    
+    // line separator 
+    
+    internal lazy var lineSeparator1: UIView = {
+        let line = UIView()
+        line.backgroundColor = ColorScheme.subtitleTextColor
+        return line
+    }()
+    
+    internal lazy var lineSeparator2: UIView = {
+        let line = UIView()
+        line.backgroundColor = ColorScheme.subtitleTextColor
+        return line
+    }()
+    
+    internal lazy var lineSeparator3: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor(white: 0.2, alpha: 1)
+        return line
+    }()
+    
+    internal lazy var lineSeparator4: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor(white: 0.2, alpha: 1)
+        return line
+    }()
+    
     // scroolview
     
     internal lazy var scroolView: UIScrollView = {
@@ -222,8 +378,8 @@ class DetailViewController: UIViewController {
         return container
     }()
     
-    // overView
-    internal lazy var overviewLabel: UILabel = {
+    //  school name
+    internal lazy var schoolNameLabel: UILabel = {
         let label = UILabel()
         label.text = "\(self.detailSchool.name)"
         label.lineBreakMode = .byWordWrapping
@@ -235,21 +391,99 @@ class DetailViewController: UIViewController {
     internal lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "starIcon"), for: .normal)
-        button.backgroundColor = .yellow
         button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
         return button
     }()
+    
+    // diploma endorsements
+    
+    internal lazy var diplomaImage: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "diplomaIcon"), for: .normal)
+        return button
+    }()
+
+    internal lazy var diplomaLable: UILabel = {
+        let label = UILabel()
+        label.text = "\(self.detailSchool.diplomaendorsements)"
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
+    }()
+    
+    // school size
+    internal lazy var schoolSizeImage: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "schoolSizeIcon"), for: .normal)
+        return button
+    }()
+    
+    internal lazy var schoolSizeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(self.detailSchool.total_students)"
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
+    }()
+
+    // school timing
+    
+    internal lazy var timeImage: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "schoolTime-50"), for: .normal)
+        return button
+    }()
+    
+    internal lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(self.detailSchool.start_time) - \(self.detailSchool.end_time)"
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
+    }()
+    
+    // transpotation
+    // school_sports
+    
+    // overview
+    internal lazy var overviewLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Overview"
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        return label
+    }()
+    
     
     internal lazy var overviewText: UILabel = {
         let label = UILabel()
         //label.sizeToFit()
         label.text = self.detailSchool.overview_paragraph
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = ColorScheme.subtitleTextColor
+        label.font = UIFont.systemFont(ofSize: 15)
+//        label.textColor = ColorScheme.subtitleTextColor
         label.textColor = UIColor(white: 0.2, alpha: 1)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         
+        return label
+    }()
+    
+    // Extracurricular Activies
+    internal lazy var extracurricularActiviesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Extracurricular"
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        return label
+    }()
+    
+    internal lazy var extracurricularActiviesText: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.text = self.detailSchool.extracurricular_activities
+        label.textColor = UIColor(white: 0.2, alpha: 1)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -262,7 +496,14 @@ class DetailViewController: UIViewController {
         return button
     }()
 
+    
+    
+
+    
+    
 }
+
+
 
 extension String {
     func height(constraintedWidth width: CGFloat, font: UIFont) -> CGFloat {

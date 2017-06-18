@@ -24,6 +24,7 @@
 		B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */; };
 		B9EE59481EF5787C00CD1F7C /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */; };
 		B9EE594A1EF5796500CD1F7C /* MianTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59491EF5796500CD1F7C /* MianTableViewController.swift */; };
+		B9EE594C1EF6E80D00CD1F7C /* extension+DetailVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE594B1EF6E80D00CD1F7C /* extension+DetailVc.swift */; };
 		C0D36FBADD14EBB6B8FA5A6A /* Pods_NYHS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
 		B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		B9EE59491EF5796500CD1F7C /* MianTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MianTableViewController.swift; sourceTree = "<group>"; };
+		B9EE594B1EF6E80D00CD1F7C /* extension+DetailVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "extension+DetailVc.swift"; sourceTree = "<group>"; };
 		E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYHS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4E15C7B492ACD9350A77E0 /* Pods-NYHS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +154,7 @@
 				B9863E971EBC3B7000A00ABD /* ColorScheme.swift */,
 				B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */,
 				B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */,
+				B9EE594B1EF6E80D00CD1F7C /* extension+DetailVc.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */,
 				B9863E981EBC3B7000A00ABD /* ColorScheme.swift in Sources */,
 				B9997D211EE2290400CCFEC2 /* BoroCatagory.swift in Sources */,
+				B9EE594C1EF6E80D00CD1F7C /* extension+DetailVc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

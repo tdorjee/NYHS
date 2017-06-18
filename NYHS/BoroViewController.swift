@@ -21,10 +21,13 @@ class BoroViewController: UITableViewController {
     var sortSchool: [School] = []
     var filteredSchool: [School] = []
     
+    
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Boro selected: \(boroSelected)")
         
         view.backgroundColor = .white
         self.title = self.boroSelected
@@ -37,22 +40,25 @@ class BoroViewController: UITableViewController {
         
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
-        
         // Back button icon
+        SetBackBarButtonCustom()
         
-       // navigationItem.backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "backIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
-        //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
-        self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backIcon").withRenderingMode(.alwaysOriginal)
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "backIcon")
-        self.navigationItem.backBarButtonItem?.title = ""
-        //self.navigationController?.navigationBar.backItem?.title = "custom"
-      
- 
-
     }
     
+    func SetBackBarButtonCustom() {
+        
+        let btnLeftMenu: UIButton = UIButton()
+        btnLeftMenu.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
+        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 40/2, height: 40/2)
+        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+        self.navigationItem.leftBarButtonItem = barButton
+    }
     
+    func onClcikBack(){
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+
     // Search func
     func filterContentInSearchBar(searchText: String, scope: String = "All") {
         filteredSchool = schools.filter { school in
@@ -64,23 +70,18 @@ class BoroViewController: UITableViewController {
     }
     
     func loadData(){
-
+        
         APIRequestManager.manager.getData(apiEndPoint: apiEndPoint) { (data) in
             guard let data = data else { return }
-            
             do{
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let jsonData = jsonDict as? [[String: String]] else { return }
-                
                 for eachSchool in jsonData {
                     let school = School(dictionary: eachSchool)
-                    
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
                     }
-                    
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
- 
                 }
 
                 DispatchQueue.main.async {

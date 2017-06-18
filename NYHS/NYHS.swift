@@ -91,6 +91,7 @@ class School {
     let end_time: String
     let se_services: String
     let school_sports: String
+    let diplomaendorsements: String
     let extracurricular_activities: String
     let program_highlights: String
     
@@ -107,7 +108,7 @@ class School {
     init(dictionary: [String: String]) {
         self.name = dictionary["school_name"] ?? ""
         self.boro = dictionary["boro"] ?? ""
-        
+        self.diplomaendorsements = dictionary["diplomaendorsements"] ?? "N/A"
         self.overview_paragraph = dictionary["overview_paragraph"] ?? ""
         self.total_students = dictionary["total_students"] ?? ""
         self.start_time = dictionary["start_time"] ?? ""
