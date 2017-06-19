@@ -27,23 +27,43 @@ class BoroViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Boro selected: \(boroSelected)")
-        
         view.backgroundColor = .white
-        self.title = self.boroSelected
+        //self.tableView.separatorStyle = .singleLine
         
+        // SearchBar placement 
+        
+        searchController.hidesNavigationBarDuringPresentation = false
+//        searchController.searchBar.searchBarStyle = .minimal
+        if let txfSearchField = searchController.searchBar.value(forKey: "Search School") as? UITextField {
+            txfSearchField.borderStyle = .none
+            txfSearchField.backgroundColor = .white
+        }
+        
+        navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+        searchController.dimsBackgroundDuringPresentation = true
+        
+        //definesPresentationContext = true
+        //tableView.tableHeaderView = searchController.searchBar
         
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "favoriteIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
+//        
         // Back button icon
         SetBackBarButtonCustom()
         
     }
+    
+//    func viewFavoriteSchools(){
+//        
+//        let favouriteVC = FavouriteTableViewController()
+//        self.navigationController?.pushViewController(favouriteVC, animated: true)
+//        
+//    }
     
     func SetBackBarButtonCustom() {
         

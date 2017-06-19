@@ -20,6 +20,16 @@ class MianTableViewController: UITableViewController {
         self.title = "NYCHS"
 
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        setUpNavBarStyle()
+    }
+    
+    func setUpNavBarStyle(){
+        print("Style navigation bar style")
+        navigationController?.navigationBar.barTintColor = ColorScheme.navColor
+        navigationController?.navigationBar.isTranslucent = false
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

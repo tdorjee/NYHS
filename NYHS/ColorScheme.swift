@@ -13,6 +13,10 @@ struct ColorScheme {
     
     static let subtitleTextColor: UIColor = UIColor(red: 148/255, green: 148/255, blue: 148/255, alpha: 1.0)
     
+    static let lineSeparatorColor: UIColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0)
+    
+    static let navColor : UIColor = UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1.0)
+    
     static let darkGreenBG: UIColor = UIColor(red: 27/255, green: 142/255, blue: 85/255, alpha: 1.0)
     static let darkBlue: UIColor = UIColor(red: 0/255, green: 48/255, blue: 74/255, alpha: 1.0)
     static let yellow: UIColor = UIColor(red: 255/255, green: 210/255, blue: 92/255, alpha: 1.0)

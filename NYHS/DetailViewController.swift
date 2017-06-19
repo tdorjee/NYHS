@@ -319,8 +319,8 @@ class DetailViewController: UIViewController {
 
         moreButton.snp.makeConstraints { (button) in
             button.top.equalTo(lineSeparator4.snp.bottom).offset(15)
-            button.leading.equalToSuperview()
-            button.width.equalTo(mainContainer.snp.width)
+            button.centerX.equalToSuperview()
+            button.width.equalTo(150)
             button.bottom.equalToSuperview().inset(8)
         }
         
@@ -341,25 +341,25 @@ class DetailViewController: UIViewController {
     
     internal lazy var lineSeparator1: UIView = {
         let line = UIView()
-        line.backgroundColor = ColorScheme.subtitleTextColor
+        line.backgroundColor = ColorScheme.lineSeparatorColor
         return line
     }()
     
     internal lazy var lineSeparator2: UIView = {
         let line = UIView()
-        line.backgroundColor = ColorScheme.subtitleTextColor
+        line.backgroundColor = ColorScheme.lineSeparatorColor
         return line
     }()
     
     internal lazy var lineSeparator3: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor(white: 0.2, alpha: 1)
+        line.backgroundColor = ColorScheme.lineSeparatorColor
         return line
     }()
     
     internal lazy var lineSeparator4: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor(white: 0.2, alpha: 1)
+        line.backgroundColor = ColorScheme.lineSeparatorColor
         return line
     }()
     
@@ -490,7 +490,9 @@ class DetailViewController: UIViewController {
 // More button
     internal lazy var moreButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.backgroundColor = ColorScheme.navColor
+        button.layer.cornerRadius = 5
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("More", for: .normal)
         button.addTarget(self, action: #selector(toWebVC), for: .touchUpInside)
         return button

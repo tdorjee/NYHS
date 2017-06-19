@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
 
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         return true
     }
 

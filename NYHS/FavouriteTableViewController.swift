@@ -19,6 +19,7 @@ class FavouriteTableViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
+        self.tableView.separatorStyle = .singleLine
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "phoneIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(edit))
