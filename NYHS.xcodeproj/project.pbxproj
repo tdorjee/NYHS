@@ -13,7 +13,6 @@
 		B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */; };
 		B974D6C91ED028D1006FB89C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B974D6C81ED028D1006FB89C /* MapKit.framework */; };
 		B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E7F1EB97C9C00A00ABD /* AppDelegate.swift */; };
-		B9863E871EB97C9C00A00ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9863E861EB97C9C00A00ABD /* Assets.xcassets */; };
 		B9863E8A1EB97C9C00A00ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9863E881EB97C9C00A00ABD /* LaunchScreen.storyboard */; };
 		B9863E931EB9816500A00ABD /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E921EB9816500A00ABD /* APIRequestManager.swift */; };
 		B9863E951EB98A4100A00ABD /* NYHS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863E941EB98A4100A00ABD /* NYHS.swift */; };
@@ -23,8 +22,10 @@
 		B9997D231EE3651900CCFEC2 /* MainScroolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */; };
 		B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */; };
 		B9EE59481EF5787C00CD1F7C /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */; };
-		B9EE594A1EF5796500CD1F7C /* MianTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59491EF5796500CD1F7C /* MianTableViewController.swift */; };
+		B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */; };
 		B9EE594C1EF6E80D00CD1F7C /* extension+DetailVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE594B1EF6E80D00CD1F7C /* extension+DetailVc.swift */; };
+		B9EE594E1EF78B1500CD1F7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9EE594D1EF78B1500CD1F7C /* Assets.xcassets */; };
+		B9EE59501EF7AC8100CD1F7C /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE594F1EF7AC8100CD1F7C /* tabView.swift */; };
 		C0D36FBADD14EBB6B8FA5A6A /* Pods_NYHS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +38,6 @@
 		B974D6C81ED028D1006FB89C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B9863E7C1EB97C9C00A00ABD /* NYHS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYHS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9863E7F1EB97C9C00A00ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B9863E861EB97C9C00A00ABD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9863E891EB97C9C00A00ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9863E8B1EB97C9C00A00ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9863E921EB9816500A00ABD /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
@@ -48,8 +48,10 @@
 		B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScroolViewController.swift; sourceTree = "<group>"; };
 		B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
 		B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		B9EE59491EF5796500CD1F7C /* MianTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MianTableViewController.swift; sourceTree = "<group>"; };
+		B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		B9EE594B1EF6E80D00CD1F7C /* extension+DetailVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "extension+DetailVc.swift"; sourceTree = "<group>"; };
+		B9EE594D1EF78B1500CD1F7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9EE594F1EF7AC8100CD1F7C /* tabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
 		E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYHS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4E15C7B492ACD9350A77E0 /* Pods-NYHS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,10 +81,10 @@
 		B974D6C41ECEC06C006FB89C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B9EE59491EF5796500CD1F7C /* MianTableViewController.swift */,
+				B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */,
+				B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
-				B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */,
 				B952B4E01EE87F3B008B80AA /* WebViewController.swift */,
 			);
 			name = Controller;
@@ -131,7 +133,7 @@
 		B9863E911EB97D2600A00ABD /* Supporing File */ = {
 			isa = PBXGroup;
 			children = (
-				B9863E861EB97C9C00A00ABD /* Assets.xcassets */,
+				B9EE594D1EF78B1500CD1F7C /* Assets.xcassets */,
 				B9863E881EB97C9C00A00ABD /* LaunchScreen.storyboard */,
 				B9863E8B1EB97C9C00A00ABD /* Info.plist */,
 			);
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */,
+				B9EE594F1EF7AC8100CD1F7C /* tabView.swift */,
 				B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */,
 			);
 			name = View;
@@ -236,8 +239,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9EE594E1EF78B1500CD1F7C /* Assets.xcassets in Resources */,
 				B9863E8A1EB97C9C00A00ABD /* LaunchScreen.storyboard in Resources */,
-				B9863E871EB97C9C00A00ABD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,9 +306,10 @@
 				B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */,
 				B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */,
 				B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */,
-				B9EE594A1EF5796500CD1F7C /* MianTableViewController.swift in Sources */,
+				B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */,
 				B9997D231EE3651900CCFEC2 /* MainScroolViewController.swift in Sources */,
 				B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */,
+				B9EE59501EF7AC8100CD1F7C /* tabView.swift in Sources */,
 				B9863E951EB98A4100A00ABD /* NYHS.swift in Sources */,
 				B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */,
 				B9863E981EBC3B7000A00ABD /* ColorScheme.swift in Sources */,
@@ -427,7 +431,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 941D5E46DF9B06DA95ED8200 /* Pods-NYHS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = GFV556FHMF;
 				INFOPLIST_FILE = NYHS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -443,7 +447,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF4E15C7B492ACD9350A77E0 /* Pods-NYHS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = GFV556FHMF;
 				INFOPLIST_FILE = NYHS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;

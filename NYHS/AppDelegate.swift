@@ -23,15 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let nav = UINavigationController(rootViewController: MianTableViewController())
-        self.window?.rootViewController = nav
-        window?.makeKeyAndVisible()
+       
         
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
 
         UIApplication.shared.statusBarStyle = .lightContent
+        
+//        let tabView = UITabBarController()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        //let nav = UINavigationController(rootViewController: MianTableViewController())
+        self.window?.rootViewController = tabView()
+        window?.makeKeyAndVisible()
         
         return true
     }

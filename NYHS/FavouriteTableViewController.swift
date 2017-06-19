@@ -20,31 +20,37 @@ class FavouriteTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         self.tableView.separatorStyle = .singleLine
+        self.title = "Favorite Schools"
         
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "phoneIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(edit))
         
-        SetBackBarButtonCustom()
-        
-    }
-    
-    func edit(){
         navigationItem.rightBarButtonItem = editButtonItem
-    }
-    
-    func SetBackBarButtonCustom() {
+        //SetBackBarButtonCustom()
         
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
-        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 40/2, height: 40/2)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
+        setUpNavBarStyle()
     }
     
-    func onClcikBack(){
-        _ = self.navigationController?.popViewController(animated: true)
+    func setUpNavBarStyle(){
+        print("Style navigation bar style")
+        navigationController?.navigationBar.barTintColor = ColorScheme.navColor
+        navigationController?.navigationBar.isTranslucent = true
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
+    
+//    func SetBackBarButtonCustom() {
+//        
+//        let btnLeftMenu: UIButton = UIButton()
+//        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
+//        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
+//        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
+//        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+//        self.navigationItem.leftBarButtonItem = barButton
+//    }
+//    
+//    func onClcikBack(){
+//        _ = self.navigationController?.popViewController(animated: true)
+//    }
     
 
     override func viewDidAppear(_ animated: Bool) {

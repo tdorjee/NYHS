@@ -30,24 +30,36 @@ class DetailViewController: UIViewController {
  
         viewHierarchy()
         constraintConfiguration()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "favoriteIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
         
-        SetBackBarButtonCustom()
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightButton.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
+        
+        setBackBarButtonCustom()
+        setMoreButtonCustom()
         
     }
     
-    func SetBackBarButtonCustom() {
+    func setBackBarButtonCustom() {
         
         let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
+        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
         btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 40/2, height: 40/2)
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.leftBarButtonItem = barButton
     }
     
     func onClcikBack(){
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    func setMoreButtonCustom() {
+        
+        let btnLeftMenu: UIButton = UIButton()
+        btnLeftMenu.setImage(#imageLiteral(resourceName: "customMoreOption2"), for: .normal)
+        btnLeftMenu.addTarget(self, action: #selector(contactSchool), for: .touchUpInside)
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
+        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+        self.navigationItem.rightBarButtonItem = barButton
     }
     
 
@@ -75,10 +87,11 @@ class DetailViewController: UIViewController {
 //        }
     }
     
-    func viewFavoriteSchools(){
+    func contactSchool(){
 
-        let favouriteVC = FavouriteTableViewController()
-        self.navigationController?.pushViewController(favouriteVC, animated: true)
+        // Present email / phone / fax
+//        let favouriteVC = FavouriteTableViewController()
+//        self.navigationController?.pushViewController(favouriteVC, animated: true)
         
     }
     
@@ -387,6 +400,20 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+//    let favVC = FavouriteTableViewController()
+//    
+//    
+//    var currentStar = UIImage()
+//    
+//    if let self.favVC.theFavouriteSchools.contains(self.detailSchool.name){
+//        currentStar.image = #imageLiteral(resourceName: "starFill")
+//    }else{
+//        currentStar.image = #imageLiteral(resourceName: "starIcon")
+//    
+//    }
+    
+    
+    
     // favorite button
     internal lazy var favoriteButton: UIButton = {
         let button = UIButton()
@@ -430,7 +457,7 @@ class DetailViewController: UIViewController {
     
     internal lazy var timeImage: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "schoolTime-50"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "time"), for: .normal)
         return button
     }()
     

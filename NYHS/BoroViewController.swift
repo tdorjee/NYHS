@@ -33,14 +33,12 @@ class BoroViewController: UITableViewController {
         // SearchBar placement 
         
         searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.searchBar.searchBarStyle = .minimal
-        if let txfSearchField = searchController.searchBar.value(forKey: "Search School") as? UITextField {
-            txfSearchField.borderStyle = .none
-            txfSearchField.backgroundColor = .white
-        }
-        
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
+        
+        searchController.searchBar.searchBarStyle  = .default
+        
+        
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = true
@@ -48,6 +46,10 @@ class BoroViewController: UITableViewController {
         //definesPresentationContext = true
         //tableView.tableHeaderView = searchController.searchBar
         
+        // chage searchBar cancel color 
+        let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: .normal)
+            
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
@@ -68,9 +70,9 @@ class BoroViewController: UITableViewController {
     func SetBackBarButtonCustom() {
         
         let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
+        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
         btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 40/2, height: 40/2)
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.leftBarButtonItem = barButton
     }
