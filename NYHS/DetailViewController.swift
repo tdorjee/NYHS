@@ -90,8 +90,9 @@ class DetailViewController: UIViewController {
     func contactSchool(){
 
         // Present email / phone / fax
-//        let favouriteVC = FavouriteTableViewController()
-//        self.navigationController?.pushViewController(favouriteVC, animated: true)
+        let contactVC = ContactSchoolViewController()
+        self.present(contactVC, animated: true, completion: nil)
+    
         
     }
     

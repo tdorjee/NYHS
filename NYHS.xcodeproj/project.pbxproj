@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B917DBC91EF98F2A0068A0A6 /* ContactSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */; };
 		B952B4E11EE87F3B008B80AA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952B4E01EE87F3B008B80AA /* WebViewController.swift */; };
 		B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952B4E21EE9C720008B80AA /* LatAndLng.swift */; };
 		B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974D6C01ECEBF72006FB89C /* DetailViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		941D5E46DF9B06DA95ED8200 /* Pods-NYHS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.debug.xcconfig"; sourceTree = "<group>"; };
+		B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSchoolViewController.swift; sourceTree = "<group>"; };
 		B952B4E01EE87F3B008B80AA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B952B4E21EE9C720008B80AA /* LatAndLng.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatAndLng.swift; sourceTree = "<group>"; };
 		B974D6C01ECEBF72006FB89C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
+				B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */,
 				B952B4E01EE87F3B008B80AA /* WebViewController.swift */,
 			);
 			name = Controller;
@@ -304,6 +307,7 @@
 				B952B4E11EE87F3B008B80AA /* WebViewController.swift in Sources */,
 				B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */,
 				B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */,
+				B917DBC91EF98F2A0068A0A6 /* ContactSchoolViewController.swift in Sources */,
 				B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */,
 				B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */,
 				B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */,
