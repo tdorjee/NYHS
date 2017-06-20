@@ -20,10 +20,12 @@ class tabView: UITabBarController {
         let secondNav = UINavigationController(rootViewController: secondVC)
         
         let firstBarIcon = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "home"), tag: 0)
-        let secondBarIcon = UITabBarItem(title: "Favorite", image: #imageLiteral(resourceName: "favoriteIcon"), tag: 1)
+        let secondBarIcon = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "favoriteIcon"), tag: 1)
         
         firstNav.tabBarItem = firstBarIcon
         secondVC.tabBarItem = secondBarIcon
+        
+        tabBar.isTranslucent = false
         
         viewControllers = [firstNav, secondNav]
     }
