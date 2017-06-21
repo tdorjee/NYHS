@@ -86,11 +86,14 @@ class DetailViewController: UIViewController {
 //            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
 //        }
     }
+    var schoolNumber: [String] = []
+
     
     func contactSchool(){
 
         // Present email / phone / fax
         let contactVC = ContactSchoolViewController()
+        contactVC.schoolNumber.insert(self.detailSchool.phone_number, at: 0)
         self.present(contactVC, animated: true, completion: nil)
     
         
@@ -525,15 +528,8 @@ class DetailViewController: UIViewController {
         button.addTarget(self, action: #selector(toWebVC), for: .touchUpInside)
         return button
     }()
-
-    
-    
-
-    
     
 }
-
-
 
 extension String {
     func height(constraintedWidth width: CGFloat, font: UIFont) -> CGFloat {

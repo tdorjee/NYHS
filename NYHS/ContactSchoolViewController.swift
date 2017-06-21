@@ -11,6 +11,10 @@ import SnapKit
 
 class ContactSchoolViewController: UIViewController {
 
+    let messageComposer = ComposeText()
+    
+    var schoolNumber: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,15 +25,28 @@ class ContactSchoolViewController: UIViewController {
     
     }
     
+    // MARK: - Actions
+    
     func dismissView(){
-        print("View dismissing")
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    func callThisNum(){
+        if (messageComposer.canSendText()){
+//            messageComposer.MFMessageComposeViewController.recipients = schoolNumber
+            let messageComposerVC = messageComposer.configuredMessageComposeViewController()
+            present(messageComposerVC, animated: true, completion: nil)
+        }else{
+            print("Plz run it in device")
+        }
+    }
+
+
     func viewHierarchy(){
         
         view.addSubview(backgroundImage)
-        backgroundImage.addSubview(closeButton)
+        view.addSubview(closeButton)
         
         //view.addSubview(lineSeparatorOne)
         view.addSubview(callButton)
@@ -46,62 +63,64 @@ class ContactSchoolViewController: UIViewController {
         
         self.edgesForExtendedLayout = []
         
-        backgroundImage.snp.makeConstraints { (label) in
-            label.height.equalToSuperview().multipliedBy(0.50)
-            label.width.equalTo(self.view.frame.width)
-            label.left.top.equalToSuperview()
+        closeButton.snp.makeConstraints { (button) in
+            button.top.equalToSuperview().offset(40)
+            button.left.equalToSuperview().offset(20)
+            button.height.width.equalTo(40)
         }
         
-        closeButton.snp.makeConstraints { (button) in
-            button.left.equalToSuperview().offset(12)
-            button.top.equalToSuperview().offset(50)
-            button.height.width.equalTo(50)
+        backgroundImage.snp.makeConstraints { (label) in
+            label.top.equalToSuperview().offset(100)
+            label.centerX.equalToSuperview()
+            label.height.equalTo(180)
+            label.width.equalTo(180)
         }
+        
         
         callButton.snp.makeConstraints { (button) in
-            button.top.equalTo(backgroundImage.snp.bottom)
-            button.left.equalTo(backgroundImage.snp.left)
+            button.bottom.equalTo(lineSeparatorTwo.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.width.equalTo(backgroundImage.snp.width)
+            button.left.equalToSuperview()
+            button.width.equalTo(self.view.frame.width)
         }
         
         lineSeparatorTwo.snp.makeConstraints { (line) in
-            line.top.equalTo(callButton.snp.bottom)
+            line.bottom.equalTo(emailButton.snp.top)
             line.height.equalTo(0.5)
-            line.left.equalTo(backgroundImage.snp.left)
+            line.left.equalTo(callButton.snp.left)
         }
         
         emailButton.snp.makeConstraints { (button) in
-            button.top.equalTo(lineSeparatorTwo.snp.bottom)
-            button.left.equalTo(backgroundImage.snp.left)
+            button.bottom.equalTo(lineSeparatorThree.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.width.equalTo(backgroundImage.snp.width)
+            button.left.equalTo(callButton.snp.left)
+            button.width.equalTo(callButton.snp.width)
         }
         
         lineSeparatorThree.snp.makeConstraints { (line) in
-            line.top.equalTo(emailButton.snp.bottom)
+            line.bottom.equalTo(favoriteButton.snp.top)
             line.height.equalTo(0.5)
-            line.left.equalTo(backgroundImage.snp.left)
+            line.left.equalTo(callButton.snp.left)
         }
         
         favoriteButton.snp.makeConstraints { (button) in
-            button.top.equalTo(lineSeparatorThree.snp.bottom)
-            button.left.equalTo(backgroundImage.snp.left)
+            button.bottom.equalTo(lineSeparatorFour.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.width.equalTo(backgroundImage.snp.width)
+            button.left.equalTo(callButton.snp.left)
+            button.width.equalTo(callButton.snp.width)
         }
         
         lineSeparatorFour.snp.makeConstraints { (line) in
-            line.top.equalTo(favoriteButton.snp.bottom)
+            line.bottom.equalTo(moreButton.snp.top)
             line.height.equalTo(0.5)
-            line.left.equalTo(backgroundImage.snp.left)
+            line.left.equalTo(callButton.snp.left)
         }
         
         moreButton.snp.makeConstraints { (button) in
-            button.top.equalTo(lineSeparatorFour.snp.bottom)
-            button.left.equalTo(backgroundImage.snp.left)
+            button.bottom.equalToSuperview()
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.width.equalTo(backgroundImage.snp.width)
+            button.left.equalTo(callButton.snp.left)
+            button.width.equalTo(callButton.snp.width)
         }
         
         
@@ -113,12 +132,18 @@ class ContactSchoolViewController: UIViewController {
     internal lazy var backgroundImage: UIImageView = {
         let  image = UIImageView()
         image.image = #imageLiteral(resourceName: "contactPage")
-        image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 10
+        image.backgroundColor = .red
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
     internal lazy var closeButton: UIButton = {
         let  button = UIButton()
+//        button.backgroundColor = .red
+        button.isUserInteractionEnabled = true
+        button.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
+        button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
         return button
@@ -135,7 +160,7 @@ class ContactSchoolViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
         button.setTitle("Call", for: .normal)
-        //button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+        button.addTarget(self, action: #selector(callThisNum), for: .touchUpInside)
         return button
     }()
     
