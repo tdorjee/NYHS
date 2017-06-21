@@ -41,7 +41,7 @@ class BoroViewController: UITableViewController {
         
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
         
         //definesPresentationContext = true
         //tableView.tableHeaderView = searchController.searchBar

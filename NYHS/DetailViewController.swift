@@ -21,6 +21,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
      
         //self.title = detailSchool?.name
         view.backgroundColor = .white
@@ -30,9 +32,6 @@ class DetailViewController: UIViewController {
  
         viewHierarchy()
         constraintConfiguration()
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightButton.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
-        
         setBackBarButtonCustom()
         setMoreButtonCustom()
         
@@ -61,42 +60,15 @@ class DetailViewController: UIViewController {
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.rightBarButtonItem = barButton
     }
-    
+        
 
-    func addToFavourite(){
-        
-        let favSchool = UserDefaults.standard.object(forKey: "items")
-        
-        var favSchoolAdd: [String]
-        
-        if let tempSchool = favSchool as? [String]{
-            favSchoolAdd = tempSchool
-            favSchoolAdd.append(detailSchool.name)
-            print("Check to see if the school is saved: \(favSchoolAdd)")
-        }else {
-            favSchoolAdd = [detailSchool.name]
-        }
-        
-        UserDefaults.standard.set(favSchoolAdd, forKey: "items")
-//        if var dict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") {
-//            dict[detailSchool.name] = detailSchool.name
-//            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
-//        }else {
-//            let dict = [detailSchool.name : detailSchool.name]
-//            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
-//        }
-    }
-    var schoolNumber: [String] = []
 
     
     func contactSchool(){
-
-        // Present email / phone / fax
-        let contactVC = ContactSchoolViewController()
-        contactVC.schoolNumber.insert(self.detailSchool.phone_number, at: 0)
-        self.present(contactVC, animated: true, completion: nil)
-    
         
+        let contactVC = ContactSchoolViewController()
+        contactVC.schoolFromdetailSchool = self.detailSchool
+        self.present(contactVC, animated: true, completion: nil)
     }
     
     func setupMaps() {
@@ -148,6 +120,8 @@ class DetailViewController: UIViewController {
                         marker.snippet = self.detailSchool.boro
                         marker.map = self.mapView
                     }
+                    
+                    print("School phono no.: \(self.detailSchool.phone_number)")
 
                 }
                 
@@ -164,7 +138,7 @@ class DetailViewController: UIViewController {
         scroolView.addSubview(mainContainer)
         
         mainContainer.addSubview(mapView!)
-        mainContainer.addSubview(favoriteButton)
+        //mainContainer.addSubview(favoriteButton)
         mainContainer.addSubview(schoolNameLabel)
         
         mainContainer.addSubview(lineSeparator1)
@@ -219,17 +193,17 @@ class DetailViewController: UIViewController {
         
         // favorite button
         
-        favoriteButton.snp.makeConstraints { (button) in
-            button.centerY.equalTo(schoolNameLabel)
-            button.right.equalToSuperview().inset(12)
-            button.height.width.equalTo(40)
-        }
+//        favoriteButton.snp.makeConstraints { (button) in
+//            button.centerY.equalTo(schoolNameLabel)
+//            button.right.equalToSuperview().inset(12)
+//            button.height.width.equalTo(40)
+//        }
         
         // school name
         schoolNameLabel.snp.makeConstraints { (label) in
             label.left.equalToSuperview().offset(12)
             label.top.equalTo((mapView?.snp.bottom)!).offset(15)
-            label.right.equalTo(favoriteButton.snp.left).inset(8)
+            label.right.equalToSuperview().inset(12)
         }
         
         // lineSeparator 1
@@ -237,7 +211,7 @@ class DetailViewController: UIViewController {
         lineSeparator1.snp.makeConstraints { (line) in
             line.top.equalTo(schoolNameLabel.snp.bottom).offset(15)
             line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(favoriteButton.snp.right)
+            line.right.equalTo(schoolNameLabel.snp.right)
             line.height.equalTo(0.5)
         }
         
@@ -250,7 +224,7 @@ class DetailViewController: UIViewController {
         diplomaLable.snp.makeConstraints { (label) in
            label.top.equalTo(lineSeparator1.snp.bottom).offset(15)
            label.left.equalTo(diplomaImage.snp.right).offset(8)
-           label.right.equalTo(favoriteButton.snp.right)
+           label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         // school size
@@ -263,7 +237,7 @@ class DetailViewController: UIViewController {
         schoolSizeLabel.snp.makeConstraints { (label) in
             label.top.equalTo(schoolSizeImage.snp.top)
             label.left.equalTo(schoolSizeImage.snp.right).offset(8)
-            label.right.equalTo(favoriteButton.snp.right)
+            label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         // school time 
@@ -276,7 +250,7 @@ class DetailViewController: UIViewController {
         timeLabel.snp.makeConstraints { (label) in
             label.top.equalTo(timeImage.snp.top)
             label.left.equalTo(timeImage.snp.right).offset(8)
-            label.right.equalTo(favoriteButton.snp.right)
+            label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         // lineSeparator 2
@@ -284,7 +258,7 @@ class DetailViewController: UIViewController {
         lineSeparator2.snp.makeConstraints { (line) in
             line.top.equalTo(timeLabel.snp.bottom).offset(15)
             line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(favoriteButton.snp.right)
+            line.right.equalTo(schoolNameLabel.snp.right)
             line.height.equalTo(0.5)
         }
         
@@ -293,20 +267,20 @@ class DetailViewController: UIViewController {
         overviewLabel.snp.makeConstraints { (label) in
             label.top.equalTo(lineSeparator2.snp.bottom).offset(15)
             label.left.equalTo(schoolNameLabel.snp.left)
-            label.right.equalTo(favoriteButton.snp.right)
+            label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         overviewText.snp.makeConstraints { (label) in
             label.top.equalTo(overviewLabel.snp.bottom).offset(8)
             label.left.equalTo(schoolNameLabel.snp.left)
-            label.right.equalTo(favoriteButton.snp.right)
+            label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         
         lineSeparator3.snp.makeConstraints { (line) in
             line.top.equalTo(overviewText.snp.bottom).offset(15)
             line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(favoriteButton.snp.right)
+            line.right.equalTo(schoolNameLabel.snp.right)
             line.height.equalTo(0.5)
         }
     
@@ -315,25 +289,23 @@ class DetailViewController: UIViewController {
         extracurricularActiviesLabel.snp.makeConstraints { (label) in
            label.top.equalTo(lineSeparator3.snp.bottom).offset(15)
            label.left.equalTo(schoolNameLabel.snp.left)
-           label.right.equalTo(favoriteButton.snp.right)
+           label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         extracurricularActiviesText.snp.makeConstraints { (label) in
             label.top.equalTo(extracurricularActiviesLabel.snp.bottom).offset(8)
             label.left.equalTo(schoolNameLabel.snp.left)
-            label.right.equalTo(favoriteButton.snp.right)
+            label.right.equalTo(schoolNameLabel.snp.right)
         }
         
         lineSeparator4.snp.makeConstraints { (line) in
             line.top.equalTo(extracurricularActiviesText.snp.bottom).offset(15)
             line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(favoriteButton.snp.right)
+            line.right.equalTo(schoolNameLabel.snp.right)
             line.height.equalTo(0.5)
         }
         
-        
 //      More button
-
         moreButton.snp.makeConstraints { (button) in
             button.top.equalTo(lineSeparator4.snp.bottom).offset(15)
             button.centerX.equalToSuperview()
@@ -419,12 +391,11 @@ class DetailViewController: UIViewController {
     
     
     // favorite button
-    internal lazy var favoriteButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "starIcon"), for: .normal)
-        button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
-        return button
-    }()
+//    internal lazy var favoriteButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(#imageLiteral(resourceName: "starIcon"), for: .normal)
+//        return button
+//    }()
     
     // diploma endorsements
     

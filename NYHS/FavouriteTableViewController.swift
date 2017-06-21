@@ -54,7 +54,7 @@ class FavouriteTableViewController: UITableViewController {
     
 
     override func viewDidAppear(_ animated: Bool) {
-        let favSchool = UserDefaults.standard.object(forKey: "items")
+        let favSchool = UserDefaults.standard.object(forKey: "school")
         
         if let tempSchool = favSchool as? [String] {
             
@@ -102,7 +102,7 @@ class FavouriteTableViewController: UITableViewController {
             
             theFavouriteSchools.remove(at: indexPath.row)
             tableView.reloadData()
-            UserDefaults.standard.set(theFavouriteSchools, forKey: "items")
+            UserDefaults.standard.set(theFavouriteSchools, forKey: "school")
         default:
             break
         }

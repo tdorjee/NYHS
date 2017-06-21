@@ -8,12 +8,13 @@
 
 import UIKit
 import SnapKit
+import MessageUI
 
 class ContactSchoolViewController: UIViewController {
 
-    let messageComposer = ComposeText()
     
-    var schoolNumber: [String] = []
+    var schoolFromdetailSchool: School?
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +32,59 @@ class ContactSchoolViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    let messageComposer = MFMessageComposeViewController()
+    let mailComposer = MFMailComposeViewController()
     
-    func callThisNum(){
-        if (messageComposer.canSendText()){
-//            messageComposer.MFMessageComposeViewController.recipients = schoolNumber
-            let messageComposerVC = messageComposer.configuredMessageComposeViewController()
-            present(messageComposerVC, animated: true, completion: nil)
-        }else{
-            print("Plz run it in device")
+    
+    func smsSchool(){
+        if MFMessageComposeViewController.canSendText(){
+            messageComposer.messageComposeDelegate = self as? MFMessageComposeViewControllerDelegate
+            if let schoolWebSite = schoolFromdetailSchool?.website {
+                messageComposer.body = "Check this school out: \(schoolWebSite))"
+            }
+            present(messageComposer, animated: true, completion: nil)
         }
+    }
+    
+    func callSchool(){
+        guard let number = URL(string: "telprompt://" + (schoolFromdetailSchool?.phone_number)!) else { return }
+        UIApplication.shared.open(number, options: [:], completionHandler: nil)
+    }
+    
+    func emailSchool() {
+        if MFMailComposeViewController.canSendMail(){
+            self.mailComposer.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
+            mailComposer.setToRecipients([(schoolFromdetailSchool?.school_email)!])
+            present(mailComposer, animated: true, completion: nil)
+        }
+    }
+    
+    func addToFavourite(){
+        
+        // Jason's strategy
+        
+        //        if var dict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") {
+        //            dict[detailSchool.name] = detailSchool.name
+        //            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+        //        }else {
+        //            let dict = [detailSchool.name : detailSchool.name]
+        //            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
+        //        }
+        
+        let favSchool = UserDefaults.standard.object(forKey: "school")
+        var favSchoolAdd: [String]
+        
+        if let tempSchool = favSchool as? [String] {
+            
+            favSchoolAdd = tempSchool
+            favSchoolAdd.append((schoolFromdetailSchool?.name)!)
+            
+        }else {
+            favSchoolAdd = [(schoolFromdetailSchool?.name)!]
+        }
+        UserDefaults.standard.set(favSchoolAdd, forKey: "school")
+        
+        
     }
 
 
@@ -49,13 +94,13 @@ class ContactSchoolViewController: UIViewController {
         view.addSubview(closeButton)
         
         //view.addSubview(lineSeparatorOne)
-        view.addSubview(callButton)
+        view.addSubview(smsButton)
             view.addSubview(lineSeparatorTwo)
         view.addSubview(emailButton)
             view.addSubview(lineSeparatorThree)
         view.addSubview(favoriteButton)
         view.addSubview(lineSeparatorFour)
-        view.addSubview(moreButton)
+        view.addSubview(callButton)
      
     }
     
@@ -77,7 +122,7 @@ class ContactSchoolViewController: UIViewController {
         }
         
         
-        callButton.snp.makeConstraints { (button) in
+        smsButton.snp.makeConstraints { (button) in
             button.bottom.equalTo(lineSeparatorTwo.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
             button.left.equalToSuperview()
@@ -87,44 +132,41 @@ class ContactSchoolViewController: UIViewController {
         lineSeparatorTwo.snp.makeConstraints { (line) in
             line.bottom.equalTo(emailButton.snp.top)
             line.height.equalTo(0.5)
-            line.left.equalTo(callButton.snp.left)
+            line.left.equalTo(smsButton.snp.left)
         }
         
         emailButton.snp.makeConstraints { (button) in
             button.bottom.equalTo(lineSeparatorThree.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.left.equalTo(callButton.snp.left)
-            button.width.equalTo(callButton.snp.width)
+            button.left.equalTo(smsButton.snp.left)
+            button.width.equalTo(smsButton.snp.width)
         }
         
         lineSeparatorThree.snp.makeConstraints { (line) in
             line.bottom.equalTo(favoriteButton.snp.top)
             line.height.equalTo(0.5)
-            line.left.equalTo(callButton.snp.left)
+            line.left.equalTo(smsButton.snp.left)
         }
         
         favoriteButton.snp.makeConstraints { (button) in
             button.bottom.equalTo(lineSeparatorFour.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.left.equalTo(callButton.snp.left)
-            button.width.equalTo(callButton.snp.width)
+            button.left.equalTo(smsButton.snp.left)
+            button.width.equalTo(smsButton.snp.width)
         }
         
         lineSeparatorFour.snp.makeConstraints { (line) in
-            line.bottom.equalTo(moreButton.snp.top)
+            line.bottom.equalTo(callButton.snp.top)
             line.height.equalTo(0.5)
-            line.left.equalTo(callButton.snp.left)
+            line.left.equalTo(smsButton.snp.left)
         }
         
-        moreButton.snp.makeConstraints { (button) in
+        callButton.snp.makeConstraints { (button) in
             button.bottom.equalToSuperview()
             button.height.equalToSuperview().multipliedBy(0.10)
-            button.left.equalTo(callButton.snp.left)
-            button.width.equalTo(callButton.snp.width)
+            button.left.equalTo(smsButton.snp.left)
+            button.width.equalTo(smsButton.snp.width)
         }
-        
-        
-        
     }
     
     // MARK: - Outlets
@@ -156,11 +198,11 @@ class ContactSchoolViewController: UIViewController {
         return line
     }()
     
-    internal lazy var callButton: UIButton = {
+    internal lazy var smsButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
-        button.setTitle("Call", for: .normal)
-        button.addTarget(self, action: #selector(callThisNum), for: .touchUpInside)
+        button.setTitle("SMS", for: .normal)
+        button.addTarget(self, action: #selector(smsSchool), for: .touchUpInside)
         return button
     }()
     
@@ -175,7 +217,7 @@ class ContactSchoolViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
         button.setTitle("Email", for: .normal)
-        //button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+        button.addTarget(self, action: #selector(emailSchool), for: .touchUpInside)
         return button
     }()
     
@@ -189,7 +231,7 @@ class ContactSchoolViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
         button.setTitle("Add to favorite", for: .normal)
-        //button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
         return button
     }()
     
@@ -199,14 +241,37 @@ class ContactSchoolViewController: UIViewController {
         return line
     }()
     
-    internal lazy var moreButton: UIButton = {
+    internal lazy var callButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
-        button.setTitle("More", for: .normal)
-        //button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+        button.setTitle("Call", for: .normal)
+        button.addTarget(self, action: #selector(callSchool), for: .touchUpInside)
         return button
     }()
+}
+
+extension ContactSchoolViewController: MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     
-
-
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        switch (result){
+        case .cancelled:
+            print("Mail cancelled")
+            break
+        case .saved:
+            print("Mail saved")
+            break
+        case .sent:
+            print("Mail sent")
+            break
+        case .failed:
+            print("Mail sent failure: \(String(describing: error?.localizedDescription))")
+        }
+        // Close the Mail Interface
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
