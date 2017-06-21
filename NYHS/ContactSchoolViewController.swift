@@ -84,6 +84,11 @@ class ContactSchoolViewController: UIViewController {
         }
         UserDefaults.standard.set(favSchoolAdd, forKey: "school")
         
+        let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+
+        
         
     }
 
