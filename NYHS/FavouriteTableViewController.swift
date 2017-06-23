@@ -20,14 +20,24 @@ class FavouriteTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         self.tableView.separatorStyle = .singleLine
-        self.title = "Favorite Schools"
         
+        if theFavouriteSchools.count == 0{
+            self.title = "No Favorite School"
+        }else {
+            
+            self.title = "Favorite Schools"
+        }
         
         
         navigationItem.rightBarButtonItem = editButtonItem
+        
         //SetBackBarButtonCustom()
         
         setUpNavBarStyle()
+        
+        
+        
+        
     }
     
     func setUpNavBarStyle(){
@@ -75,7 +85,9 @@ class FavouriteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return theFavouriteSchools.count
+        
+     
+            return theFavouriteSchools.count
     }
 
     
@@ -84,6 +96,8 @@ class FavouriteTableViewController: UITableViewController {
 
         let thisSchool = theFavouriteSchools[indexPath.row]
         cell.textLabel?.text = thisSchool
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
 
         return cell
     }

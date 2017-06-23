@@ -49,9 +49,11 @@ class DetailViewController: UIViewController {
         
             UIView.animate(withDuration: 1, animations: {
                 self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: self.view.frame.height)
-                self.miniMainViewContainer.frame = CGRect(x: UIScreen.main.bounds.size.width, y: UIScreen.main.bounds.size.height, width: 0, height: 0)
+                self.miniMainViewContainer.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: self.miniMainViewContainer.frame.width, height: 0)
                 
             }, completion: nil)
+            
+            self.showMapButton.setImage(#imageLiteral(resourceName: "mapUp2"), for: .normal)
             ifMapViewEpended = true
             
             print("Map expended")
@@ -61,6 +63,7 @@ class DetailViewController: UIViewController {
                 self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: 150)
                 self.miniMainViewContainer.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 87, width: 100, height: 300)
             }, completion: nil)
+            self.showMapButton.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
             
             ifMapViewEpended = false
             print("MapView shrinked")
@@ -430,7 +433,7 @@ class DetailViewController: UIViewController {
     
     internal lazy var showMapButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
         button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
         return button
     }()
