@@ -15,13 +15,15 @@ class DetailViewController: UIViewController {
     
     var detailSchool: School!
     var locationManager = CLLocationManager()
+    
     var mapView: GMSMapView!
     
+    
     var currentLocation = CLLocationCoordinate2D()
+    var animator = UIViewPropertyAnimator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
      
         //self.title = detailSchool?.name
@@ -34,6 +36,39 @@ class DetailViewController: UIViewController {
         constraintConfiguration()
         setBackBarButtonCustom()
         setMoreButtonCustom()
+        
+    }
+    
+    // show map fully
+    
+    var ifMapViewEpended = false
+    
+    func showMapFullScreen(){
+        
+        if !(ifMapViewEpended){
+        
+            UIView.animate(withDuration: 1, animations: {
+                self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: self.view.frame.height)
+                self.miniMainViewContainer.frame = CGRect(x: UIScreen.main.bounds.size.width, y: UIScreen.main.bounds.size.height, width: 0, height: 0)
+                
+            }, completion: nil)
+            ifMapViewEpended = true
+            
+            print("Map expended")
+        }else {
+            
+            UIView.animate(withDuration: 1, animations: {
+                self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: 150)
+                self.miniMainViewContainer.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 87, width: 100, height: 300)
+            }, completion: nil)
+            
+            ifMapViewEpended = false
+            print("MapView shrinked")
+
+            
+        }
+        
+        
         
     }
     
@@ -138,32 +173,36 @@ class DetailViewController: UIViewController {
         scroolView.addSubview(mainContainer)
         
         mainContainer.addSubview(mapView!)
-        //mainContainer.addSubview(favoriteButton)
-        mainContainer.addSubview(schoolNameLabel)
+        mapView.addSubview(showMapButton)
         
-        mainContainer.addSubview(lineSeparator1)
+        mainContainer.addSubview(miniMainViewContainer)
         
-        mainContainer.addSubview(diplomaImage)
-        mainContainer.addSubview(diplomaLable)
-        mainContainer.addSubview(schoolSizeImage)
-        mainContainer.addSubview(schoolSizeLabel)
-        mainContainer.addSubview(timeImage)
-        mainContainer.addSubview(timeLabel)
+        miniMainViewContainer.addSubview(schoolNameLabel)
+        miniMainViewContainer.addSubview(lineSeparator1)
+        
+        miniMainViewContainer.addSubview(diplomaImage)
+        miniMainViewContainer.addSubview(diplomaLable)
+        
+        miniMainViewContainer.addSubview(schoolSizeImage)
+        miniMainViewContainer.addSubview(schoolSizeLabel)
+        
+        miniMainViewContainer.addSubview(timeImage)
+        miniMainViewContainer.addSubview(timeLabel)
         
         
-        mainContainer.addSubview(lineSeparator2)
+        miniMainViewContainer.addSubview(lineSeparator2)
         
-        mainContainer.addSubview(overviewLabel)
-        mainContainer.addSubview(overviewText)
+        miniMainViewContainer.addSubview(overviewLabel)
+        miniMainViewContainer.addSubview(overviewText)
         
-        mainContainer.addSubview(lineSeparator3)
+        miniMainViewContainer.addSubview(lineSeparator3)
         
-        mainContainer.addSubview(extracurricularActiviesLabel)
-        mainContainer.addSubview(extracurricularActiviesText)
+        miniMainViewContainer.addSubview(extracurricularActiviesLabel)
+        miniMainViewContainer.addSubview(extracurricularActiviesText)
         
-        mainContainer.addSubview(lineSeparator4)
+        miniMainViewContainer.addSubview(lineSeparator4)
         
-        mainContainer.addSubview(moreButton)
+        miniMainViewContainer.addSubview(moreButton)
     
         
         
@@ -189,15 +228,19 @@ class DetailViewController: UIViewController {
             map.leading.top.trailing.equalToSuperview()
             map.height.equalTo(150)
         }
-
         
-        // favorite button
+        showMapButton.snp.makeConstraints { (button) in
+            button.left.top.equalToSuperview().offset(12)
+            button.height.width.equalTo(40)
+        }
         
-//        favoriteButton.snp.makeConstraints { (button) in
-//            button.centerY.equalTo(schoolNameLabel)
-//            button.right.equalToSuperview().inset(12)
-//            button.height.width.equalTo(40)
-//        }
+        // MARK: outlets in miniMainView
+        
+        miniMainViewContainer.snp.makeConstraints { (view) in
+            view.left.equalToSuperview()
+            view.top.equalTo(mapView.snp.bottom)
+            view.right.bottom.equalToSuperview()
+        }
         
         // school name
         schoolNameLabel.snp.makeConstraints { (label) in
@@ -367,6 +410,12 @@ class DetailViewController: UIViewController {
         return container
     }()
     
+    //miniMainViewContainer
+    internal lazy var miniMainViewContainer: UIView = {
+        let container = UIView()
+        return container
+    }()
+    
     //  school name
     internal lazy var schoolNameLabel: UILabel = {
         let label = UILabel()
@@ -376,26 +425,15 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-//    let favVC = FavouriteTableViewController()
-//    
-//    
-//    var currentStar = UIImage()
-//    
-//    if let self.favVC.theFavouriteSchools.contains(self.detailSchool.name){
-//        currentStar.image = #imageLiteral(resourceName: "starFill")
-//    }else{
-//        currentStar.image = #imageLiteral(resourceName: "starIcon")
-//    
-//    }
     
+    // Expand map 
     
-    
-    // favorite button
-//    internal lazy var favoriteButton: UIButton = {
-//        let button = UIButton()
-//        button.setImage(#imageLiteral(resourceName: "starIcon"), for: .normal)
-//        return button
-//    }()
+    internal lazy var showMapButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .red
+        button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
+        return button
+    }()
     
     // diploma endorsements
     

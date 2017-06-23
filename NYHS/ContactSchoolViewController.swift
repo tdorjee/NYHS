@@ -126,7 +126,6 @@ class ContactSchoolViewController: UIViewController {
             label.width.equalTo(180)
         }
         
-        
         smsButton.snp.makeConstraints { (button) in
             button.bottom.equalTo(lineSeparatorTwo.snp.top)
             button.height.equalToSuperview().multipliedBy(0.10)
