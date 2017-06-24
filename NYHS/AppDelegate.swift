@@ -32,7 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = SplashScreenViewController()
         window?.makeKeyAndVisible()
         
+        // method for splash screen
+        
+        
         return true
+    }
+    
+    class func sharedInstance() -> AppDelegate{
+        return UIApplication.shared.delegate as! AppDelegate
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

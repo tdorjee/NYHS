@@ -6,6 +6,7 @@
 //  Copyright © 2017 C4Q. All rights reserved.
 //
 import UIKit
+import SnapKit
 
 class SplashScreenViewController: UIViewController {
     
@@ -14,39 +15,79 @@ class SplashScreenViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        let iconWithAlpha = icon
-        iconWithAlpha.alpha = 0.0
-        view.addSubview(iconWithAlpha)
+    
         
-        iconWithAlpha.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        iconWithAlpha.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50).isActive = true
-        iconWithAlpha.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        iconWithAlpha.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        viewHierarchy()
+        constraintConfiguration()
+        
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.splashTimeOut(sender:)), userInfo: nil, repeats: false)
         
         UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.icon.alpha = 1.0
         }, completion: nil)
         
-        perform(#selector(SegueToOnboardVc), with: nil, afterDelay: 4)
+        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.iconLabel.alpha = 1.0
+        }, completion: nil)
+        
+        //perform(#selector(SegueToOnboardVc), with: nil, afterDelay: 4)
         
         navigationController?.isNavigationBarHidden = true
         
     }
     
-    func SegueToOnboardVc(){
-        _ = UserDefaults.standard
+    func viewHierarchy(){
         
-            let onboardVC = tabView()
-            self.navigationController?.pushViewController(onboardVC, animated: true)
-      
+        
+        view.addSubview(icon)
+        view.addSubview(iconLabel)
+        
+        
     }
     
+    func constraintConfiguration(){
+        
+        icon.snp.makeConstraints { (icon) in
+            icon.centerX.equalToSuperview()
+            icon.centerY.equalToSuperview()
+            icon.height.equalTo(100)
+            icon.width.equalTo(100)
+        }
+        
+        iconLabel.snp.makeConstraints { (label) in
+            label.centerX.equalToSuperview()
+            label.top.equalTo(icon.snp.bottom).offset(8)
+            
+        }
+        
+    }
+    
+    func splashTimeOut(sender: Timer){
+        AppDelegate.sharedInstance().window?.rootViewController = tabView()
+    }
+    
+//    func SegueToOnboardVc(){
+//        _ = UserDefaults.standard
+//        
+//            let onboardVC = tabView()
+//            self.navigationController?.pushViewController(onboardVC, animated: true)
+//      
+//    }
+//    
     internal lazy var icon: UIImageView = {
         let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "NYCHSIcon")
+        image.image = #imageLiteral(resourceName: "appIcon1")
+        image.alpha = 0.0
         image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
+    }()
+    
+    internal lazy var iconLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "NYCHS", size: 22)
+        label.alpha = 0.0
+        label.backgroundColor = .red
+        return label
     }()
     
 }
