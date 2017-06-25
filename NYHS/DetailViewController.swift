@@ -424,6 +424,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "\(self.detailSchool.name)"
         label.lineBreakMode = .byWordWrapping
+        label.font = ColorScheme.titleFont
         label.numberOfLines = 0
         return label
     }()
@@ -450,7 +451,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "\(self.detailSchool.diplomaendorsements)"
         label.textColor = UIColor(white: 0.2, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = ColorScheme.subTitleFont
         return label
     }()
     
@@ -465,7 +466,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "\(self.detailSchool.total_students)"
         label.textColor = UIColor(white: 0.2, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = ColorScheme.subTitleFont
         return label
     }()
 
@@ -481,7 +482,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "\(self.detailSchool.start_time) - \(self.detailSchool.end_time)"
         label.textColor = UIColor(white: 0.2, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = ColorScheme.subTitleFont
         return label
     }()
     
@@ -493,7 +494,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Overview"
         label.textColor = UIColor(white: 0.2, alpha: 1)
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = ColorScheme.subTitleFont
         return label
     }()
     
@@ -502,7 +503,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         //label.sizeToFit()
         label.text = self.detailSchool.overview_paragraph
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = ColorScheme.descriptionFont
 //        label.textColor = ColorScheme.subtitleTextColor
         label.textColor = UIColor(white: 0.2, alpha: 1)
         label.lineBreakMode = .byWordWrapping
@@ -516,13 +517,14 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Extracurricular"
         label.textColor = UIColor(white: 0.2, alpha: 1)
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = ColorScheme.subTitleFont
         return label
     }()
     
     internal lazy var extracurricularActiviesText: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = ColorScheme.descriptionFont
+        
         label.text = self.detailSchool.extracurricular_activities
         label.textColor = UIColor(white: 0.2, alpha: 1)
         label.lineBreakMode = .byWordWrapping

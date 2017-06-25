@@ -16,9 +16,12 @@ class BoroViewController: UITableViewController {
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     
+    let sections = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    
     var boroSelected: String = ""
     var schools: [School] = []
     var sortSchool: [School] = []
+    
     var filteredSchool: [School] = []
     
     
@@ -168,7 +171,7 @@ class BoroViewController: UITableViewController {
         cell.titleLabel.lineBreakMode = .byWordWrapping
         cell.titleLabel.text = school.name
         //cell.titleLabel.textColor = UIColor(white: 2.0, alpha: 1)
-        cell.titleLabel.font = UIFont.systemFont(ofSize: 16)
+        cell.titleLabel.font = ColorScheme.titleFont
 //        cell.detailLabel.text = school.phone_number
     
         return cell

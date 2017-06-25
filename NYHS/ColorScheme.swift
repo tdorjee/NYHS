@@ -11,6 +11,11 @@ import UIKit
 
 struct ColorScheme {
     
+    // Font size
+    static let titleFont = UIFont.systemFont(ofSize: 15)
+    static let subTitleFont = UIFont.boldSystemFont(ofSize: 12)
+    static let descriptionFont = UIFont.systemFont(ofSize: 12)
+    
     static let subtitleTextColor: UIColor = UIColor(red: 148/255, green: 148/255, blue: 148/255, alpha: 1.0)
     
     static let lineSeparatorColor: UIColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0)
