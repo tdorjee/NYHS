@@ -80,7 +80,7 @@ import Foundation
  
  */
 
-class School {
+class School: NSObject {
     
     let name: String
     let boro: String
@@ -130,4 +130,5 @@ class School {
    
     }
 
+    
 }

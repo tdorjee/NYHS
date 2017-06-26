@@ -12,7 +12,7 @@ class FavouriteTableViewController: UITableViewController {
 
     let cellId = "cellId"
     
-    var theFavouriteSchools: [String] = []
+    var theFavouriteSchools: [School] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +20,8 @@ class FavouriteTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         self.tableView.separatorStyle = .singleLine
-        
-        if theFavouriteSchools.count == 0{
-            self.title = "No Favorite School"
-        }else {
-            
             self.title = "Favorite Schools"
-        }
+      
         
         
         navigationItem.rightBarButtonItem = editButtonItem
@@ -66,7 +61,7 @@ class FavouriteTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         let favSchool = UserDefaults.standard.object(forKey: "school")
         
-        if let tempSchool = favSchool as? [String] {
+        if let tempSchool = favSchool as? [School] {
             
             theFavouriteSchools = tempSchool
             
@@ -95,7 +90,7 @@ class FavouriteTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
 
         let thisSchool = theFavouriteSchools[indexPath.row]
-        cell.textLabel?.text = thisSchool
+        cell.textLabel?.text = thisSchool.boro
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
 

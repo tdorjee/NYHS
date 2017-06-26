@@ -147,6 +147,7 @@ class BoroViewController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredSchool.count
         }
+        
         return self.sortSchool.count
     }
     
@@ -160,6 +161,7 @@ class BoroViewController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != ""{
             school = filteredSchool[indexPath.row]
         }else{
+            
             
             school = sortSchool[indexPath.row]
         }
@@ -175,6 +177,16 @@ class BoroViewController: UITableViewController {
 //        cell.detailLabel.text = school.phone_number
     
         return cell
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return self.sections
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        
+        return index
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

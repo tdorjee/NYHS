@@ -72,15 +72,15 @@ class ContactSchoolViewController: UIViewController {
         //        }
         
         let favSchool = UserDefaults.standard.object(forKey: "school")
-        var favSchoolAdd: [String]
+        var favSchoolAdd: [School]
         
-        if let tempSchool = favSchool as? [String] {
+        if let tempSchool = favSchool as? [School] {
             
             favSchoolAdd = tempSchool
-            favSchoolAdd.append((schoolFromdetailSchool?.name)!)
+            favSchoolAdd.append((schoolFromdetailSchool)!)
             
         }else {
-            favSchoolAdd = [(schoolFromdetailSchool?.name)!]
+            favSchoolAdd = [(schoolFromdetailSchool)!]
         }
         UserDefaults.standard.set(favSchoolAdd, forKey: "school")
         

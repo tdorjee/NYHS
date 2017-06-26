@@ -19,6 +19,7 @@ class BoroTableViewCell: UITableViewCell {
 //        return label
 //    }()
     
+
     var titleLabel = UILabel()
     var detailLabel = UILabel()
     
