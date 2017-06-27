@@ -80,7 +80,7 @@ import Foundation
  
  */
 
-class School: NSObject {
+class School: NSObject, NSCoding{
     
     let name: String
     let boro: String
@@ -89,14 +89,14 @@ class School: NSObject {
     let total_students: String
     let start_time: String
     let end_time: String
-    let se_services: String
+//    let se_services: String
     let school_sports: String
     let diplomaendorsements: String
     let extracurricular_activities: String
-    let program_highlights: String
+//    let program_highlights: String
     
-    let bus: String
-    let subway: String
+//    let bus: String
+//    let subway: String
     
     let primary_address_line_1: String
     let zip: String
@@ -113,13 +113,13 @@ class School: NSObject {
         self.total_students = dictionary["total_students"] ?? ""
         self.start_time = dictionary["start_time"] ?? ""
         self.end_time = dictionary["end_time"] ?? ""
-        self.se_services = dictionary["se_services"] ?? ""
+//        self.se_services = dictionary["se_services"] ?? ""
         self.school_sports = dictionary["school_sports"] ?? ""
         self.extracurricular_activities = dictionary["extracurricular_activities"] ?? ""
-        self.program_highlights = dictionary["program_highlights"] ?? ""
-         
-        self.bus = dictionary["bus"] ?? ""
-        self.subway = dictionary["subway"] ?? ""
+//        self.program_highlights = dictionary["program_highlights"] ?? ""
+        
+//        self.bus = dictionary["bus"] ?? ""
+//        self.subway = dictionary["subway"] ?? ""
         
         self.primary_address_line_1 = dictionary["primary_address_line_1"] ?? ""
         self.zip = dictionary["zip"] ?? ""
@@ -128,6 +128,43 @@ class School: NSObject {
         self.school_email = dictionary["school_email"] ?? ""
         self.website = dictionary["website"] ?? ""
    
+    }
+    
+    required init(coder decoder: NSCoder) {
+        self.name = decoder.decodeObject(forKey: "school_name") as? String ?? ""
+        self.boro = decoder.decodeObject(forKey: "boro") as? String ?? ""
+
+        self.diplomaendorsements = decoder.decodeObject(forKey: "diplomaendorsements") as? String ?? ""
+        self.overview_paragraph = decoder.decodeObject(forKey: "overview_paragraph") as? String ?? ""
+        self.total_students = decoder.decodeObject(forKey: "total_students") as? String ?? ""
+        self.start_time = decoder.decodeObject(forKey: "start_time") as? String ?? ""
+        self.end_time = decoder.decodeObject(forKey: "end_time") as? String ?? ""
+        self.school_sports = decoder.decodeObject(forKey: "school_sports") as? String ?? ""
+        self.extracurricular_activities = decoder.decodeObject(forKey: "extracurricular_activities") as? String ?? ""
+        self.primary_address_line_1 = decoder.decodeObject(forKey: "primary_address_line_1") as? String ?? ""
+        self.zip = decoder.decodeObject(forKey: "zip") as? String ?? ""
+        self.phone_number = decoder.decodeObject(forKey: "phone_number") as? String ?? ""
+        self.fax_number = decoder.decodeObject(forKey: "fax_number") as? String ?? ""
+        self.school_email = decoder.decodeObject(forKey: "school_email") as? String ?? ""
+        self.website = decoder.decodeObject(forKey: "website") as? String ?? ""
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(name, forKey: "school_name")
+        coder.encode(boro, forKey: "boro")
+        coder.encode(diplomaendorsements, forKey: "diplomaendorsements")
+        coder.encode(overview_paragraph, forKey: "overview_paragraph")
+        coder.encode(start_time, forKey: "start_time")
+        coder.encode(end_time, forKey: "end_time")
+        coder.encode(school_sports, forKey: "school_sports")
+        coder.encode(extracurricular_activities, forKey: "extracurricular_activities")
+        coder.encode(primary_address_line_1, forKey: "primary_address_line_1")
+        coder.encode(zip, forKey: "zip")
+        coder.encode(phone_number, forKey: "phone_number")
+        coder.encode(fax_number, forKey: "fax_number")
+        coder.encode(school_email, forKey: "school_email")
+        coder.encode(website, forKey: "website")
+        
     }
 
     

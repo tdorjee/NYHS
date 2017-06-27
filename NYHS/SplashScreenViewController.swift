@@ -15,8 +15,6 @@ class SplashScreenViewController: UIViewController {
         
         view.backgroundColor = .white
         
-    
-        
         viewHierarchy()
         constraintConfiguration()
         
@@ -55,7 +53,8 @@ class SplashScreenViewController: UIViewController {
         }
         
         iconLabel.snp.makeConstraints { (label) in
-            label.centerX.equalToSuperview()
+            
+            label.left.equalToSuperview().offset(8)
             label.top.equalTo(icon.snp.bottom).offset(8)
             
         }
@@ -84,8 +83,7 @@ class SplashScreenViewController: UIViewController {
     
     internal lazy var iconLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "NYCHS", size: 22)
-        label.alpha = 0.0
+        label.font = UIFont(name: "NYCHSnl;olfjelj'adkn", size: 22)
         label.backgroundColor = .red
         return label
     }()

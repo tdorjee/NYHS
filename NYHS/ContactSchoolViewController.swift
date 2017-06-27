@@ -75,7 +75,6 @@ class ContactSchoolViewController: UIViewController {
         var favSchoolAdd: [School]
         
         if let tempSchool = favSchool as? [School] {
-            
             favSchoolAdd = tempSchool
             favSchoolAdd.append((schoolFromdetailSchool)!)
             
