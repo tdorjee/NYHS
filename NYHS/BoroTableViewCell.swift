@@ -50,7 +50,7 @@ class BoroTableViewCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints { (label) in
             label.left.top.equalToSuperview().offset(8)
-            label.right.equalToSuperview().inset(8)
+            label.right.equalToSuperview().inset(70)
             label.centerY.equalToSuperview()
             
         }
