@@ -151,6 +151,8 @@ class DetailViewController: UIViewController {
             
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
+                        self.mapView.isMyLocationEnabled = true
+                        self.mapView.settings.myLocationButton = true
 
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng )
