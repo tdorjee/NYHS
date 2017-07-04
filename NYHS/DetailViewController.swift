@@ -14,9 +14,10 @@ import GooglePlaces
 class DetailViewController: UIViewController {
     
     var detailSchool: School!
-    var locationManager = CLLocationManager()
     
     var mapView: GMSMapView!
+    var locationManager = CLLocationManager()
+
     
     
     var currentLocation = CLLocationCoordinate2D()
@@ -28,6 +29,12 @@ class DetailViewController: UIViewController {
      
         //self.title = detailSchool?.name
         view.backgroundColor = .white
+        
+        locationManager.delegate = self
+        locationManager.distanceFilter = 500
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         getLatAndLgn()
         setupMaps()
@@ -558,6 +565,41 @@ extension String {
     }
 }
 
+extension DetailViewController: CLLocationManagerDelegate {
+    
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+            mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.last
+        self.locationManager.stopUpdatingLocation()
+      
+        let userLocationCamera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
+        
+        let currentLocationMarker = GMSMarker()
+        currentLocationMarker.position = userLocationCamera.target
+        currentLocationMarker.isDraggable = true
+        currentLocationMarker.isFlat = true
+        currentLocationMarker.title =  "Current Location"
+        currentLocationMarker.snippet = "Address"
+        currentLocationMarker.appearAnimation = .pop
+        currentLocationMarker.map = self.mapView
+        mapView?.animate(to: userLocationCamera)
+        
+        //Finally stop updating location otherwise it will come again and again in this delegate
+        
+        
+        // view = mapView
+        
+        
+    }
+}
 
 
 

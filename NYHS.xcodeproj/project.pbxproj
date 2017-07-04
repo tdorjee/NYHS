@@ -22,6 +22,7 @@
 		B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */; };
 		B9997D211EE2290400CCFEC2 /* BoroCatagory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */; };
 		B9997D231EE3651900CCFEC2 /* MainScroolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */; };
+		B9A80D841F0BF68800955F6D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A80D831F0BF68800955F6D /* CoreLocation.framework */; };
 		B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */; };
 		B9EE59481EF5787C00CD1F7C /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */; };
 		B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */; };
@@ -50,6 +51,7 @@
 		B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroViewController.swift; sourceTree = "<group>"; };
 		B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroCatagory.swift; sourceTree = "<group>"; };
 		B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScroolViewController.swift; sourceTree = "<group>"; };
+		B9A80D831F0BF68800955F6D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
 		B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A80D841F0BF68800955F6D /* CoreLocation.framework in Frameworks */,
 				B974D6C91ED028D1006FB89C /* MapKit.framework in Frameworks */,
 				C0D36FBADD14EBB6B8FA5A6A /* Pods_NYHS.framework in Frameworks */,
 			);
@@ -99,6 +102,7 @@
 		B974D6C71ED028D1006FB89C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9A80D831F0BF68800955F6D /* CoreLocation.framework */,
 				B974D6C81ED028D1006FB89C /* MapKit.framework */,
 				E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */,
 			);

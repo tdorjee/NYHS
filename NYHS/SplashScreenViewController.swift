@@ -72,7 +72,7 @@ class SplashScreenViewController: UIViewController {
 //            self.navigationController?.pushViewController(onboardVC, animated: true)
 //      
 //    }
-//    
+  
     internal lazy var icon: UIImageView = {
         let image = UIImageView()
         image.image = #imageLiteral(resourceName: "appIcon1")
