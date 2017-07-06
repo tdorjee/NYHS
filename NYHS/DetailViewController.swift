@@ -14,6 +14,7 @@ import GooglePlaces
 class DetailViewController: UIViewController {
     
     var detailSchool: School!
+    var currentUserLocation: CLLocation!
     
     var mapView: GMSMapView!
     var locationManager = CLLocationManager()
@@ -155,7 +156,14 @@ class DetailViewController: UIViewController {
                     guard let location = geometry["location"] as? [String: Double] else { return }
                     
                     let theLocation = LatAndLng(dictionary: location)
-            
+                    let schoolLocation = CLLocation(latitude: theLocation.lat, longitude: theLocation.lng)
+                    
+                    // call the distance calculation mathod here
+
+                    
+                    print("The distance: \(self.distanceCalculation(currentLocation: self.currentUserLocation, schoolLocation: schoolLocation))")
+                    
+                    
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
                         self.mapView.isMyLocationEnabled = true
@@ -580,6 +588,9 @@ extension DetailViewController: CLLocationManagerDelegate {
         let location = locations.last
         self.locationManager.stopUpdatingLocation()
       
+        let currentLocation = CLLocation(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+        self.currentUserLocation = currentLocation
+        
         let userLocationCamera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         
         let currentLocationMarker = GMSMarker()
@@ -596,8 +607,13 @@ extension DetailViewController: CLLocationManagerDelegate {
         
         
         // view = mapView
-        
-        
+   
+    }
+    
+    //MARK: Distance calculation
+    
+    func distanceCalculation(currentLocation: CLLocation, schoolLocation: CLLocation) -> Double{
+        return currentLocation.distance(from: schoolLocation)
     }
 }
 
