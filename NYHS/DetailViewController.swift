@@ -155,14 +155,27 @@ class DetailViewController: UIViewController {
                     guard let geometry = result["geometry"] as? [String: Any] else { return }
                     guard let location = geometry["location"] as? [String: Double] else { return }
                     
+                
                     let theLocation = LatAndLng(dictionary: location)
+                    
+                    // MAKR: - Distance
                     let schoolLocation = CLLocation(latitude: theLocation.lat, longitude: theLocation.lng)
                     
-                    // call the distance calculation mathod here
-
+                    let distance = schoolLocation.distance(from: self.currentUserLocation)
                     
-                    print("The distance: \(self.distanceCalculation(currentLocation: self.currentUserLocation, schoolLocation: schoolLocation))")
+                    self.title = "Distance: \(distance/1609)"
                     
+                    
+                    // MARKER: - Bound between school and user current location
+                    
+                    let currentSchoolLocation = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng)
+                    
+                    let bounds = GMSCoordinateBounds(coordinate: currentSchoolLocation, coordinate: self.currentLocation)
+                    let camera = self.mapView.camera(for: bounds, insets: UIEdgeInsets())!
+                    self.mapView.camera = camera
+                    
+                    let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+                    self.mapView.moveCamera(update)
                     
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
@@ -588,8 +601,11 @@ extension DetailViewController: CLLocationManagerDelegate {
         let location = locations.last
         self.locationManager.stopUpdatingLocation()
       
-        let currentLocation = CLLocation(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        self.currentUserLocation = currentLocation
+        let currentUserLocation = CLLocation(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+        self.currentUserLocation = currentUserLocation
+        
+        let currentLocation = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+        self.currentLocation = currentLocation
         
         let userLocationCamera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         
