@@ -23,6 +23,7 @@
 		B9997D211EE2290400CCFEC2 /* BoroCatagory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */; };
 		B9997D231EE3651900CCFEC2 /* MainScroolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */; };
 		B9A80D841F0BF68800955F6D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A80D831F0BF68800955F6D /* CoreLocation.framework */; };
+		B9EE0A2A1F11BC6E0029D7B4 /* extension-DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */; };
 		B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */; };
 		B9EE59481EF5787C00CD1F7C /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */; };
 		B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */; };
@@ -52,6 +53,7 @@
 		B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroCatagory.swift; sourceTree = "<group>"; };
 		B9997D221EE3651900CCFEC2 /* MainScroolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScroolViewController.swift; sourceTree = "<group>"; };
 		B9A80D831F0BF68800955F6D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "extension-DetailVC.swift"; sourceTree = "<group>"; };
 		B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
 		B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
+				B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */,
 				B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */,
 				B952B4E01EE87F3B008B80AA /* WebViewController.swift */,
 			);
@@ -326,6 +329,7 @@
 				B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */,
 				B9863E981EBC3B7000A00ABD /* ColorScheme.swift in Sources */,
 				B9997D211EE2290400CCFEC2 /* BoroCatagory.swift in Sources */,
+				B9EE0A2A1F11BC6E0029D7B4 /* extension-DetailVC.swift in Sources */,
 				B9EE594C1EF6E80D00CD1F7C /* extension+DetailVc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

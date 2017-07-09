@@ -143,7 +143,7 @@ class DetailViewController: UIViewController {
 
         APIRequestManager.manager.getData(apiEndPoint: "https://maps.googleapis.com/maps/api/geocode/json?address=\(addressStrSearch)&key=AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ") { (data) in
 
-            guard let data = data else { print("Something is going wroing here guard data")
+            guard let data = data else { print("Something is going wrong here guard data")
                 return }
             
             do{
@@ -154,28 +154,8 @@ class DetailViewController: UIViewController {
                 for result in results {
                     guard let geometry = result["geometry"] as? [String: Any] else { return }
                     guard let location = geometry["location"] as? [String: Double] else { return }
-                    
-                
+                                        
                     let theLocation = LatAndLng(dictionary: location)
-                    
-                    // MAKR: - Distance
-                    let schoolLocation = CLLocation(latitude: theLocation.lat, longitude: theLocation.lng)
-                    
-                    let distance = schoolLocation.distance(from: self.currentUserLocation)
-                    
-                    self.title = "Distance: \(distance/1609)"
-                    
-                    
-                    // MARKER: - Bound between school and user current location
-                    
-                    let currentSchoolLocation = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng)
-                    
-                    let bounds = GMSCoordinateBounds(coordinate: currentSchoolLocation, coordinate: self.currentLocation)
-                    let camera = self.mapView.camera(for: bounds, insets: UIEdgeInsets())!
-                    self.mapView.camera = camera
-                    
-                    let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
-                    self.mapView.moveCamera(update)
                     
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
@@ -187,6 +167,47 @@ class DetailViewController: UIViewController {
                         marker.title = self.detailSchool.name
                         marker.snippet = self.detailSchool.boro
                         marker.map = self.mapView
+                        
+                        // MAKR: - Distance
+                        
+                        let timesSqureLat = 40.763555
+                        let timesSqureLong = -73.983416
+                        
+                        
+                        let schoolLocation = CLLocation(latitude: theLocation.lat, longitude: theLocation.lng)
+                        
+                        let distanceFromTimesSquare = CLLocation(latitude: timesSqureLat, longitude: timesSqureLong)
+                        
+                        let distance = round((1000.0*schoolLocation.distance(from: distanceFromTimesSquare)/1609)/1000.0)
+                        
+                        self.title = "Distance: \(distance)"
+                        
+                        
+                        // MARKER: - Bound between school and user current location
+                        
+                        let currentSchoolLocation = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng)
+                        
+                        let fromTimesSquare = CLLocationCoordinate2D(latitude: timesSqureLat, longitude: timesSqureLong)
+                        
+                        
+                        let bounds = GMSCoordinateBounds(coordinate: currentSchoolLocation, coordinate: fromTimesSquare)
+                        let camera = self.mapView.camera(for: bounds, insets: UIEdgeInsets())!
+                        self.mapView.camera = camera
+                        
+                        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+                        self.mapView.moveCamera(update)
+                        
+                        
+                        // MARK: - Path between current location and the school
+                        
+                        let path = GMSMutablePath()
+                        path.add(currentSchoolLocation)
+                        path.add(fromTimesSquare)
+                        
+                        let rectangle = GMSPolyline(path: path)
+                        rectangle.strokeWidth = 2.0
+                        rectangle.map = self.mapView
+                        
                     }
                     
                     print("School phono no.: \(self.detailSchool.phone_number)")
@@ -199,199 +220,8 @@ class DetailViewController: UIViewController {
             }
         }
     }
-    
-    func viewHierarchy(){
-        
-        view.addSubview(scroolView)
-        scroolView.addSubview(mainContainer)
-        
-        mainContainer.addSubview(mapView!)
-        mapView.addSubview(showMapButton)
-        
-        mainContainer.addSubview(miniMainViewContainer)
-        
-        miniMainViewContainer.addSubview(schoolNameLabel)
-        miniMainViewContainer.addSubview(lineSeparator1)
-        
-        miniMainViewContainer.addSubview(diplomaImage)
-        miniMainViewContainer.addSubview(diplomaLable)
-        
-        miniMainViewContainer.addSubview(schoolSizeImage)
-        miniMainViewContainer.addSubview(schoolSizeLabel)
-        
-        miniMainViewContainer.addSubview(timeImage)
-        miniMainViewContainer.addSubview(timeLabel)
-        
-        
-        miniMainViewContainer.addSubview(lineSeparator2)
-        
-        miniMainViewContainer.addSubview(overviewLabel)
-        miniMainViewContainer.addSubview(overviewText)
-        
-        miniMainViewContainer.addSubview(lineSeparator3)
-        
-        miniMainViewContainer.addSubview(extracurricularActiviesLabel)
-        miniMainViewContainer.addSubview(extracurricularActiviesText)
-        
-        miniMainViewContainer.addSubview(lineSeparator4)
-        
-        miniMainViewContainer.addSubview(moreButton)
-    
-        
-        
-    }
-    
-    func constraintConfiguration(){
-        
-        self.edgesForExtendedLayout = []
-        
-        scroolView.snp.makeConstraints { (scrool) in
-            scrool.top.left.right.bottom.equalToSuperview()
-        }
-        
-        
-        mainContainer.snp.makeConstraints { (container) in
-            container.left.right.bottom.top.equalToSuperview()
-            container.width.equalTo(self.view.frame.width)
-            
-        }
-        
-        // mapView
-        mapView?.snp.makeConstraints { (map) in
-            map.leading.top.trailing.equalToSuperview()
-            map.height.equalTo(150)
-        }
-        
-        showMapButton.snp.makeConstraints { (button) in
-            button.left.top.equalToSuperview().offset(12)
-            button.height.width.equalTo(40)
-        }
-        
-        // MARK: outlets in miniMainView
-        
-        miniMainViewContainer.snp.makeConstraints { (view) in
-            view.left.equalToSuperview()
-            view.top.equalTo(mapView.snp.bottom)
-            view.right.bottom.equalToSuperview()
-        }
-        
-        // school name
-        schoolNameLabel.snp.makeConstraints { (label) in
-            label.left.equalToSuperview().offset(12)
-            label.top.equalTo((mapView?.snp.bottom)!).offset(15)
-            label.right.equalToSuperview().inset(12)
-        }
-        
-        // lineSeparator 1
-        
-        lineSeparator1.snp.makeConstraints { (line) in
-            line.top.equalTo(schoolNameLabel.snp.bottom).offset(15)
-            line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(schoolNameLabel.snp.right)
-            line.height.equalTo(0.5)
-        }
-        
-        // diploma endorsment
-        diplomaImage.snp.makeConstraints { (label) in
-            label.top.equalTo(lineSeparator1.snp.bottom).offset(15)
-            label.left.equalTo(schoolNameLabel.snp.left)
-        }
-        
-        diplomaLable.snp.makeConstraints { (label) in
-           label.top.equalTo(lineSeparator1.snp.bottom).offset(15)
-           label.left.equalTo(diplomaImage.snp.right).offset(8)
-           label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        // school size
-        
-        schoolSizeImage.snp.makeConstraints { (label) in
-            label.top.equalTo(diplomaLable.snp.bottom).offset(8)
-            label.left.equalTo(schoolNameLabel.snp.left)
-        }
-        
-        schoolSizeLabel.snp.makeConstraints { (label) in
-            label.top.equalTo(schoolSizeImage.snp.top)
-            label.left.equalTo(schoolSizeImage.snp.right).offset(8)
-            label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        // school time 
-        
-        timeImage.snp.makeConstraints { (label) in
-            label.top.equalTo(schoolSizeLabel.snp.bottom).offset(8)
-            label.left.equalTo(schoolNameLabel.snp.left)
-        }
-        
-        timeLabel.snp.makeConstraints { (label) in
-            label.top.equalTo(timeImage.snp.top)
-            label.left.equalTo(timeImage.snp.right).offset(8)
-            label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        // lineSeparator 2
-        
-        lineSeparator2.snp.makeConstraints { (line) in
-            line.top.equalTo(timeLabel.snp.bottom).offset(15)
-            line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(schoolNameLabel.snp.right)
-            line.height.equalTo(0.5)
-        }
-        
-        // overviewLabel
-        
-        overviewLabel.snp.makeConstraints { (label) in
-            label.top.equalTo(lineSeparator2.snp.bottom).offset(15)
-            label.left.equalTo(schoolNameLabel.snp.left)
-            label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        overviewText.snp.makeConstraints { (label) in
-            label.top.equalTo(overviewLabel.snp.bottom).offset(8)
-            label.left.equalTo(schoolNameLabel.snp.left)
-            label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        
-        lineSeparator3.snp.makeConstraints { (line) in
-            line.top.equalTo(overviewText.snp.bottom).offset(15)
-            line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(schoolNameLabel.snp.right)
-            line.height.equalTo(0.5)
-        }
-    
-        // extracurricular activity
-        
-        extracurricularActiviesLabel.snp.makeConstraints { (label) in
-           label.top.equalTo(lineSeparator3.snp.bottom).offset(15)
-           label.left.equalTo(schoolNameLabel.snp.left)
-           label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        extracurricularActiviesText.snp.makeConstraints { (label) in
-            label.top.equalTo(extracurricularActiviesLabel.snp.bottom).offset(8)
-            label.left.equalTo(schoolNameLabel.snp.left)
-            label.right.equalTo(schoolNameLabel.snp.right)
-        }
-        
-        lineSeparator4.snp.makeConstraints { (line) in
-            line.top.equalTo(extracurricularActiviesText.snp.bottom).offset(15)
-            line.left.equalTo(schoolNameLabel.snp.left)
-            line.right.equalTo(schoolNameLabel.snp.right)
-            line.height.equalTo(0.5)
-        }
-        
-//      More button
-        moreButton.snp.makeConstraints { (button) in
-            button.top.equalTo(lineSeparator4.snp.bottom).offset(15)
-            button.centerX.equalToSuperview()
-            button.width.equalTo(150)
-            button.bottom.equalToSuperview().inset(8)
-        }
-        
-    }
-    
-     func toWebVC(){
+
+        func toWebVC(){
         
         let webVC = WebViewController()
         webVC.url = (self.detailSchool?.website)!

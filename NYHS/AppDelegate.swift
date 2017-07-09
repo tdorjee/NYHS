@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
     
         window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = SplashScreenViewController()
+        self.window?.rootViewController = tabView()
         window?.makeKeyAndVisible()
         
         // method for splash screen
