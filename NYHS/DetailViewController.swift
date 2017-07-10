@@ -161,9 +161,15 @@ class DetailViewController: UIViewController {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
                         self.mapView.isMyLocationEnabled = true
                         self.mapView.settings.myLocationButton = true
-
+                        self.mapView.mapType = .terrain
+                        let url = Bundle.main.url(forResource: "mapStyle", withExtension: "json")
+                        let mapStyle = try! GMSMapStyle.init(contentsOfFileURL: url!)
+                        self.mapView.mapStyle = mapStyle
+                        
+                        
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng )
+                        marker.icon = #imageLiteral(resourceName: "school")
                         marker.title = self.detailSchool.name
                         marker.snippet = self.detailSchool.boro
                         marker.map = self.mapView
@@ -188,7 +194,6 @@ class DetailViewController: UIViewController {
                         let currentSchoolLocation = CLLocationCoordinate2D(latitude: theLocation.lat, longitude: theLocation.lng)
                         
                         let fromTimesSquare = CLLocationCoordinate2D(latitude: timesSqureLat, longitude: timesSqureLong)
-                        
                         
                         let bounds = GMSCoordinateBounds(coordinate: currentSchoolLocation, coordinate: fromTimesSquare)
                         let camera = self.mapView.camera(for: bounds, insets: UIEdgeInsets())!
@@ -220,6 +225,8 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    
 
         func toWebVC(){
         
@@ -444,6 +451,7 @@ extension DetailViewController: CLLocationManagerDelegate {
         currentLocationMarker.isDraggable = true
         currentLocationMarker.isFlat = true
         currentLocationMarker.title =  "Current Location"
+        currentLocationMarker.icon = #imageLiteral(resourceName: "user")
         currentLocationMarker.snippet = "Address"
         currentLocationMarker.appearAnimation = .pop
         currentLocationMarker.map = self.mapView
