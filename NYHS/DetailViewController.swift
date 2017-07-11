@@ -45,6 +45,9 @@ class DetailViewController: UIViewController {
         setBackBarButtonCustom()
         setMoreButtonCustom()
         
+        self.mapView.canPerformAction(#selector(showMapFullScreen), withSender: self)
+        
+        
     }
     
     // show map fully
@@ -161,7 +164,7 @@ class DetailViewController: UIViewController {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
                         self.mapView.isMyLocationEnabled = true
                         self.mapView.settings.myLocationButton = true
-                        self.mapView.mapType = .terrain
+//                        self.mapView.mapType = .terrain
                         let url = Bundle.main.url(forResource: "mapStyle", withExtension: "json")
                         let mapStyle = try! GMSMapStyle.init(contentsOfFileURL: url!)
                         self.mapView.mapStyle = mapStyle
