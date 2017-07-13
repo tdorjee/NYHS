@@ -50,12 +50,19 @@ class DetailViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(showMapFullScreen))
+        gesture.delegate = self as? UIGestureRecognizerDelegate
+        mapView.addGestureRecognizer(gesture)
+    }
+    
     // show map fully
     
     var ifMapViewEpended = false
     
     func showMapFullScreen(){
         
+        print("Tapped gesture...")
         if !(ifMapViewEpended){
         
             UIView.animate(withDuration: 1, animations: {
@@ -305,7 +312,7 @@ class DetailViewController: UIViewController {
     internal lazy var showMapButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
-        button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
         return button
     }()
     
