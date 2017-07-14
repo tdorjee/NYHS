@@ -26,6 +26,7 @@ class BoroViewController: UITableViewController {
     
     
     let searchController = UISearchController(searchResultsController: nil)
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +36,13 @@ class BoroViewController: UITableViewController {
         
         // SearchBar placement 
         
+        
         searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
         
         searchController.searchBar.searchBarStyle  = .default
+        searchController.searchBar.placeholder = "Name, Address, Sports"
         
         
         // Search stuffs
@@ -88,7 +91,7 @@ class BoroViewController: UITableViewController {
     func filterContentInSearchBar(searchText: String, scope: String = "All") {
         filteredSchool = schools.filter { school in
             return school.name.lowercased().contains(searchText.lowercased()) ||
-            school.extracurricular_activities.lowercased().contains(searchText.lowercased())
+            school.extracurricular_activities.lowercased().contains(searchText.lowercased()) || school.primary_address_line_1.lowercased().contains(searchText.lowercased())
         }
         
         tableView.reloadData()
