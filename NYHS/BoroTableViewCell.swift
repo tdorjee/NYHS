@@ -20,8 +20,19 @@ class BoroTableViewCell: UITableViewCell {
 //    }()
     
 
-    var titleLabel = UILabel()
-    var detailLabel = UILabel()
+    internal lazy var titleLabel:  UILabel = {
+        let label = UILabel()
+        //label.backgroundColor = .green
+        return label
+    }()
+    
+
+    internal lazy var detailLabel: UILabel = {
+       let label = UILabel()
+        //label.backgroundColor = .red
+        return label
+    }()
+    
     
     
     override func awakeFromNib() {
@@ -43,21 +54,21 @@ class BoroTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        //detailLabel.font = UIFont.systemFont(ofSize: 16.0)
+        detailLabel.font = UIFont.systemFont(ofSize: 12.0)
         
         self.addSubview(titleLabel)
         self.addSubview(detailLabel)
         
         titleLabel.snp.makeConstraints { (label) in
             label.left.top.equalToSuperview().offset(8)
-            label.right.equalToSuperview().inset(80)
-            label.centerY.equalToSuperview()
+            label.right.equalToSuperview().inset(20)
             
         }
         
         detailLabel.snp.makeConstraints { (label) in
             label.leading.equalTo(titleLabel)
             label.top.equalTo(titleLabel.snp.bottom).offset(8)
+            label.right.equalTo(titleLabel)
         }
         
     }

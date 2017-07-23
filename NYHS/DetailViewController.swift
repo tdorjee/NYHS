@@ -50,13 +50,16 @@ class DetailViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(showMapFullScreen))
-        gesture.delegate = self as? UIGestureRecognizerDelegate
-        mapView.addGestureRecognizer(gesture)
-    }
+    
+    //MARK: -Does work!!
+//    override func viewWillAppear(_ animated: Bool) {
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(showMapFullScreen))
+//        gesture.delegate = self as? UIGestureRecognizerDelegate
+//        mapView.addGestureRecognizer(gesture)
+//    }
     
     // show map fully
+
     
     var ifMapViewEpended = false
     
@@ -69,19 +72,27 @@ class DetailViewController: UIViewController {
                 self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: self.view.frame.height)
                 self.miniMainViewContainer.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: self.miniMainViewContainer.frame.width, height: 0)
                 
+//                self.showMapButton.snp.remakeConstraints({ (button) in
+//                    button.left.right.top.bottom.equalToSuperview()
+//                    
+//                })
+        
             }, completion: nil)
             
-            self.showMapButton.setImage(#imageLiteral(resourceName: "mapUp2"), for: .normal)
+            
+//            self.showMapButton.setImage(#imageLiteral(resourceName: "mapUp2"), for: .normal)
+            
             ifMapViewEpended = true
             
             print("Map expended")
+    
         }else {
             
             UIView.animate(withDuration: 1, animations: {
                 self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: 150)
                 self.miniMainViewContainer.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 87, width: 100, height: 300)
             }, completion: nil)
-            self.showMapButton.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
+//            self.showMapButton.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
             
             ifMapViewEpended = false
             print("MapView shrinked")
@@ -123,7 +134,7 @@ class DetailViewController: UIViewController {
     func contactSchool(){
         
         let contactVC = ContactSchoolViewController()
-        contactVC.schoolFromdetailSchool = self.detailSchool
+        contactVC.schoolFromDetailSchool = self.detailSchool
         self.present(contactVC, animated: true, completion: nil)
     }
     
@@ -311,10 +322,12 @@ class DetailViewController: UIViewController {
     
     internal lazy var showMapButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
-//        button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
+        button.tintColor = .red
+//        button.setImage(#imageLiteral(resourceName: "mapExpend2"), for: .normal)
+        button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
         return button
     }()
+
     
     // diploma endorsements
     

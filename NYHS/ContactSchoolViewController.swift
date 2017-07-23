@@ -13,7 +13,7 @@ import MessageUI
 class ContactSchoolViewController: UIViewController {
 
     
-    var schoolFromdetailSchool: School?
+    var schoolFromDetailSchool: School?
  
     
     override func viewDidLoad() {
@@ -37,26 +37,47 @@ class ContactSchoolViewController: UIViewController {
     
     
     func smsSchool(){
-        if MFMessageComposeViewController.canSendText(){
-            messageComposer.messageComposeDelegate = self as? MFMessageComposeViewControllerDelegate
-            if let schoolWebSite = schoolFromdetailSchool?.website {
-                messageComposer.body = "Check this school out: \(schoolWebSite))"
-            }
-            present(messageComposer, animated: true, completion: nil)
-        }
+        
+        print("Not presenting at the moment")
+        
+        /*
+         
+         if MFMessageComposeViewController.canSendText(){
+         messageComposer.messageComposeDelegate = self as? MFMessageComposeViewControllerDelegate
+         if let schoolWebSite = schoolFromdetailSchool?.website {
+         messageComposer.body = "Check this school out: \(schoolWebSite))"
+         }
+         present(messageComposer, animated: true, completion: nil)
+         }
+         
+         */
     }
     
     func callSchool(){
-        guard let number = URL(string: "telprompt://" + (schoolFromdetailSchool?.phone_number)!) else { return }
-        UIApplication.shared.open(number, options: [:], completionHandler: nil)
+        
+        print("Not presenting at the moment")
+        
+        /*
+         guard let number = URL(string: "telprompt://" + (schoolFromdetailSchool?.phone_number)!) else { return }
+         UIApplication.shared.open(number, options: [:], completionHandler: nil)
+         */
+        
+        
     }
     
     func emailSchool() {
-        if MFMailComposeViewController.canSendMail(){
-            self.mailComposer.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
-            mailComposer.setToRecipients([(schoolFromdetailSchool?.school_email)!])
-            present(mailComposer, animated: true, completion: nil)
-        }
+        
+        print("Not presenting at the moment")
+        
+        /*
+         
+         if MFMailComposeViewController.canSendMail(){
+         self.mailComposer.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
+         mailComposer.setToRecipients([(schoolFromdetailSchool?.school_email)!])
+         present(mailComposer, animated: true, completion: nil)
+         }
+         
+         */
     }
     
     func addToFavourite(){
@@ -71,17 +92,30 @@ class ContactSchoolViewController: UIViewController {
         //            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
         //        }
         
-        let favSchool = UserDefaults.standard.object(forKey: "school")
-        var favSchoolAdd: [School]
+        //MARK: - Storing just school name
         
-        if let tempSchool = favSchool as? [School] {
-            favSchoolAdd = tempSchool
-            favSchoolAdd.append((schoolFromdetailSchool)!)
-            
-        }else {
-            favSchoolAdd = [(schoolFromdetailSchool)!]
-        }
-        UserDefaults.standard.set(favSchoolAdd, forKey: "school")
+        /*
+         
+         let favSchool = UserDefaults.standard.object(forKey: "school")
+         var favSchoolAdd: [School]
+         
+         if let tempSchool = favSchool as? [School] {
+         favSchoolAdd = tempSchool
+         favSchoolAdd.append((schoolFromdetailSchool)!)
+         
+         }else {
+         favSchoolAdd = [(schoolFromdetailSchool)!]
+         }
+         UserDefaults.standard.set(favSchoolAdd, forKey: "school")
+         
+         */
+        
+        let favSchoolAdd = schoolFromDetailSchool
+        
+        let encodeData = NSKeyedArchiver.archivedData(withRootObject: favSchoolAdd ?? "School Class")
+        
+        UserDefaults.standard.set(encodeData, forKey: "favSchoolAdd")
+
         
         let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

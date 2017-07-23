@@ -77,8 +77,7 @@ extension DetailViewController {
         }
         
         showMapButton.snp.makeConstraints { (button) in
-            button.left.top.equalToSuperview().offset(12)
-            button.height.width.equalTo(40)
+            button.right.top.left.bottom.equalToSuperview()
         }
         
         // MARK: outlets in miniMainView

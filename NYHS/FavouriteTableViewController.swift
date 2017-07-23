@@ -16,6 +16,7 @@ class FavouriteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
@@ -29,6 +30,9 @@ class FavouriteTableViewController: UITableViewController {
         //SetBackBarButtonCustom()
         
         setUpNavBarStyle()
+        
+        saveSchool()
+        
     }
     
     func setUpNavBarStyle(){
@@ -53,18 +57,47 @@ class FavouriteTableViewController: UITableViewController {
 //        _ = self.navigationController?.popViewController(animated: true)
 //    }
     
-
-    override func viewDidAppear(_ animated: Bool) {
-        let favSchool = UserDefaults.standard.object(forKey: "school")
+    
+    func saveSchool(){
         
-        if let tempSchool = favSchool as? [School] {
+        print("view did load")
+        
+        print("schools in userdefault: \(theFavouriteSchools)")
+        
+    }
+    
+    
+    
+   override func viewDidAppear(_ animated: Bool) {
+    
+    print("Number of school in fav school: \(theFavouriteSchools.count)")
+    
+    if let data = UserDefaults.standard.data(forKey: "favSchoolAdd"), let favSchool = NSKeyedUnarchiver.unarchiveObject(with: data) {
+        
+        
+        if let tempFavSchool = favSchool as? [School]{
+            theFavouriteSchools = tempFavSchool as! [School]
+            print("******\(tempFavSchool)")
             
-            theFavouriteSchools = tempSchool
-            
-            print("School in favorite list: \(theFavouriteSchools)")
         }
+        /*
+         
+         
+         if !theFavouriteSchools.contains(favSchool as! School){
+         print("***************: \(favSchool)")
+         
+         theFavouriteSchools.append(favSchool as! School)
+         
+         
+         }else {
+         print("The school is already saved")
+         }
+         
+         */
         
-        tableView.reloadData()
+    }
+    tableView.reloadData()
+    
     }
 
     // MARK: - Table view data source
@@ -75,18 +108,22 @@ class FavouriteTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-     
             return theFavouriteSchools.count
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let revisitVC = RevisitViewController()
+        revisitVC.school = theFavouriteSchools[indexPath.row]
+        self.navigationController?.pushViewController(revisitVC, animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
 
         let thisSchool = theFavouriteSchools[indexPath.row]
-        cell.textLabel?.text = thisSchool.boro
+        cell.textLabel?.text = thisSchool.name
+        cell.detailTextLabel?.text = thisSchool.boro
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
 
@@ -107,7 +144,8 @@ class FavouriteTableViewController: UITableViewController {
             
             theFavouriteSchools.remove(at: indexPath.row)
             tableView.reloadData()
-            UserDefaults.standard.set(theFavouriteSchools, forKey: "school")
+            UserDefaults.standard.data(forKey: "favSchoolAdd")
+            //UserDefaults.standard.set(theFavouriteSchools, forKey: "")
         default:
             break
         }

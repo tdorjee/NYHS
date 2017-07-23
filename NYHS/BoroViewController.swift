@@ -42,7 +42,7 @@ class BoroViewController: UITableViewController {
         definesPresentationContext = true
         
         searchController.searchBar.searchBarStyle  = .default
-        searchController.searchBar.placeholder = "Name, Address, Sports"
+        searchController.searchBar.placeholder = "Try Name, Address, Sports"
         
         
         // Search stuffs
@@ -175,12 +175,19 @@ class BoroViewController: UITableViewController {
         cell.titleLabel.numberOfLines = 0
         cell.titleLabel.lineBreakMode = .byWordWrapping
         cell.titleLabel.text = school.name
+//        cell.detailLabel.text = school.primary_address_line_1
         //cell.accessoryType = UITableViewCellAccessoryCheckmark
 //        cell.accessoryType = .detailDisclosureButton
         //cell.titleLabel.textColor = UIColor(white: 2.0, alpha: 1)
         cell.titleLabel.font = ColorScheme.titleFont
 //        cell.detailLabel.text = school.phone_number
-    
+        
+        cell.detailLabel.text = school.overview_paragraph
+        cell.detailLabel.lineBreakMode = .byTruncatingTail
+        cell.detailLabel.textColor = UIColor(white: 0, alpha: 0.5)
+        cell.detailLabel.numberOfLines = 3
+        
+        
         return cell
     }
     
@@ -195,7 +202,7 @@ class BoroViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
