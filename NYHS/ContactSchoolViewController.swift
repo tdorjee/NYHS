@@ -110,11 +110,22 @@ class ContactSchoolViewController: UIViewController {
          
          */
         
-        let favSchoolAdd = schoolFromDetailSchool
         
-        let encodeData = NSKeyedArchiver.archivedData(withRootObject: favSchoolAdd ?? "School Class")
         
-        UserDefaults.standard.set(encodeData, forKey: "favSchoolAdd")
+        
+        let encodeData = NSKeyedArchiver.archivedData(withRootObject: schoolFromDetailSchool ?? "")
+        let schoolObject = UserDefaults.standard.set(encodeData, forKey: "favSchoolAdd")
+        var favSchoolAdd: [School]
+        
+        if let tempSchool = schoolObject as? [School] {
+            favSchoolAdd = tempSchool
+            favSchoolAdd.append(schoolFromDetailSchool!)
+        }else{
+            favSchoolAdd = [schoolFromDetailSchool!]
+        }
+        UserDefaults.standard.set(favSchoolAdd, forKey: "favSchoolAdd")
+        
+        UserDefaults.standard.synchronize()
 
         
         let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)

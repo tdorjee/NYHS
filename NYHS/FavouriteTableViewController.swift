@@ -69,36 +69,25 @@ class FavouriteTableViewController: UITableViewController {
     
     
    override func viewDidAppear(_ animated: Bool) {
+   
     
-    print("Number of school in fav school: \(theFavouriteSchools.count)")
     
-    if let data = UserDefaults.standard.data(forKey: "favSchoolAdd"), let favSchool = NSKeyedUnarchiver.unarchiveObject(with: data) {
+    //var array : [School] = []
+    
+    if let data = UserDefaults.standard.object(forKey: "favSchoolAdd") as? NSData {
         
-        
-        if let tempFavSchool = favSchool as? [School]{
-            theFavouriteSchools = tempFavSchool as! [School]
-            print("******\(tempFavSchool)")
+        if let tempSchoolArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as? [School]{
             
-        }
-        /*
-         
-         
-         if !theFavouriteSchools.contains(favSchool as! School){
-         print("***************: \(favSchool)")
-         
-         theFavouriteSchools.append(favSchool as! School)
-         
-         
-         }else {
-         print("The school is already saved")
-         }
-         
-         */
+            theFavouriteSchools = tempSchoolArr
+            print("All the schools in userdefaulst: \(tempSchoolArr)")
+            }
         
-    }
-    tableView.reloadData()
     
+        }
+    tableView.reloadData()
     }
+    
+    
 
     // MARK: - Table view data source
 

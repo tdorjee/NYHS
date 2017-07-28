@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     
     var detailSchool: School!
     var currentUserLocation: CLLocation!
+    var schoolLatAndLng: LatAndLng?
     
     var mapView: GMSMapView!
     var locationManager = CLLocationManager()
@@ -177,7 +178,7 @@ class DetailViewController: UIViewController {
                     guard let location = geometry["location"] as? [String: Double] else { return }
                                         
                     let theLocation = LatAndLng(dictionary: location)
-                    
+                    self.schoolLatAndLng = theLocation
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: theLocation.lat, longitude: theLocation.lng, zoom: 12)
                         self.mapView.isMyLocationEnabled = true
@@ -252,7 +253,10 @@ class DetailViewController: UIViewController {
         func toWebVC(){
         
         let webVC = WebViewController()
-        webVC.url = (self.detailSchool?.website)!
+            webVC.schoolLat = Float(self.schoolLatAndLng!.lat)
+            
+            webVC.schoolLog = Float(self.schoolLatAndLng!.lng)
+        webVC.schoolAddress = (self.detailSchool?.primary_address_line_1)!
         self.navigationController?.pushViewController(webVC, animated: true)
         
     }
@@ -428,7 +432,7 @@ class DetailViewController: UIViewController {
         button.backgroundColor = ColorScheme.navColor
         button.layer.cornerRadius = 5
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("More", for: .normal)
+        button.setTitle("Get Direction", for: .normal)
         button.addTarget(self, action: #selector(toWebVC), for: .touchUpInside)
         return button
     }()

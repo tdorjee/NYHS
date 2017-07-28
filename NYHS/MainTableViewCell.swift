@@ -38,11 +38,13 @@ class MainTableViewCell: UITableViewCell {
     func configureConstraints(){
         
         cellImage.snp.makeConstraints { (view) in
-            view.bottom.top.leading.trailing.equalToSuperview()
+            view.top.leading.equalToSuperview().offset(5)
+            view.bottom.trailing.equalToSuperview().inset(5)
         }
         
         blackView.snp.makeConstraints { (view) in
-            view.bottom.leading.trailing.equalToSuperview()
+            view.bottom.trailing.equalToSuperview()
+            view.leading.equalToSuperview().offset(20)
             view.height.equalTo(50)
         }
         

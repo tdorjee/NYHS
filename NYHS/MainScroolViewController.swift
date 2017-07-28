@@ -11,6 +11,55 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
+    
+    /*
+     
+     MARK: - Retriving data from userfaults
+     
+     if let data = (UserDefaults.standard.data(forKey: "favSchoolAdd")! as NSData), let favSchool = NSKeyedUnarchiver.unarchiveObject(with: data) {
+     
+     
+     //print("favSchool: \(favSchool)")
+     if let tempFavSchool = favSchool as? [School]{
+     theFavouriteSchools = tempFavSchool as! [School]
+     //print("******\(tempFavSchool)")
+     
+     }
+     
+     
+     //var schoolNames: [String] = []
+     
+     //for schoolName in theFavouriteSchools{
+     //  schoolNames.append(schoolName.name)
+     //}
+     
+     //if !schoolNames.contains((favSchool as AnyObject).name){
+     //theFavouriteSchools.append(favSchool as! School)
+     //}
+     /*
+     
+     
+     if !theFavouriteSchools.contains(favSchool as! School){
+     print("***************: \(favSchool)")
+     
+     theFavouriteSchools.append(favSchool as! School)
+     
+     
+     }else {
+     print("The school is already saved")
+     }
+     
+     */
+     
+     }
+     
+     print("Number of school in fav school: \(theFavouriteSchools.count)")
+     
+     theFavouriteSchools = NSKeyedUnarchiver.unarchiveObject(with: (UserDefaults.standard.data(forKey: "faSchoolAdd")! as NSData) as! [School]
+     
+     
+     */
+    
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //        

@@ -175,12 +175,7 @@ class BoroViewController: UITableViewController {
         cell.titleLabel.numberOfLines = 0
         cell.titleLabel.lineBreakMode = .byWordWrapping
         cell.titleLabel.text = school.name
-//        cell.detailLabel.text = school.primary_address_line_1
-        //cell.accessoryType = UITableViewCellAccessoryCheckmark
-//        cell.accessoryType = .detailDisclosureButton
-        //cell.titleLabel.textColor = UIColor(white: 2.0, alpha: 1)
         cell.titleLabel.font = ColorScheme.titleFont
-//        cell.detailLabel.text = school.phone_number
         
         cell.detailLabel.text = school.overview_paragraph
         cell.detailLabel.lineBreakMode = .byTruncatingTail

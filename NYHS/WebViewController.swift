@@ -12,7 +12,12 @@ import WebKit
 
 class WebViewController: UIViewController {
 
-    var url: String?
+    let currentLocation = "Times Square, Address Manhattan, NY 10036"
+    var schoolAddress: String?
+    
+    var schoolLat: Float = 0.0
+    var schoolLog: Float = 0.0
+    
     let webView = WKWebView()
     
     override func viewDidLoad() {
@@ -20,10 +25,32 @@ class WebViewController: UIViewController {
         
         viewHierarchy()
         constraintConfiguration()
+        
+        print("lat: \(schoolLat)")
+        print("lng: \(schoolLog)")
+        
+        //MARK: - Show GoogleMap
+        
+        
+    /*
+         
     
-        let finalURL = NSURL(string: url!)
-        let request = NSURLRequest(url: finalURL! as URL)
-        webView.load(request as URLRequest)
+         if (UIApplication.shared.canOpenURL(NSURL(string:"https://maps.google.com")! as URL))
+         {
+         UIApplication.shared.openURL(NSURL(string:
+         "https://maps.google.com/?q=@\(schoolLat),\(schoolLog)")! as URL)
+         }
+         
+         */
+        
+        
+        
+         let googleMap = NSURL(string: "https://maps.google.com/?q=@\(schoolLat),\(schoolLog)")
+        
+         let request = NSURLRequest(url: googleMap! as URL)
+         webView.load(request as URLRequest)
+         
+ 
         
         //print("The website is: \(url)")
     }

@@ -9,27 +9,21 @@
 import UIKit
 
 class BoroTableViewCell: UITableViewCell {
-
-//    internal lazy var titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.lineBreakMode = .byWordWrapping
-//        //label.font = UIFont.systemFont(ofSize: 16)
-//        label.textColor = UIColor.init(white: 2.0, alpha: 1)
-//        label.numberOfLines = 0
-//        return label
-//    }()
     
 
+    internal lazy var labelContainer: UIView = {
+        let container = UIView()
+        return container
+    }()
+    
     internal lazy var titleLabel:  UILabel = {
         let label = UILabel()
-        //label.backgroundColor = .green
         return label
     }()
     
 
     internal lazy var detailLabel: UILabel = {
        let label = UILabel()
-        //label.backgroundColor = .red
         return label
     }()
     
@@ -56,19 +50,26 @@ class BoroTableViewCell: UITableViewCell {
         
         detailLabel.font = UIFont.systemFont(ofSize: 12.0)
         
-        self.addSubview(titleLabel)
-        self.addSubview(detailLabel)
+        self.addSubview(labelContainer)
+        labelContainer.addSubview(titleLabel)
+        labelContainer.addSubview(detailLabel)
+        
+        labelContainer.snp.makeConstraints { (container) in
+            container.left.top.equalToSuperview().offset(8)
+            container.bottom.equalToSuperview().inset(8)
+            container.right.equalToSuperview().inset(16)
+        }
         
         titleLabel.snp.makeConstraints { (label) in
-            label.left.top.equalToSuperview().offset(8)
-            label.right.equalToSuperview().inset(20)
+            label.left.top.equalToSuperview()
+            label.right.equalToSuperview()
             
         }
         
         detailLabel.snp.makeConstraints { (label) in
             label.leading.equalTo(titleLabel)
-            label.top.equalTo(titleLabel.snp.bottom).offset(8)
-            label.right.equalTo(titleLabel)
+            label.right.equalToSuperview()
+            label.centerY.equalToSuperview().inset(15)
         }
         
     }
