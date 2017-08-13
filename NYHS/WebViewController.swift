@@ -24,23 +24,30 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         guard let websiteInString = self.schoolWebSite, websiteInString != "" else { return print("The website is not available") }
         
-        let webUrl: URL
+        var finalWebsite: String
         
-        if websiteInString.characters.first == "w"{
-            webUrl = URL(string: "https://\(websiteInString)")!
-            
-        } else {
-            
-            webUrl = URL(string: websiteInString)!
+        if websiteInString.characters.first != "h"{
+            finalWebsite = "http://\(websiteInString)"
+        }else{
+            finalWebsite = websiteInString
         }
         
-//        let webUrl = URL(string: "https://www.landmarkhs.org")
-        
+        let webUrl = URL(string: finalWebsite)!
         let urlRequest = URLRequest(url: webUrl)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil{
+                print("There is an error: \(error)")
+            }else {
+                self.webview.loadRequest(urlRequest)
+            }
+        }
+        task.resume()
+        
+    
         
         print("!!!!!!!!!!!: \(urlRequest)")
         
-        webview.loadRequest(urlRequest)
         
     }
     
