@@ -10,18 +10,15 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    // MARK: GoogleMaps API Key: AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8
-    // MARK: GoogleMaps geocoding API key: AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ
-    // MARK: GooglePlaces API Key: AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+      
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
         

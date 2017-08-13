@@ -19,7 +19,8 @@ extension DetailViewController {
         scroolView.addSubview(mainContainer)
         
         mainContainer.addSubview(mapView!)
-        mapView.addSubview(showMapButton)
+        mainContainer.addSubview(showDirection)
+        mainContainer.addSubview(showWebsite)
         
         mainContainer.addSubview(miniMainViewContainer)
         
@@ -48,7 +49,7 @@ extension DetailViewController {
         
         miniMainViewContainer.addSubview(lineSeparator4)
         
-        miniMainViewContainer.addSubview(moreButton)
+        
         
     }
     
@@ -59,8 +60,8 @@ extension DetailViewController {
         
         self.edgesForExtendedLayout = []
         
-        scroolView.snp.makeConstraints { (scrool) in
-            scrool.top.left.right.bottom.equalToSuperview()
+        scroolView.snp.makeConstraints { (scroll) in
+            scroll.top.left.right.bottom.equalToSuperview()
         }
         
         
@@ -73,25 +74,35 @@ extension DetailViewController {
         // mapView
         mapView?.snp.makeConstraints { (map) in
             map.leading.top.trailing.equalToSuperview()
-            map.height.equalTo(150)
+            map.height.equalTo(200)
         }
         
-        showMapButton.snp.makeConstraints { (button) in
-            button.right.top.left.bottom.equalToSuperview()
+        //  Show Direction
+        showDirection.snp.makeConstraints { (button) in
+            button.top.equalTo(mapView.snp.bottom).offset(8)
+            button.leading.equalToSuperview()
+            button.width.equalTo(self.view.frame.width/2)
+            button.height.equalTo(40)
         }
         
-        // MARK: outlets in miniMainView
+        // Show website
+        showWebsite.snp.makeConstraints { (button) in
+            button.top.equalTo(mapView.snp.bottom).offset(8)
+            button.leading.equalTo(showDirection.snp.trailing)
+            button.width.equalTo(self.view.frame.width/2)
+            button.height.equalTo(40)
+        }
         
         miniMainViewContainer.snp.makeConstraints { (view) in
             view.left.equalToSuperview()
-            view.top.equalTo(mapView.snp.bottom)
+            view.top.equalTo(showDirection.snp.bottom)
             view.right.bottom.equalToSuperview()
         }
         
         // school name
         schoolNameLabel.snp.makeConstraints { (label) in
             label.left.equalToSuperview().offset(12)
-            label.top.equalTo((mapView?.snp.bottom)!).offset(15)
+            label.top.equalTo(showDirection.snp.bottom).offset(15)
             label.right.equalToSuperview().inset(12)
         }
         
@@ -192,15 +203,10 @@ extension DetailViewController {
             line.left.equalTo(schoolNameLabel.snp.left)
             line.right.equalTo(schoolNameLabel.snp.right)
             line.height.equalTo(0.5)
+            line.bottom.equalToSuperview().inset(8)
         }
         
-        //      More button
-        moreButton.snp.makeConstraints { (button) in
-            button.top.equalTo(lineSeparator4.snp.bottom).offset(15)
-            button.centerX.equalToSuperview()
-            button.width.equalTo(150)
-            button.bottom.equalToSuperview().inset(8)
-        }
+
         
     }
     

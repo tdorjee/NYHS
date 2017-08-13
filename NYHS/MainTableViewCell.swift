@@ -65,6 +65,8 @@ class MainTableViewCell: UITableViewCell {
     lazy var cellImage: UIImageView  = {
         let image : UIImageView = UIImageView()
         image.contentMode = .scaleToFill
+        image.layer.cornerRadius = 5
+        image.layer.masksToBounds = true
         return image
     }()
     
