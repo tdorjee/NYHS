@@ -80,59 +80,7 @@ class ContactSchoolViewController: UIViewController {
          */
     }
     
-    func addToFavourite(){
-        
-        // Jason's strategy
-        
-        //        if var dict = UserDefaults.standard.dictionary(forKey: "favoriteSchools") {
-        //            dict[detailSchool.name] = detailSchool.name
-        //            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
-        //        }else {
-        //            let dict = [detailSchool.name : detailSchool.name]
-        //            UserDefaults.standard.set(dict, forKey: "favoriteSchools")
-        //        }
-        
-        //MARK: - Storing just school name
-        
-        /*
-         
-         let favSchool = UserDefaults.standard.object(forKey: "school")
-         var favSchoolAdd: [School]
-         
-         if let tempSchool = favSchool as? [School] {
-         favSchoolAdd = tempSchool
-         favSchoolAdd.append((schoolFromdetailSchool)!)
-         
-         }else {
-         favSchoolAdd = [(schoolFromdetailSchool)!]
-         }
-         UserDefaults.standard.set(favSchoolAdd, forKey: "school")
-         
-         */
-        
-        
-        
-        
-        let encodeData = NSKeyedArchiver.archivedData(withRootObject: schoolFromDetailSchool ?? "")
-        let schoolObject = UserDefaults.standard.set(encodeData, forKey: "favSchoolAdd")
-        var favSchoolAdd: [School]
-        
-        if let tempSchool = schoolObject as? [School] {
-            favSchoolAdd = tempSchool
-            favSchoolAdd.append(schoolFromDetailSchool!)
-        }else{
-            favSchoolAdd = [schoolFromDetailSchool!]
-        }
-        UserDefaults.standard.set(favSchoolAdd, forKey: "favSchoolAdd")
-        
-        UserDefaults.standard.synchronize()
-
-        
-        let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
+    // ADD TO FAVORITE FUNCTION
 
     func viewHierarchy(){
         
@@ -276,7 +224,7 @@ class ContactSchoolViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
         button.setTitle("Add to favorite", for: .normal)
-        button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+       // button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
         return button
     }()
     

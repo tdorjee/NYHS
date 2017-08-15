@@ -17,6 +17,7 @@ class FavouriteTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("********************* now to the favorite page")
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
@@ -66,13 +67,10 @@ class FavouriteTableViewController: UITableViewController {
         
     }
     
-    
-    
    override func viewDidAppear(_ animated: Bool) {
-   
+//    var array : [School] = []
     
     
-    //var array : [School] = []
     
     if let data = UserDefaults.standard.object(forKey: "favSchoolAdd") as? NSData {
         

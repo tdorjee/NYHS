@@ -166,6 +166,4 @@ class School: NSObject, NSCoding{
         coder.encode(website, forKey: "website")
         
     }
-
-    
 }

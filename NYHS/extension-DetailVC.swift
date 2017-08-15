@@ -77,18 +77,18 @@ extension DetailViewController {
             map.height.equalTo(200)
         }
         
-        //  Show Direction
-        showDirection.snp.makeConstraints { (button) in
-            button.top.equalTo(mapView.snp.bottom).offset(8)
+        //  Show Web
+        showWebsite.snp.makeConstraints { (button) in
+            button.top.equalTo(mapView.snp.bottom).offset(2)
             button.leading.equalToSuperview()
             button.width.equalTo(self.view.frame.width/2)
             button.height.equalTo(40)
         }
         
-        // Show website
-        showWebsite.snp.makeConstraints { (button) in
-            button.top.equalTo(mapView.snp.bottom).offset(8)
-            button.leading.equalTo(showDirection.snp.trailing)
+        // Show Direction
+        showDirection.snp.makeConstraints { (button) in
+            button.top.equalTo(mapView.snp.bottom).offset(2)
+            button.leading.equalTo(showWebsite.snp.trailing)
             button.width.equalTo(self.view.frame.width/2)
             button.height.equalTo(40)
         }

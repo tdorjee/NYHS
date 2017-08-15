@@ -52,48 +52,6 @@ class DetailViewController: UIViewController {
         
     }
     
-    
-    //MARK: -Does work!!
-//    override func viewWillAppear(_ animated: Bool) {
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(showMapFullScreen))
-//        gesture.delegate = self as? UIGestureRecognizerDelegate
-//        mapView.addGestureRecognizer(gesture)
-//    }
-    
-    // show map fully
-
-    
-//    var ifMapViewEpended = false
-    
-//    func showMapFullScreen(){
-//        
-//        print("Tapped gesture...")
-//        if !(ifMapViewEpended){
-//        
-//            UIView.animate(withDuration: 1, animations: {
-//                self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: self.view.frame.height)
-//                self.miniMainViewContainer.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: self.miniMainViewContainer.frame.width, height: 0)
-//        
-//            }, completion: nil)
-//            
-//            ifMapViewEpended = true
-//            
-//            print("Map expended")
-//    
-//        }else {
-//            
-//            UIView.animate(withDuration: 1, animations: {
-//                self.mapView.frame = CGRect(x: self.mapView.frame.origin.x, y: self.mapView.frame.origin.y, width: self.mapView.frame.width, height: 150)
-//                self.miniMainViewContainer.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 87, width: 100, height: 300)
-//            }, completion: nil)
-//            
-//            ifMapViewEpended = false
-//            print("MapView shrinked")
-//
-//            
-//        }
-//    }
-    
     func setBackBarButtonCustom() {
         
         let btnLeftMenu: UIButton = UIButton()
@@ -112,12 +70,62 @@ class DetailViewController: UIViewController {
         
         let btnLeftMenu: UIButton = UIButton()
         btnLeftMenu.setImage(#imageLiteral(resourceName: "customMoreOption2"), for: .normal)
-        btnLeftMenu.addTarget(self, action: #selector(contactSchool), for: .touchUpInside)
+        btnLeftMenu.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
         btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.rightBarButtonItem = barButton
     }
+    
+    
+    func addToFavourite(){
         
+        // Convert Array to Data
+        let encodeData = NSKeyedArchiver.archivedData(withRootObject: detailSchool)
+        let objectArchive = UserDefaults.standard.set(encodeData, forKey: "favSchoolAdd")
+        UserDefaults.standard.synchronize()
+        
+        
+        // testing retriving
+        
+//        func retriveSchool() -> [School]? {
+//            
+//            if let data = UserDefaults.standard.object(forKey: "favSchoolAdd") as? NSData {
+//                return NSKeyedUnarchiver.unarchiveObject(with: data as Data) as? [School]
+//
+//            }
+//           return nil
+//        }
+//        
+//        if let classA = NSUserDefaultsManager.userDefaults.dataForKey("classAarray") {
+//            if let classAunpacked = NSKeyedUnarchiver.unarchiveObjectWithData(classA) as? [ClassA] {
+//                // Use classAunpacked here
+//            }
+//        }
+//        
+//        if let retriveSchool = retriveSchool() {
+//            for i in retriveSchool {
+//                print(i.school_email)
+//            }
+//        }
+        
+        
+//        var favSchoolAdd: [School]
+//        
+//        if let tempSchool = objectArchive as? [School] {
+//            favSchoolAdd = tempSchool
+//            favSchoolAdd.append(detailSchool!)
+//        }else{
+//            favSchoolAdd = [detailSchool!]
+//        }
+//        UserDefaults.standard.set(favSchoolAdd, forKey: "favSchoolAdd")
+//        
+//        
+        
+        let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 
 
     
@@ -185,46 +193,6 @@ class DetailViewController: UIViewController {
                         marker.snippet = self.detailSchool.boro
                         marker.map = self.mapView
                         
-                        // MAKR: - Distance
-                        
-//                        let timesSqureLat = 40.763555
-//                        let timesSqureLong = -73.983416
-//                        
-//                        
-//                        
-                        
-//                        let schoolLocation = CLLocation(latitude: schoolLocation.lat, longitude: schoolLocation.lng)
-//                        
-//                        let distanceFromTimesSquare = CLLocation(latitude: timesSqureLat, longitude: timesSqureLong)
-//                        
-//                        let distance = round((1000.0*schoolLocation.distance(from: distanceFromTimesSquare)/1609)/1000.0)
-//                        
-//                        self.title = "Distance: \(distance)"
-                        
-                        
-                        // MARKER: - Bound between school and user current location
-                        
-//                        let currentSchoolLocation = CLLocationCoordinate2D(latitude: schoolLocation.lat, longitude: schoolLocation.lng)
-//                        
-//                        let fromTimesSquare = CLLocationCoordinate2D(latitude: timesSqureLat, longitude: timesSqureLong)
-//                        
-//                        let bounds = GMSCoordinateBounds(coordinate: currentSchoolLocation, coordinate: fromTimesSquare)
-//                        let camera = self.mapView.camera(for: bounds, insets: UIEdgeInsets())!
-//                        self.mapView.camera = camera
-//                        
-//                        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
-//                        self.mapView.moveCamera(update)
-                        
-                        
-                        // MARK: - Path between current location and the school
-                        
-//                        let path = GMSMutablePath()
-//                        path.add(currentSchoolLocation)
-//                        path.add(fromTimesSquare)
-//                        
-//                        let rectangle = GMSPolyline(path: path)
-//                        rectangle.strokeWidth = 2.0
-//                        rectangle.map = self.mapView
                         
                     }
                     
@@ -428,6 +396,7 @@ class DetailViewController: UIViewController {
     internal lazy var showWebsite: UIButton = {
         let button = UIButton()
         button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = ColorScheme.lineSeparatorColor
         button.addTarget(self, action: #selector(toWeb), for: .touchUpInside)
         button.setTitle("Website", for: .normal)
         return button
@@ -435,11 +404,9 @@ class DetailViewController: UIViewController {
     
     internal lazy var showDirection: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white //ColorScheme.navColor
+        button.backgroundColor = ColorScheme.lineSeparatorColor
         button.setTitleColor(.black, for: .normal)
         button.setTitle("Get Direction", for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(toMap), for: .touchUpInside)
         return button
     }()
@@ -457,59 +424,6 @@ extension String {
         return label.frame.height
     }
 }
-
-/*
- 
- extension DetailViewController: CLLocationManagerDelegate {
- 
- private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
- if status == .authorizedWhenInUse {
- locationManager.startUpdatingLocation()
- mapView.isMyLocationEnabled = true
- mapView.settings.myLocationButton = true
- }
- }
- 
- func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
- 
- let location = locations.last
- self.locationManager.stopUpdatingLocation()
- 
- //        let currentUserLocation = CLLocation(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
- //        self.currentUserLocation = currentUserLocation
- 
- let currentLocation = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
- 
- print("This is the current location ------\(currentLocation.latitude)")
- //        self.currentLocation = currentLocation
- 
- let userLocationCamera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 20.0)
- 
- let currentLocationMarker = GMSMarker()
- currentLocationMarker.position = userLocationCamera.target
- currentLocationMarker.isDraggable = true
- currentLocationMarker.isFlat = true
- currentLocationMarker.title =  "Current Location"
- currentLocationMarker.snippet = "Address"
- currentLocationMarker.appearAnimation = .pop
- currentLocationMarker.map = self.mapView
- mapView?.animate(to: userLocationCamera)
- 
- //Finally stop updating location otherwise it will come again and again in this delegate
- 
- 
- // view = mapView
- 
- }
- 
- //MARK: Distance calculation
- 
- //    func distanceCalculation(currentLocation: CLLocation, schoolLocation: CLLocation) -> Double{
- //        return currentLocation.distance(from: schoolLocation)
- //    }
- }
-    
-*/
 
 
 
