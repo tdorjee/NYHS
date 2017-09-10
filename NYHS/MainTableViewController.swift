@@ -12,7 +12,7 @@ class MainTableViewController: UITableViewController {
 
     let cellId = "cellId"
     
-    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "bronxHD2"), "Schools: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "brooklynHD4"), "Schools: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "manhattanHD"), "Schools: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "queenHD"), "Schools: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "statenIslandHD"), "Schools: \(10)") ]
+    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "brooklynHD4"), "Schools: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "brooklynHD4"), "Schools: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "brooklynHD4"), "Schools: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "brooklynHD4"), "Schools: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "brooklynHD4"), "Schools: \(10)")]
     
     override func viewDidLoad() {
         super.viewDidLoad()

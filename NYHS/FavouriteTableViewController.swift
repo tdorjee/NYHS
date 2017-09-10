@@ -12,12 +12,10 @@ class FavouriteTableViewController: UITableViewController {
 
     let cellId = "cellId"
     
-    var theFavouriteSchools: [School] = []
+    var theFavouriteSchools = DataStore.shareInstnce
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("********************* now to the favorite page")
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
@@ -32,12 +30,10 @@ class FavouriteTableViewController: UITableViewController {
         
         setUpNavBarStyle()
         
-        saveSchool()
-        
     }
     
     func setUpNavBarStyle(){
-        print("Style navigation bar style")
+    
         navigationController?.navigationBar.barTintColor = ColorScheme.navColor
         navigationController?.navigationBar.isTranslucent = true
         
@@ -57,58 +53,61 @@ class FavouriteTableViewController: UITableViewController {
 //    func onClcikBack(){
 //        _ = self.navigationController?.popViewController(animated: true)
 //    }
-    
-    
-    func saveSchool(){
-        
-        print("view did load")
-        
-        print("schools in userdefault: \(theFavouriteSchools)")
-        
-    }
+  
+  
+  /*
+   
+   if let loadedData = NSUserDefaults().dataForKey("personData") {
+   
+   if let loadedPerson = NSKeyedUnarchiver.unarchiveObjectWithData(loadedData) as? [Person] {
+   loadedPerson[0].name   //"Leo"
+   loadedPerson[0].age    //45
+   }
+   }
+   
+   */
     
    override func viewDidAppear(_ animated: Bool) {
-//    var array : [School] = []
     
-    
-    
-    if let data = UserDefaults.standard.object(forKey: "favSchoolAdd") as? NSData {
-        
-        if let tempSchoolArr = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as? [School]{
-            
-            theFavouriteSchools = tempSchoolArr
-            print("All the schools in userdefaulst: \(tempSchoolArr)")
-            }
-        
-    
-        }
+//    let decoded = UserDefaults.standard.object(forKey: "detailSchool") as! Data
+//    let decodedSchool = (NSKeyedUnarchiver.unarchiveObject(with: decoded) as! School)
+//    theFavouriteSchools.append(decodedSchool)
     tableView.reloadData()
-    }
     
-    
-
+//
+//      let data = UserDefaults.standard.object(forKey: "detailSchool")
+//      
+//      print("Stage: 1111")
+//      
+//      if let tempSchoolArr = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as? [School]{
+//        
+//        theFavouriteSchools =  tempSchoolArr
+//      }
+//        tableView.reloadData()
+  }
+  
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return theFavouriteSchools.count
+            return theFavouriteSchools.favoriteSchool.count
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let revisitVC = RevisitViewController()
-        revisitVC.school = theFavouriteSchools[indexPath.row]
-        self.navigationController?.pushViewController(revisitVC, animated: true)
+        revisitVC.school = theFavouriteSchools.favoriteSchool[indexPath.row]
+        self.present(revisitVC, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(revisitVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
 
-        let thisSchool = theFavouriteSchools[indexPath.row]
+        let thisSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
         cell.textLabel?.text = thisSchool.name
         cell.detailTextLabel?.text = thisSchool.boro
         cell.textLabel?.numberOfLines = 0
@@ -129,10 +128,10 @@ class FavouriteTableViewController: UITableViewController {
         switch editingStyle {
         case .delete:
             
-            theFavouriteSchools.remove(at: indexPath.row)
+            theFavouriteSchools.favoriteSchool.remove(at: indexPath.row)
             tableView.reloadData()
             UserDefaults.standard.data(forKey: "favSchoolAdd")
-            //UserDefaults.standard.set(theFavouriteSchools, forKey: "")
+    
         default:
             break
         }

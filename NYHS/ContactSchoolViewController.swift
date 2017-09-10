@@ -175,7 +175,6 @@ class ContactSchoolViewController: UIViewController {
     
     internal lazy var closeButton: UIButton = {
         let  button = UIButton()
-//        button.backgroundColor = .red
         button.isUserInteractionEnabled = true
         button.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
         button.layer.cornerRadius = 20
@@ -224,7 +223,6 @@ class ContactSchoolViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = ColorScheme.navColor
         button.setTitle("Add to favorite", for: .normal)
-       // button.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
         return button
     }()
     

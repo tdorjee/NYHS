@@ -18,15 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
+        GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
+        
         UITabBar.appearance().tintColor = ColorScheme.navColor
         UIApplication.shared.statusBarStyle = .lightContent
     
         window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = tabView()
+        self.window?.rootViewController = MainView()
         window?.makeKeyAndVisible()
-        
-        // method for splash screen
-        
         
         return true
     }

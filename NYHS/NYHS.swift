@@ -89,15 +89,9 @@ class School: NSObject, NSCoding{
     let total_students: String
     let start_time: String
     let end_time: String
-//    let se_services: String
     let school_sports: String
     let diplomaendorsements: String
     let extracurricular_activities: String
-//    let program_highlights: String
-    
-//    let bus: String
-//    let subway: String
-    
     let primary_address_line_1: String
     let zip: String
     let phone_number: String
@@ -113,14 +107,8 @@ class School: NSObject, NSCoding{
         self.total_students = dictionary["total_students"] ?? ""
         self.start_time = dictionary["start_time"] ?? ""
         self.end_time = dictionary["end_time"] ?? ""
-//        self.se_services = dictionary["se_services"] ?? ""
         self.school_sports = dictionary["school_sports"] ?? ""
         self.extracurricular_activities = dictionary["extracurricular_activities"] ?? ""
-//        self.program_highlights = dictionary["program_highlights"] ?? ""
-        
-//        self.bus = dictionary["bus"] ?? ""
-//        self.subway = dictionary["subway"] ?? ""
-        
         self.primary_address_line_1 = dictionary["primary_address_line_1"] ?? ""
         self.zip = dictionary["zip"] ?? ""
         self.phone_number = dictionary["phone_number"] ?? ""

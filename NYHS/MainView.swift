@@ -1,5 +1,5 @@
 //
-//  tabView.swift
+//  MainView.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 6/19/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class tabView: UITabBarController {
+class MainView: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,6 @@ class tabView: UITabBarController {
         secondVC.tabBarItem = secondBarIcon
         
         tabBar.isTranslucent = false
-        
         viewControllers = [firstNav, secondNav]
     }
 

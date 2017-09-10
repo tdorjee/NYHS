@@ -12,33 +12,21 @@ import GoogleMaps
 import GooglePlaces
 
 class DetailViewController: UIViewController {
-    
+  
+    var store = DataStore.shareInstnce
+  
     var detailSchool: School!
-//    var currentUserLocation: CLLocation!
     var schoolLatAndLng: LatAndLng?
     
     var mapView: GMSMapView!
     var locationManager = CLLocationManager()
-    
-
-    
-    
-//    var currentLocation = CLLocationCoordinate2D()
-//    var animator = UIViewPropertyAnimator()
+  
+    var allSchoolSoFar: [School] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
-        //self.title = detailSchool?.name
         view.backgroundColor = .white
-        
-//        locationManager.delegate = self
-//        locationManager.distanceFilter = 500
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.startUpdatingLocation()
-        
         getLatAndLgn()
         setupMaps()
  
@@ -46,9 +34,10 @@ class DetailViewController: UIViewController {
         constraintConfiguration()
         setBackBarButtonCustom()
         setMoreButtonCustom()
-        
-//        self.mapView.canPerformAction(#selector(showMapFullScreen), withSender: self)
-        
+      
+      loadData()
+      
+      print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")
         
     }
     
@@ -75,60 +64,51 @@ class DetailViewController: UIViewController {
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.rightBarButtonItem = barButton
     }
+  
+  //        UserDefaults.standard.set(encodeData, forKey: "test")
+  //        UserDefaults.standard.synchronize()
+  
+  //        let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
+  //        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+  //        self.present(alert, animated: true, completion: nil)
+  
+
+  // MARK: File path
+  
+  var filePath: String {
     
+    let manager = FileManager.default
     
-    func addToFavourite(){
-        
-        // Convert Array to Data
-        let encodeData = NSKeyedArchiver.archivedData(withRootObject: detailSchool)
-        let objectArchive = UserDefaults.standard.set(encodeData, forKey: "favSchoolAdd")
-        UserDefaults.standard.synchronize()
-        
-        
-        // testing retriving
-        
-//        func retriveSchool() -> [School]? {
-//            
-//            if let data = UserDefaults.standard.object(forKey: "favSchoolAdd") as? NSData {
-//                return NSKeyedUnarchiver.unarchiveObject(with: data as Data) as? [School]
-//
-//            }
-//           return nil
-//        }
-//        
-//        if let classA = NSUserDefaultsManager.userDefaults.dataForKey("classAarray") {
-//            if let classAunpacked = NSKeyedUnarchiver.unarchiveObjectWithData(classA) as? [ClassA] {
-//                // Use classAunpacked here
-//            }
-//        }
-//        
-//        if let retriveSchool = retriveSchool() {
-//            for i in retriveSchool {
-//                print(i.school_email)
-//            }
-//        }
-        
-        
-//        var favSchoolAdd: [School]
-//        
-//        if let tempSchool = objectArchive as? [School] {
-//            favSchoolAdd = tempSchool
-//            favSchoolAdd.append(detailSchool!)
-//        }else{
-//            favSchoolAdd = [detailSchool!]
-//        }
-//        UserDefaults.standard.set(favSchoolAdd, forKey: "favSchoolAdd")
-//        
-//        
-        
-        let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+    
+    return (url!.appendingPathComponent("Data").path)
+    
+  }
+  
+  // MARK: Save Data
+  
+  private func saveData(item: School) {
+    self.store.favoriteSchool.append(item)
+    NSKeyedArchiver.archiveRootObject(self.store.favoriteSchool, toFile: filePath)
+  
+  }
+  
+  // MARK: Load Data
+  
+  private func loadData(){
+    
+    if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [School] {
+      self.store.favoriteSchool = ourData
     }
-
-
-
     
+  }
+  
+    func addToFavourite(){
+      
+      self.saveData(item: detailSchool)
+      
+    }
+  
     func contactSchool(){
         
         let contactVC = ContactSchoolViewController()
@@ -178,9 +158,6 @@ class DetailViewController: UIViewController {
                     self.schoolLatAndLng = schoolLocation
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: schoolLocation.lat, longitude: schoolLocation.lng, zoom: 12)
-//                        self.mapView.isMyLocationEnabled = false
-//                        self.mapView.settings.myLocationButton = true
-//                        self.mapView.mapType = .terrain
                         let url = Bundle.main.url(forResource: "mapStyle", withExtension: "json")
                         let mapStyle = try! GMSMapStyle.init(contentsOfFileURL: url!)
                         self.mapView.mapStyle = mapStyle
@@ -188,19 +165,11 @@ class DetailViewController: UIViewController {
                         
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: schoolLocation.lat, longitude: schoolLocation.lng )
-//                        marker.icon = #imageLiteral(resourceName: "school")
                         marker.title = self.detailSchool.name
                         marker.snippet = self.detailSchool.boro
                         marker.map = self.mapView
-                        
-                        
                     }
-                    
-                    print("School phono no.: \(self.detailSchool.phone_number)")
-
                 }
-                
-                
             } catch {
                 print("Error getting lat and lng")
             }
@@ -226,10 +195,8 @@ class DetailViewController: UIViewController {
         self.navigationController?.pushViewController(googleMap, animated: true)
         
     }
-
-
-    //MARK: - Outlets
     
+    //MARK: - Outlets
     
     // line separator 
     
@@ -288,19 +255,6 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    
-    // Expand map 
-//    
-//    internal lazy var showMapButton: UIButton = {
-//        let button = UIButton()
-//        button.tintColor = .red
-//        button.addTarget(self, action: #selector(showMapFullScreen), for: .touchUpInside)
-//        return button
-//    }()
-
-    
-    // diploma endorsements
-    
     internal lazy var diplomaImage: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "diplomaIcon"), for: .normal)
@@ -346,9 +300,6 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    // transpotation
-    // school_sports
-    
     // overview
     internal lazy var overviewLabel: UILabel = {
         let label = UILabel()
@@ -361,10 +312,8 @@ class DetailViewController: UIViewController {
     
     internal lazy var overviewText: UILabel = {
         let label = UILabel()
-        //label.sizeToFit()
         label.text = self.detailSchool.overview_paragraph
         label.font = ColorScheme.descriptionFont
-//        label.textColor = ColorScheme.subtitleTextColor
         label.textColor = UIColor(white: 0.2, alpha: 1)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -410,8 +359,6 @@ class DetailViewController: UIViewController {
         button.addTarget(self, action: #selector(toMap), for: .touchUpInside)
         return button
     }()
-    
-    
 }
 
 extension String {

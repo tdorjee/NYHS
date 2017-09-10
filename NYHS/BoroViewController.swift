@@ -32,10 +32,6 @@ class BoroViewController: UITableViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        //self.tableView.separatorStyle = .singleLine
-        
-        // SearchBar placement 
-        
         
         searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.titleView = searchController.searchBar
@@ -49,29 +45,15 @@ class BoroViewController: UITableViewController {
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
         
-        //definesPresentationContext = true
-        //tableView.tableHeaderView = searchController.searchBar
-        
-        // chage searchBar cancel color 
         let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: .normal)
             
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "favoriteIcon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(viewFavoriteSchools))
-//        
-        // Back button icon
         SetBackBarButtonCustom()
         
     }
-    
-//    func viewFavoriteSchools(){
-//        
-//        let favouriteVC = FavouriteTableViewController()
-//        self.navigationController?.pushViewController(favouriteVC, animated: true)
-//        
-//    }
     
     func SetBackBarButtonCustom() {
         

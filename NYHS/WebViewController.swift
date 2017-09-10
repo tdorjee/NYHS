@@ -37,17 +37,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil{
-                print("There is an error: \(error)")
+                print("There is an error: \(String(describing: error))")
             }else {
                 self.webview.loadRequest(urlRequest)
             }
         }
         task.resume()
-        
-    
-        
-        print("!!!!!!!!!!!: \(urlRequest)")
-        
         
     }
     
