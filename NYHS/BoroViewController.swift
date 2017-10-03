@@ -45,7 +45,7 @@ class BoroViewController: UITableViewController {
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
         
-        let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        let cancelButtonAttributes: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: .normal)
             
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -65,7 +65,7 @@ class BoroViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = barButton
     }
     
-    func onClcikBack(){
+    @objc func onClcikBack(){
         _ = self.navigationController?.popViewController(animated: true)
     }
 

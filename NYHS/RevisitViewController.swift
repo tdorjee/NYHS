@@ -38,7 +38,7 @@ class RevisitViewController: UIViewController {
         schoolName.text = school?.name
     }
     
-    func closeView(){
+    @objc func closeView(){
         self.dismiss(animated: true, completion: nil)
     }
     

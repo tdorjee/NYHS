@@ -29,7 +29,8 @@ class FavouriteTableViewController: UITableViewController {
         //SetBackBarButtonCustom()
         
         setUpNavBarStyle()
-        
+        tableView.reloadData()
+
     }
     
     func setUpNavBarStyle(){
@@ -37,7 +38,7 @@ class FavouriteTableViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = ColorScheme.navColor
         navigationController?.navigationBar.isTranslucent = true
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
 //    func SetBackBarButtonCustom() {

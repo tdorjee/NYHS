@@ -61,7 +61,7 @@ class SplashScreenViewController: UIViewController {
         
     }
     
-    func splashTimeOut(sender: Timer){
+    @objc func splashTimeOut(sender: Timer){
         AppDelegate.sharedInstance().window?.rootViewController = MainView()
     }
     

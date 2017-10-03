@@ -51,7 +51,7 @@ class DetailViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = barButton
     }
     
-    func onClcikBack(){
+    @objc func onClcikBack(){
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -78,9 +78,7 @@ class DetailViewController: UIViewController {
   var filePath: String {
     
     let manager = FileManager.default
-    
     let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-    
     return (url!.appendingPathComponent("Data").path)
     
   }
@@ -103,7 +101,7 @@ class DetailViewController: UIViewController {
     
   }
   
-    func addToFavourite(){
+    @objc func addToFavourite(){
       
       self.saveData(item: detailSchool)
       
@@ -176,7 +174,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-        func toWeb(){
+        @objc func toWeb(){
             
             let website = WebViewController()
             website.schoolWebSite = self.detailSchool.website
@@ -185,7 +183,7 @@ class DetailViewController: UIViewController {
         }
     
     
-        func toMap(){
+        @objc func toMap(){
         
         let googleMap = googleMapVC()
             googleMap.schoolLat = Float(self.schoolLatAndLng!.lat)

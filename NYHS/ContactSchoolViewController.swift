@@ -28,7 +28,7 @@ class ContactSchoolViewController: UIViewController {
     
     // MARK: - Actions
     
-    func dismissView(){
+    @objc func dismissView(){
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -36,7 +36,7 @@ class ContactSchoolViewController: UIViewController {
     let mailComposer = MFMailComposeViewController()
     
     
-    func smsSchool(){
+    @objc func smsSchool(){
         
         print("Not presenting at the moment")
         
@@ -53,7 +53,7 @@ class ContactSchoolViewController: UIViewController {
          */
     }
     
-    func callSchool(){
+    @objc func callSchool(){
         
         print("Not presenting at the moment")
         
@@ -65,7 +65,7 @@ class ContactSchoolViewController: UIViewController {
         
     }
     
-    func emailSchool() {
+    @objc func emailSchool() {
         
         print("Not presenting at the moment")
         

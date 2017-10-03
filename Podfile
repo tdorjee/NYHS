@@ -6,7 +6,7 @@ target 'NYHS' do
   use_frameworks!
 
   # Pods for NYHS
-  pod 'SnapKit', '~> 3.2.0'
+  pod 'SnapKit', '~> 4.0.0’
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
