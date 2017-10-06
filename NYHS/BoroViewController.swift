@@ -24,7 +24,6 @@ class BoroViewController: UITableViewController {
     
     var filteredSchool: [School] = []
     
-    
     let searchController = UISearchController(searchResultsController: nil)
     
 
@@ -32,10 +31,22 @@ class BoroViewController: UITableViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationItem.title = "Schools"
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            // Fallback on earlier versions
+        }
         
-        searchController.hidesNavigationBarDuringPresentation = false
-        navigationItem.titleView = searchController.searchBar
-        definesPresentationContext = true
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            // Fallback on earlier versions
+        }
+        
+//        searchController.hidesNavigationBarDuringPresentation = false
+//        navigationItem.titleView = searchController.searchBar
+//        definesPresentationContext = true
         
         searchController.searchBar.searchBarStyle  = .default
         searchController.searchBar.placeholder = "Try Name, Address, Sports"
@@ -46,14 +57,17 @@ class BoroViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         
         let cancelButtonAttributes: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: .normal)
+//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: .normal)
+//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String: AnyObject], for: .normal)
             
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
-        SetBackBarButtonCustom()
+//        SetBackBarButtonCustom()
         
     }
+    
+    //MARK: - Not calling it for second iteration designs
     
     func SetBackBarButtonCustom() {
         

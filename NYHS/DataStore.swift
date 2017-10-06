@@ -14,4 +14,5 @@ class DataStore {
     private init(){}
     var favoriteSchool: [School] = []
   
+  
 }

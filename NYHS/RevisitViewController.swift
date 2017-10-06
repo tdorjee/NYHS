@@ -15,17 +15,27 @@ class RevisitViewController: UIViewController {
     
     lazy internal var schoolName: UILabel = {
         let label = UILabel()
+        label.text = school?.name
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         
+        viewHierarchy()
+        constraintConfiguration()
+        
+        
+    }
+    
+    func viewHierarchy(){
         view.addSubview(closeButton)
         view.addSubview(schoolName)
-        
+    }
+    
+    func constraintConfiguration(){
         closeButton.snp.makeConstraints { (button) in
             button.leading.top.equalToSuperview()
             button.height.width.equalTo(100)
@@ -34,8 +44,6 @@ class RevisitViewController: UIViewController {
         schoolName.snp.makeConstraints({ (label) in
             label.centerX.centerY.equalToSuperview()
         })
-        
-        schoolName.text = school?.name
     }
     
     @objc func closeView(){

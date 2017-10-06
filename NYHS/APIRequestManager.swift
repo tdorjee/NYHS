@@ -21,9 +21,6 @@ class APIRequestManager{
             if error != nil{
                 print("There is an error on: \(String(describing: error))")
             }
-            
-            //MARK: - Comment our becouse of the warning
-            
             guard let validData = data else { return }
             callBack(validData)
         }.resume()

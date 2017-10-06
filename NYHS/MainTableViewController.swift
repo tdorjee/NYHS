@@ -17,22 +17,17 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("-------------TESTING TO SEE IF I CAN COMMIT -----------")
-        
         self.title = "NYCHS"
         self.tableView.separatorStyle = .none
 
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         
-        setUpNavBarStyle()
+//        setUpNavBarStyle()
     }
     
-//    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//    self.navigationController?.navigationBar.isTranslucent = true
-
+    //MARK: Not calling it for second itteration of design
     
     func setUpNavBarStyle(){
-        print("Style navigation bar style")
         navigationController?.navigationBar.barTintColor = ColorScheme.navColor
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -79,11 +74,14 @@ class MainTableViewController: UITableViewController {
 
 }
 
-extension UINavigationBar {
-    
-    func transparentNavigationBar() {
-        self.setBackgroundImage(UIImage(), for: .default)
-        self.shadowImage = UIImage()
-        self.isTranslucent = true
-    }
-}
+// MARK: - Not calling it for second itteration of UI design
+
+//extension UINavigationBar {
+//
+//    func transparentNavigationBar() {
+//        self.setBackgroundImage(UIImage(), for: .default)
+//        self.shadowImage = UIImage()
+//        self.isTranslucent = true
+//    }
+//}
+

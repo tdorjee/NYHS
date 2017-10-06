@@ -29,8 +29,21 @@ class FavouriteTableViewController: UITableViewController {
         //SetBackBarButtonCustom()
         
         setUpNavBarStyle()
+        
+        loadData()
+        
         tableView.reloadData()
 
+    }
+    
+    var fromDetailVC = DetailViewController()
+    
+    private func loadData(){
+        
+        if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: fromDetailVC.filePath) as? [School] {
+            fromDetailVC.store.favoriteSchool = ourData
+        }
+        
     }
     
     func setUpNavBarStyle(){
@@ -99,9 +112,14 @@ class FavouriteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let revisitVC = RevisitViewController()
-        revisitVC.school = theFavouriteSchools.favoriteSchool[indexPath.row]
-        self.present(revisitVC, animated: true, completion: nil)
+        let backToDetailVc = DetailViewController()
+        backToDetailVc.detailSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
+//        self.present(backToDeta ilVc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(backToDetailVc, animated: true)
+        
+//        let revisitVC = RevisitViewController()
+//        revisitVC.school = theFavouriteSchools.favoriteSchool[indexPath.row]
+//        self.present(revisitVC, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(revisitVC, animated: true)
     }
     
@@ -130,6 +148,7 @@ class FavouriteTableViewController: UITableViewController {
         case .delete:
             
             theFavouriteSchools.favoriteSchool.remove(at: indexPath.row)
+            
             tableView.reloadData()
             UserDefaults.standard.data(forKey: "favSchoolAdd")
     

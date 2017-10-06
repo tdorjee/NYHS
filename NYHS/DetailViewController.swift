@@ -26,17 +26,22 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        } else {
+            // Fallback on earlier versions
+        }
+        
         view.backgroundColor = .white
         getLatAndLgn()
         setupMaps()
  
         viewHierarchy()
         constraintConfiguration()
-        setBackBarButtonCustom()
+//        setBackBarButtonCustom()
         setMoreButtonCustom()
       
-      loadData()
-      
+        print("----------Number of favoriteSchool store in the \(self.store.favoriteSchool.count)------------")
       print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")
         
     }
@@ -64,14 +69,7 @@ class DetailViewController: UIViewController {
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.rightBarButtonItem = barButton
     }
-  
-  //        UserDefaults.standard.set(encodeData, forKey: "test")
-  //        UserDefaults.standard.synchronize()
-  
-  //        let alert = UIAlertController(title: "Saved", message: "School added to Favorite list", preferredStyle: .alert)
-  //        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-  //        self.present(alert, animated: true, completion: nil)
-  
+
 
   // MARK: File path
   
@@ -93,13 +91,7 @@ class DetailViewController: UIViewController {
   
   // MARK: Load Data
   
-  private func loadData(){
-    
-    if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [School] {
-      self.store.favoriteSchool = ourData
-    }
-    
-  }
+
   
     @objc func addToFavourite(){
       
