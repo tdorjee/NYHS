@@ -26,6 +26,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Fav.", style: .plain, target: self, action: #selector(addToFavourite))
+          
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         } else {
@@ -39,7 +41,7 @@ class DetailViewController: UIViewController {
         viewHierarchy()
         constraintConfiguration()
 //        setBackBarButtonCustom()
-        setMoreButtonCustom()
+//        setMoreButtonCustom()
       
         print("----------Number of favoriteSchool store in the \(self.store.favoriteSchool.count)------------")
       print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")

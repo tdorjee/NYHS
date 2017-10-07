@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B917DBC91EF98F2A0068A0A6 /* ContactSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */; };
 		B917DBD01EFD7F140068A0A6 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917DBCF1EFD7F140068A0A6 /* SplashScreenViewController.swift */; };
+		B92D07121F886038009E5234 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D07111F886038009E5234 /* FilterViewController.swift */; };
 		B937B0D01F22B1F900A0592D /* RevisitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937B0CF1F22B1F900A0592D /* RevisitViewController.swift */; };
 		B94255C31F133F1100C0C779 /* mapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = B94255C21F133F1100C0C779 /* mapStyle.json */; };
 		B952B4E11EE87F3B008B80AA /* googleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952B4E01EE87F3B008B80AA /* googleMapVC.swift */; };
@@ -39,6 +40,7 @@
 		941D5E46DF9B06DA95ED8200 /* Pods-NYHS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.debug.xcconfig"; sourceTree = "<group>"; };
 		B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSchoolViewController.swift; sourceTree = "<group>"; };
 		B917DBCF1EFD7F140068A0A6 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		B92D07111F886038009E5234 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B937B0CF1F22B1F900A0592D /* RevisitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevisitViewController.swift; sourceTree = "<group>"; };
 		B94255C21F133F1100C0C779 /* mapStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapStyle.json; sourceTree = "<group>"; };
 		B952B4E01EE87F3B008B80AA /* googleMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = googleMapVC.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				B917DBCF1EFD7F140068A0A6 /* SplashScreenViewController.swift */,
 				B9EE594F1EF7AC8100CD1F7C /* MainView.swift */,
 				B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */,
+				B92D07111F886038009E5234 /* FilterViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
 				B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */,
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B92D07121F886038009E5234 /* FilterViewController.swift in Sources */,
 				B9EE59481EF5787C00CD1F7C /* MainTableViewCell.swift in Sources */,
 				B9863E931EB9816500A00ABD /* APIRequestManager.swift in Sources */,
 				B917DBD01EFD7F140068A0A6 /* SplashScreenViewController.swift in Sources */,

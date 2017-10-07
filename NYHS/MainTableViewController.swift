@@ -19,10 +19,19 @@ class MainTableViewController: UITableViewController {
         
         self.title = "NYCHS"
         self.tableView.separatorStyle = .none
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPage))
 
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         
 //        setUpNavBarStyle()
+    }
+    
+    // MARK: - Display filter page
+    
+    func filterPage(){
+        let filterNav = UINavigationController(rootViewController: FilterViewController())
+        self.present(filterNav, animated: true, completion: nil)
     }
     
     //MARK: Not calling it for second itteration of design
