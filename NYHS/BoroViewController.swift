@@ -16,6 +16,9 @@ class BoroViewController: UITableViewController {
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     
+    var boySports: [String] = []
+    var girlSport: [String] = []
+    
     let sections = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     
     var boroSelected: String = ""
@@ -102,8 +105,31 @@ class BoroViewController: UITableViewController {
                 guard let jsonData = jsonDict as? [[String: String]] else { return }
                 for eachSchool in jsonData {
                     let school = School(dictionary: eachSchool)
+                    // MARK: - Retrive school sport
+                    
+                    let eachBoySports = school.psal_sports_boys.components(separatedBy: ",")
+                    let eachGirlSports = school.psal_sports_girls.components(separatedBy: ",")
+                    
+                    
+                    
+                    for i in eachBoySports{
+                        if !self.boySports.contains(i){
+                            self.boySports.append(i)
+                        }
+                    }
+                    
+                    for j in eachGirlSports {
+                        if !self.girlSport.contains(j){
+                            self.girlSport.append(j)
+                        }
+                    }
+                    
+                    print("All boy sports----------: \(self.boySports)")
+                    print("All girl sports----------: \(self.girlSport)")
+                    
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
+                        
                     }
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
                 }

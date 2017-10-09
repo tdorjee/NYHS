@@ -90,6 +90,8 @@ class School: NSObject, NSCoding{
     let start_time: String
     let end_time: String
     let school_sports: String
+    let psal_sports_boys: String
+    let psal_sports_girls: String
     let diplomaendorsements: String
     let extracurricular_activities: String
     let primary_address_line_1: String
@@ -108,6 +110,8 @@ class School: NSObject, NSCoding{
         self.start_time = dictionary["start_time"] ?? ""
         self.end_time = dictionary["end_time"] ?? ""
         self.school_sports = dictionary["school_sports"] ?? ""
+        self.psal_sports_boys = dictionary["psal_sports_boys"] ?? ""
+        self.psal_sports_girls = dictionary["psal_sports_girls"] ?? ""
         self.extracurricular_activities = dictionary["extracurricular_activities"] ?? ""
         self.primary_address_line_1 = dictionary["primary_address_line_1"] ?? ""
         self.zip = dictionary["zip"] ?? ""
@@ -128,6 +132,8 @@ class School: NSObject, NSCoding{
         self.start_time = decoder.decodeObject(forKey: "start_time") as? String ?? ""
         self.end_time = decoder.decodeObject(forKey: "end_time") as? String ?? ""
         self.school_sports = decoder.decodeObject(forKey: "school_sports") as? String ?? ""
+        self.psal_sports_boys = decoder.decodeBool(forKey: "psal_sports_boys") as? String ?? ""
+        self.psal_sports_girls = decoder.decodeBool(forKey: "psal_sports_girsl") as? String ?? ""
         self.extracurricular_activities = decoder.decodeObject(forKey: "extracurricular_activities") as? String ?? ""
         self.primary_address_line_1 = decoder.decodeObject(forKey: "primary_address_line_1") as? String ?? ""
         self.zip = decoder.decodeObject(forKey: "zip") as? String ?? ""
@@ -145,6 +151,8 @@ class School: NSObject, NSCoding{
         coder.encode(start_time, forKey: "start_time")
         coder.encode(end_time, forKey: "end_time")
         coder.encode(school_sports, forKey: "school_sports")
+        coder.encode(psal_sports_boys, forKey: "psal_sports_boys")
+        coder.encode(psal_sports_girls, forKey: "psal_sports_girls")
         coder.encode(extracurricular_activities, forKey: "extracurricular_activities")
         coder.encode(primary_address_line_1, forKey: "primary_address_line_1")
         coder.encode(zip, forKey: "zip")
