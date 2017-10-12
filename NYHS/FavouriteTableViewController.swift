@@ -22,13 +22,11 @@ class FavouriteTableViewController: UITableViewController {
         self.tableView.separatorStyle = .singleLine
             self.title = "Favorite Schools"
       
-        
-        
         navigationItem.rightBarButtonItem = editButtonItem
         
-        //SetBackBarButtonCustom()
+        // SetBackBarButtonCustom()
         
-        setUpNavBarStyle()
+        // setUpNavBarStyle()
         
         loadData()
         
@@ -54,50 +52,22 @@ class FavouriteTableViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
-//    func SetBackBarButtonCustom() {
-//        
-//        let btnLeftMenu: UIButton = UIButton()
-//        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
-//        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-//        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
-//        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-//        self.navigationItem.leftBarButtonItem = barButton
-//    }
-//    
-//    func onClcikBack(){
-//        _ = self.navigationController?.popViewController(animated: true)
-//    }
-  
-  
-  /*
-   
-   if let loadedData = NSUserDefaults().dataForKey("personData") {
-   
-   if let loadedPerson = NSKeyedUnarchiver.unarchiveObjectWithData(loadedData) as? [Person] {
-   loadedPerson[0].name   //"Leo"
-   loadedPerson[0].age    //45
-   }
-   }
-   
-   */
+    func SetBackBarButtonCustom() {
+        
+        let btnLeftMenu: UIButton = UIButton()
+        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
+        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
+        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+        self.navigationItem.leftBarButtonItem = barButton
+    }
+
+    func onClcikBack(){
+        _ = self.navigationController?.popViewController(animated: true)
+    }
     
    override func viewDidAppear(_ animated: Bool) {
-    
-//    let decoded = UserDefaults.standard.object(forKey: "detailSchool") as! Data
-//    let decodedSchool = (NSKeyedUnarchiver.unarchiveObject(with: decoded) as! School)
-//    theFavouriteSchools.append(decodedSchool)
     tableView.reloadData()
-    
-//
-//      let data = UserDefaults.standard.object(forKey: "detailSchool")
-//      
-//      print("Stage: 1111")
-//      
-//      if let tempSchoolArr = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as? [School]{
-//        
-//        theFavouriteSchools =  tempSchoolArr
-//      }
-//        tableView.reloadData()
   }
   
     // MARK: - Table view data source
@@ -114,13 +84,8 @@ class FavouriteTableViewController: UITableViewController {
         
         let backToDetailVc = DetailViewController()
         backToDetailVc.detailSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
-//        self.present(backToDeta ilVc, animated: true, completion: nil)
         self.navigationController?.pushViewController(backToDetailVc, animated: true)
         
-//        let revisitVC = RevisitViewController()
-//        revisitVC.school = theFavouriteSchools.favoriteSchool[indexPath.row]
-//        self.present(revisitVC, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(revisitVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

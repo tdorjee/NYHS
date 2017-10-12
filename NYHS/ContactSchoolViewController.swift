@@ -11,10 +11,9 @@ import SnapKit
 import MessageUI
 
 class ContactSchoolViewController: UIViewController {
-
+    
     
     var schoolFromDetailSchool: School?
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +22,7 @@ class ContactSchoolViewController: UIViewController {
         
         viewHierarchy()
         constrainConfiguration()
-    
+        
     }
     
     // MARK: - Actions
@@ -37,51 +36,34 @@ class ContactSchoolViewController: UIViewController {
     
     
     @objc func smsSchool(){
-        
-        print("Not presenting at the moment")
-        
-        /*
-         
-         if MFMessageComposeViewController.canSendText(){
-         messageComposer.messageComposeDelegate = self as? MFMessageComposeViewControllerDelegate
-         if let schoolWebSite = schoolFromdetailSchool?.website {
-         messageComposer.body = "Check this school out: \(schoolWebSite))"
-         }
-         present(messageComposer, animated: true, completion: nil)
-         }
-         
-         */
+
+//        if MFMessageComposeViewController.canSendText(){
+//            messageComposer.messageComposeDelegate = self as? MFMessageComposeViewControllerDelegate
+//            if let schoolWebSite = schoolFromdetailSchool?.website {
+//                messageComposer.body = "Check this school out: \(schoolWebSite))"
+//            }
+//            present(messageComposer, animated: true, completion: nil)
+//        }
+
     }
     
     @objc func callSchool(){
-        
-        print("Not presenting at the moment")
-        
-        /*
-         guard let number = URL(string: "telprompt://" + (schoolFromdetailSchool?.phone_number)!) else { return }
-         UIApplication.shared.open(number, options: [:], completionHandler: nil)
-         */
-        
-        
+
+//        guard let number = URL(string: "telprompt://" + (schoolFromdetailSchool?.phone_number)!) else { return }
+//        UIApplication.shared.open(number, options: [:], completionHandler: nil)
+
     }
     
     @objc func emailSchool() {
-        
-        print("Not presenting at the moment")
-        
-        /*
-         
-         if MFMailComposeViewController.canSendMail(){
-         self.mailComposer.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
-         mailComposer.setToRecipients([(schoolFromdetailSchool?.school_email)!])
-         present(mailComposer, animated: true, completion: nil)
-         }
-         
-         */
+//        if MFMailComposeViewController.canSendMail(){
+//            self.mailComposer.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
+//            mailComposer.setToRecipients([(schoolFromdetailSchool?.school_email)!])
+//            present(mailComposer, animated: true, completion: nil)
+//        }
     }
     
     // ADD TO FAVORITE FUNCTION
-
+    
     func viewHierarchy(){
         
         view.addSubview(backgroundImage)
@@ -89,13 +71,13 @@ class ContactSchoolViewController: UIViewController {
         
         //view.addSubview(lineSeparatorOne)
         view.addSubview(smsButton)
-            view.addSubview(lineSeparatorTwo)
+        view.addSubview(lineSeparatorTwo)
         view.addSubview(emailButton)
-            view.addSubview(lineSeparatorThree)
+        view.addSubview(lineSeparatorThree)
         view.addSubview(favoriteButton)
         view.addSubview(lineSeparatorFour)
         view.addSubview(callButton)
-     
+        
     }
     
     func constrainConfiguration(){

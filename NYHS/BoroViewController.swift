@@ -9,10 +9,8 @@
 import UIKit
 import SnapKit
 
-// Make it UITabBarController eventually 
-
 class BoroViewController: UITableViewController {
-
+    
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     
@@ -22,14 +20,16 @@ class BoroViewController: UITableViewController {
     let sections = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     
     var boroSelected: String = ""
+    
     var schools: [School] = []
+    
     var sortSchool: [School] = []
     
     var filteredSchool: [School] = []
     
     let searchController = UISearchController(searchResultsController: nil)
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,11 +45,12 @@ class BoroViewController: UITableViewController {
             navigationItem.searchController = searchController
         } else {
             // Fallback on earlier versions
+            
+            // searchController.hidesNavigationBarDuringPresentation = false
+            // navigationItem.titleView = searchController.searchBar
+            // definesPresentationContext = true
+            
         }
-        
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        navigationItem.titleView = searchController.searchBar
-//        definesPresentationContext = true
         
         searchController.searchBar.searchBarStyle  = .default
         searchController.searchBar.placeholder = "Try Name, Address, Sports"
@@ -58,15 +59,12 @@ class BoroViewController: UITableViewController {
         // Search stuffs
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
-        
-        let cancelButtonAttributes: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
-//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: .normal)
-//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String: AnyObject], for: .normal)
-            
+
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
-//        SetBackBarButtonCustom()
+        // SetBackBarButtonCustom()
+        
         
     }
     
@@ -85,12 +83,13 @@ class BoroViewController: UITableViewController {
     @objc func onClcikBack(){
         _ = self.navigationController?.popViewController(animated: true)
     }
-
+    
     // Search func
     func filterContentInSearchBar(searchText: String, scope: String = "All") {
         filteredSchool = schools.filter { school in
-            return school.name.lowercased().contains(searchText.lowercased()) ||
-            school.extracurricular_activities.lowercased().contains(searchText.lowercased()) || school.primary_address_line_1.lowercased().contains(searchText.lowercased())
+            return school.name.lowercased().contains(searchText.lowercased())
+            //                ||
+            //            school.extracurricular_activities.lowercased().contains(searchText.lowercased()) || school.primary_address_line_1.lowercased().contains(searchText.lowercased())
         }
         
         tableView.reloadData()
@@ -113,10 +112,13 @@ class BoroViewController: UITableViewController {
                     
                     
                     for i in eachBoySports{
-                        if !self.boySports.contains(i){
-                            self.boySports.append(i)
+                        if !i.hasPrefix(" "){
+                            if !self.boySports.contains(i){
+                                self.boySports.append(i)
+                            }
                         }
                     }
+                    
                     
                     for j in eachGirlSports {
                         if !self.girlSport.contains(j){
@@ -124,16 +126,18 @@ class BoroViewController: UITableViewController {
                         }
                     }
                     
-                    print("All boy sports----------: \(self.boySports)")
-                    print("All girl sports----------: \(self.girlSport)")
+                    let filterGirlSport = self.girlSport.filter{!$0.hasPrefix(" ")}
+                    
+                    print("All girl sports that has perfix: \(filterGirlSport)")
                     
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
                         
                     }
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
+                    
                 }
-
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -142,10 +146,8 @@ class BoroViewController: UITableViewController {
                 print("Error encountered at do & chatch")
             }
         }
-        
-        
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let currentSchool: School
@@ -160,7 +162,8 @@ class BoroViewController: UITableViewController {
         let detailVC = DetailViewController()
         detailVC.detailSchool = currentSchool
         self.navigationController?.pushViewController(detailVC, animated: true)
-
+        
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -197,6 +200,7 @@ class BoroViewController: UITableViewController {
         cell.titleLabel.numberOfLines = 0
         cell.titleLabel.lineBreakMode = .byWordWrapping
         cell.titleLabel.text = school.name
+        //        cell.titleLabel.attributedText = boldSearchResult(searchString: searchController.searchBar.text!, resultString: school.name)
         cell.titleLabel.font = ColorScheme.titleFont
         
         cell.detailLabel.text = school.overview_paragraph

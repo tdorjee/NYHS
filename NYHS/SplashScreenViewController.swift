@@ -65,14 +65,14 @@ class SplashScreenViewController: UIViewController {
         AppDelegate.sharedInstance().window?.rootViewController = MainView()
     }
     
-//    func SegueToOnboardVc(){
-//        _ = UserDefaults.standard
-//        
-//            let onboardVC = tabView()
-//            self.navigationController?.pushViewController(onboardVC, animated: true)
-//      
-//    }
-  
+    func SegueToOnboardVc(){
+        _ = UserDefaults.standard
+        
+        let onboardVC = MainView()
+        self.navigationController?.pushViewController(onboardVC, animated: true)
+        
+    }
+    
     internal lazy var icon: UIImageView = {
         let image = UIImageView()
         image.image = #imageLiteral(resourceName: "appIcon1")
@@ -83,7 +83,7 @@ class SplashScreenViewController: UIViewController {
     
     internal lazy var iconLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "NYCHSnl;olfjelj'adkn", size: 22)
+        label.font = UIFont(name: "NYCHS", size: 22)
         label.backgroundColor = .red
         return label
     }()

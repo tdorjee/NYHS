@@ -9,7 +9,7 @@
 import Foundation
 
 extension DetailViewController {
-
+    
     // MARK - View Hierarchy
     
     
@@ -205,11 +205,5 @@ extension DetailViewController {
             line.height.equalTo(0.5)
             line.bottom.equalToSuperview().inset(8)
         }
-        
-
-        
-    }
-    
-
-    
+    } 
 }

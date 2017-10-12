@@ -9,10 +9,9 @@
 import Foundation
 
 class DataStore {
-  
-  static let shareInstnce = DataStore()
+    
+    static let shareInstnce = DataStore()
     private init(){}
     var favoriteSchool: [School] = []
-  
-  
+    
 }

@@ -12,22 +12,22 @@ import GoogleMaps
 import GooglePlaces
 
 class DetailViewController: UIViewController {
-  
+    
     var store = DataStore.shareInstnce
-  
+    
     var detailSchool: School!
     var schoolLatAndLng: LatAndLng?
     
     var mapView: GMSMapView!
     var locationManager = CLLocationManager()
-  
+    
     var allSchoolSoFar: [School] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Fav.", style: .plain, target: self, action: #selector(addToFavourite))
-          
+        
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         } else {
@@ -37,14 +37,14 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         getLatAndLgn()
         setupMaps()
- 
+        
         viewHierarchy()
         constraintConfiguration()
-//        setBackBarButtonCustom()
-//        setMoreButtonCustom()
-      
+        //        setBackBarButtonCustom()
+        //        setMoreButtonCustom()
+        
         print("----------Number of favoriteSchool store in the \(self.store.favoriteSchool.count)------------")
-      print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")
+        print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")
         
     }
     
@@ -71,36 +71,36 @@ class DetailViewController: UIViewController {
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.rightBarButtonItem = barButton
     }
-
-
-  // MARK: File path
-  
-  var filePath: String {
     
-    let manager = FileManager.default
-    let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-    return (url!.appendingPathComponent("Data").path)
     
-  }
-  
-  // MARK: Save Data
-  
-  private func saveData(item: School) {
-    self.store.favoriteSchool.append(item)
-    NSKeyedArchiver.archiveRootObject(self.store.favoriteSchool, toFile: filePath)
-  
-  }
-  
-  // MARK: Load Data
-  
-
-  
-    @objc func addToFavourite(){
-      
-      self.saveData(item: detailSchool)
-      
+    // MARK: File path
+    
+    var filePath: String {
+        
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return (url!.appendingPathComponent("Data").path)
+        
     }
-  
+    
+    // MARK: Save Data
+    
+    private func saveData(item: School) {
+        self.store.favoriteSchool.append(item)
+        NSKeyedArchiver.archiveRootObject(self.store.favoriteSchool, toFile: filePath)
+        
+    }
+    
+    // MARK: Load Data
+    
+    
+    
+    @objc func addToFavourite(){
+        
+        self.saveData(item: detailSchool)
+        
+    }
+    
     func contactSchool(){
         
         let contactVC = ContactSchoolViewController()
@@ -130,10 +130,10 @@ class DetailViewController: UIViewController {
                 addressStrSearch.append(separatedAddr[i]+"+")
             }
         }
-
-
+        
+        
         APIRequestManager.manager.getData(apiEndPoint: "https://maps.googleapis.com/maps/api/geocode/json?address=\(addressStrSearch)&key=AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ") { (data) in
-
+            
             guard let data = data else { print("Something is going wrong here guard data")
                 return }
             
@@ -145,7 +145,7 @@ class DetailViewController: UIViewController {
                 for result in results {
                     guard let geometry = result["geometry"] as? [String: Any] else { return }
                     guard let location = geometry["location"] as? [String: Double] else { return }
-                                        
+                    
                     let schoolLocation = LatAndLng(dictionary: location)
                     self.schoolLatAndLng = schoolLocation
                     DispatchQueue.main.async {
@@ -168,21 +168,21 @@ class DetailViewController: UIViewController {
         }
     }
     
-        @objc func toWeb(){
-            
-            let website = WebViewController()
-            website.schoolWebSite = self.detailSchool.website
-            self.navigationController?.pushViewController(website, animated: true)
+    @objc func toWeb(){
         
-        }
+        let website = WebViewController()
+        website.schoolWebSite = self.detailSchool.website
+        self.navigationController?.pushViewController(website, animated: true)
+        
+    }
     
     
-        @objc func toMap(){
+    @objc func toMap(){
         
         let googleMap = googleMapVC()
-            googleMap.schoolLat = Float(self.schoolLatAndLng!.lat)
-            
-            googleMap.schoolLog = Float(self.schoolLatAndLng!.lng)
+        googleMap.schoolLat = Float(self.schoolLatAndLng!.lat)
+        
+        googleMap.schoolLog = Float(self.schoolLatAndLng!.lng)
         googleMap.schoolAddress = (self.detailSchool?.primary_address_line_1)!
         self.navigationController?.pushViewController(googleMap, animated: true)
         
@@ -252,7 +252,7 @@ class DetailViewController: UIViewController {
         button.setImage(#imageLiteral(resourceName: "diplomaIcon"), for: .normal)
         return button
     }()
-
+    
     internal lazy var diplomaLable: UILabel = {
         let label = UILabel()
         label.text = "\(self.detailSchool.diplomaendorsements)"
@@ -275,7 +275,7 @@ class DetailViewController: UIViewController {
         label.font = ColorScheme.subTitleFont
         return label
     }()
-
+    
     // school timing
     
     internal lazy var timeImage: UIButton = {
@@ -333,7 +333,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-// More button
+    // More button
     internal lazy var showWebsite: UIButton = {
         let button = UIButton()
         button.setTitleColor(.black, for: .normal)

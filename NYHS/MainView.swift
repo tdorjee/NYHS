@@ -9,7 +9,7 @@
 import UIKit
 
 class MainView: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,5 +28,5 @@ class MainView: UITabBarController {
         tabBar.isTranslucent = false
         viewControllers = [firstNav, secondNav]
     }
-
+    
 }
