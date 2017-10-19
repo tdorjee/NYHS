@@ -27,8 +27,6 @@ class BoroTableViewCell: UITableViewCell {
         return label
     }()
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -47,6 +45,11 @@ class BoroTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        // Search highlight
+      
+        
+        
         
         detailLabel.font = UIFont.systemFont(ofSize: 12.0)
         
@@ -73,6 +76,8 @@ class BoroTableViewCell: UITableViewCell {
         }
         
     }
+    
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

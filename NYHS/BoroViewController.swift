@@ -148,6 +148,44 @@ class BoroViewController: UITableViewController {
         }
     }
     
+    // MARK: - Hight light func
+    func hightSearchTitle(searchString: String, resultString: String) -> NSMutableAttributedString {
+        
+        let attributedString = NSMutableAttributedString(string: resultString)
+        let pattern = searchString.lowercased()
+        let range = NSMakeRange(0, resultString.characters.count)
+        
+        let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options())
+        
+        regex.enumerateMatches(in: resultString.lowercased(), options: NSRegularExpression.MatchingOptions(), range: range) {
+            (textCheckingResult, matchingFlags, stop) -> Void in
+            let subRange = textCheckingResult?.range
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: subRange!)
+        }
+        
+        return attributedString
+    
+    }
+    
+    // MARK: - Bold search result
+    
+    func boldSearchResult(searchString: String, resultString: String) -> NSMutableAttributedString {
+        
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: resultString)
+        let pattern = searchString.lowercased()
+        let range: NSRange = NSMakeRange(0, resultString.characters.count)
+        
+        let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options())
+        
+        regex.enumerateMatches(in: resultString.lowercased(), options: NSRegularExpression.MatchingOptions(), range: range) { (textCheckingResult, matchingFlags, stop) -> Void in
+            let subRange = textCheckingResult?.range
+            attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.boldSystemFont(ofSize: 15.0), range: subRange!)
+        }
+        
+        return attributedString
+        
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let currentSchool: School
@@ -188,6 +226,9 @@ class BoroViewController: UITableViewController {
         
         if searchController.isActive && searchController.searchBar.text != ""{
             school = filteredSchool[indexPath.row]
+            
+            cell.titleLabel.attributedText = hightSearchTitle(searchString: searchController.searchBar.text!, resultString: school.name)
+            cell.detailLabel.attributedText = boldSearchResult(searchString: searchController.searchBar.text!, resultString: school.overview_paragraph)
         }else{
             
             
@@ -200,8 +241,7 @@ class BoroViewController: UITableViewController {
         cell.titleLabel.numberOfLines = 0
         cell.titleLabel.lineBreakMode = .byWordWrapping
         cell.titleLabel.text = school.name
-        //        cell.titleLabel.attributedText = boldSearchResult(searchString: searchController.searchBar.text!, resultString: school.name)
-        cell.titleLabel.font = ColorScheme.titleFont
+   
         
         cell.detailLabel.text = school.overview_paragraph
         cell.detailLabel.lineBreakMode = .byTruncatingTail
