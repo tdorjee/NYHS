@@ -73,7 +73,8 @@ extension DetailViewController {
         
         // mapView
         mapView?.snp.makeConstraints { (map) in
-            map.leading.top.trailing.equalToSuperview()
+            map.top.equalToSuperview().offset(100)
+            map.leading.trailing.equalToSuperview()
             map.height.equalTo(200)
         }
         

@@ -26,6 +26,7 @@
 		B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */; };
 		B9997D211EE2290400CCFEC2 /* BoroCatagory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */; };
 		B9A80D841F0BF68800955F6D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A80D831F0BF68800955F6D /* CoreLocation.framework */; };
+		B9BBF6251F9D547200E368C7 /* FilterResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BBF6241F9D547200E368C7 /* FilterResultTableViewController.swift */; };
 		B9D2EBFC1F3FE27D00C01599 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2EBFB1F3FE27D00C01599 /* WebViewController.swift */; };
 		B9EE0A2A1F11BC6E0029D7B4 /* extension-DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */; };
 		B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */; };
@@ -59,6 +60,7 @@
 		B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroViewController.swift; sourceTree = "<group>"; };
 		B9997D201EE2290400CCFEC2 /* BoroCatagory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroCatagory.swift; sourceTree = "<group>"; };
 		B9A80D831F0BF68800955F6D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B9BBF6241F9D547200E368C7 /* FilterResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterResultTableViewController.swift; sourceTree = "<group>"; };
 		B9D2EBFB1F3FE27D00C01599 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "extension-DetailVC.swift"; sourceTree = "<group>"; };
 		B9EE59411EF2DCFD00CD1F7C /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				B9EE594F1EF7AC8100CD1F7C /* MainView.swift */,
 				B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */,
 				B92D07111F886038009E5234 /* FilterViewController.swift */,
+				B9BBF6241F9D547200E368C7 /* FilterResultTableViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
 				B9EE0A291F11BC6E0029D7B4 /* extension-DetailVC.swift */,
@@ -340,6 +343,7 @@
 				B917DBD01EFD7F140068A0A6 /* SplashScreenViewController.swift in Sources */,
 				B952B4E11EE87F3B008B80AA /* googleMapVC.swift in Sources */,
 				B9D2EBFC1F3FE27D00C01599 /* WebViewController.swift in Sources */,
+				B9BBF6251F9D547200E368C7 /* FilterResultTableViewController.swift in Sources */,
 				B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */,
 				B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */,
 				B917DBC91EF98F2A0068A0A6 /* ContactSchoolViewController.swift in Sources */,

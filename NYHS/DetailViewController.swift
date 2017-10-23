@@ -34,6 +34,7 @@ class DetailViewController: UIViewController {
             // Fallback on earlier versions
         }
         
+        
         view.backgroundColor = .white
         getLatAndLgn()
         setupMaps()

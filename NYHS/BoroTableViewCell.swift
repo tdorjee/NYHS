@@ -20,8 +20,6 @@ class BoroTableViewCell: UITableViewCell {
         let label = UILabel()
         return label
     }()
-    
-
     internal lazy var detailLabel: UILabel = {
        let label = UILabel()
         return label

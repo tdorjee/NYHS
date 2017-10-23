@@ -102,9 +102,27 @@ class BoroViewController: UITableViewController {
             do{
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let jsonData = jsonDict as? [[String: String]] else { return }
+                
+                // Get the largest and smallest high school
+                
+                var largestStudentNum: Int = 0
+                var leastStudentNum: Int = 5000
+                
                 for eachSchool in jsonData {
                     let school = School(dictionary: eachSchool)
                     // MARK: - Retrive school sport
+                    
+   
+                    guard let schoolSize = Int(school.total_students) else { return }
+                    
+                    
+                    if schoolSize > largestStudentNum{
+                        largestStudentNum = schoolSize
+                    }
+                    
+                    if schoolSize < leastStudentNum {
+                        leastStudentNum = schoolSize
+                    }
                     
                     let eachBoySports = school.psal_sports_boys.components(separatedBy: ",")
                     let eachGirlSports = school.psal_sports_girls.components(separatedBy: ",")
@@ -134,6 +152,9 @@ class BoroViewController: UITableViewController {
                         self.schools.append(school)
                         
                     }
+                    
+                    print("largest number of student: \(largestStudentNum)")
+                    print("smallest number of studtent: \(leastStudentNum)")
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
                     
                 }
@@ -149,6 +170,7 @@ class BoroViewController: UITableViewController {
     }
     
     // MARK: - Hight light func
+    
     func hightSearchTitle(searchString: String, resultString: String) -> NSMutableAttributedString {
         
         let attributedString = NSMutableAttributedString(string: resultString)
@@ -195,8 +217,6 @@ class BoroViewController: UITableViewController {
         }else{
             currentSchool = sortSchool[indexPath.row]
         }
-        
-        
         let detailVC = DetailViewController()
         detailVC.detailSchool = currentSchool
         self.navigationController?.pushViewController(detailVC, animated: true)
