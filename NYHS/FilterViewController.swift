@@ -25,13 +25,22 @@ class FilterViewController: UIViewController {
         ConstraintConfiguration()
     }
     
+    // Obtain value
+    
+    var boroChoosen: [String] = []
+    var schoolSizeRang: String?
+    
     @objc func dismissView(){
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func updateValue(){
         print("start searching for new value")
-        self.navigationController?.pushViewController(FilterResultTableViewController(), animated: true)
+        let filterVC = FilterResultTableViewController()
+        filterVC.boroChoosen = boroChoosen
+        filterVC.schoolSizeMin = Int((schoolSizeRang?.components(separatedBy: " ")[0])!)
+        filterVC.schoolSizeMax = Int((schoolSizeRang?.components(separatedBy: " ")[1])!)
+        self.navigationController?.pushViewController(filterVC, animated: true)
         
     }
     
@@ -45,15 +54,27 @@ class FilterViewController: UIViewController {
         view.addSubview(queensLabel)
         view.addSubview(statenIslandLabel)
         
+        view.addSubview(button1)
+        view.addSubview(button2)
+        view.addSubview(button3)
+        view.addSubview(button4)
+        view.addSubview(button5)
+        
         view.addSubview(smallSchoolLabel)
         view.addSubview(mediumSchoolLabel)
         view.addSubview(largeSchoolLabel)
         
-        view.addSubview(buttonOne)
+        view.addSubview(button6)
+        view.addSubview(button7)
+        view.addSubview(button8)
+        
+
     }
     
     func ConstraintConfiguration() {
         self.edgesForExtendedLayout = []
+        
+        // Boros
         
         boroTitle.snp.makeConstraints { (label) in
             label.leading.equalToSuperview().offset(20)
@@ -85,9 +106,35 @@ class FilterViewController: UIViewController {
             label.top.equalTo(queensLabel.snp.bottom).offset(20)
         }
         
-        buttonOne.snp.makeConstraints { (button) in
-            button.top.trailing.equalToSuperview()
+        // Button for boros
+        
+        button1.snp.makeConstraints { (button) in
+            button.top.equalTo(brooklynLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
         }
+        
+        button2.snp.makeConstraints { (button) in
+            button.top.equalTo(bronxLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
+        }
+        
+        button3.snp.makeConstraints { (button) in
+            button.top.equalTo(manhattanLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
+        }
+        
+        button4.snp.makeConstraints { (button) in
+            button.top.equalTo(queensLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
+        }
+        
+        button5.snp.makeConstraints { (button) in
+            button.top.equalTo(statenIslandLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
+        }
+        
+        
+        // School sizes
         
         schoolSizeTitle.snp.makeConstraints { (label) in
             label.leading.equalToSuperview().offset(20)
@@ -107,6 +154,23 @@ class FilterViewController: UIViewController {
         largeSchoolLabel.snp.makeConstraints { (label) in
             label.leading.equalToSuperview().offset(40)
             label.top.equalTo(mediumSchoolLabel.snp.bottom).offset(20)
+        }
+        
+        // Buttons for schools sizes
+        
+        button6.snp.makeConstraints { (button) in
+            button.top.equalTo(smallSchoolLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
+        }
+        
+        button7.snp.makeConstraints { (button) in
+            button.top.equalTo(mediumSchoolLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
+        }
+        
+        button8.snp.makeConstraints { (button) in
+            button.top.equalTo(largeSchoolLabel.snp.top)
+            button.trailing.equalToSuperview().inset(10)
         }
     }
 
@@ -175,23 +239,100 @@ class FilterViewController: UIViewController {
         return label
     }()
     
+    // MARK: - Check button
     
-    
-    internal lazy var buttonOne: UIButton = {
+    internal lazy var button1: UIButton = {
        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.titleLabel?.text = "Brooklyn"
+        button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
+        return button
+    }()
+    
+    internal lazy var button2: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Bronx"
         button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         return button
     }()
     
-    var buttonCheckStatus: Bool = false
+    internal lazy var button3: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Manhattan"
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
+        return button
+    }()
     
-    func tapedButton() {
-        buttonCheckStatus = true
+    internal lazy var button4: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Queens"
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
+        return button
+    }()
+    
+    internal lazy var button5: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Staten Island"
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
+        return button
+    }()
+    
+    internal lazy var button6: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "1 1000"
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    internal lazy var button7: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "1001 3000"
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    internal lazy var button8: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "3001 6000"
+        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    var buttonCheckStatus: Bool = true
+    
+    @objc func tapedButton(sender: UIButton) {
         
         if buttonCheckStatus{
-            buttonOne.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            boroChoosen.append(sender.titleLabel?.text ?? "")
+            buttonCheckStatus = false
+            print("selected the boro")
+        }else{
+            sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            buttonCheckStatus = true
+            print("not selected the boro")
         }
-        buttonCheckStatus = false
+    }
+    
+    @objc func tapedSizeButton(sender: UIButton) {
+        
+        if buttonCheckStatus{
+            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            schoolSizeRang = sender.titleLabel?.text ?? ""
+            buttonCheckStatus = false
+            print("selected the school size")
+        }else{
+            sender
+                .setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            buttonCheckStatus = true
+            print("not selected school size")
+        }
     }
 }

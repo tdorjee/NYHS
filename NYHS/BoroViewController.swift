@@ -14,11 +14,6 @@ class BoroViewController: UITableViewController {
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     
-    var boySports: [String] = []
-    var girlSport: [String] = []
-    
-    let sections = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    
     var boroSelected: String = ""
     
     var schools: [School] = []
@@ -103,58 +98,14 @@ class BoroViewController: UITableViewController {
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let jsonData = jsonDict as? [[String: String]] else { return }
                 
-                // Get the largest and smallest high school
-                
-                var largestStudentNum: Int = 0
-                var leastStudentNum: Int = 5000
                 
                 for eachSchool in jsonData {
                     let school = School(dictionary: eachSchool)
-                    // MARK: - Retrive school sport
-                    
-   
-                    guard let schoolSize = Int(school.total_students) else { return }
-                    
-                    
-                    if schoolSize > largestStudentNum{
-                        largestStudentNum = schoolSize
-                    }
-                    
-                    if schoolSize < leastStudentNum {
-                        leastStudentNum = schoolSize
-                    }
-                    
-                    let eachBoySports = school.psal_sports_boys.components(separatedBy: ",")
-                    let eachGirlSports = school.psal_sports_girls.components(separatedBy: ",")
-                    
-                    
-                    
-                    for i in eachBoySports{
-                        if !i.hasPrefix(" "){
-                            if !self.boySports.contains(i){
-                                self.boySports.append(i)
-                            }
-                        }
-                    }
-                    
-                    
-                    for j in eachGirlSports {
-                        if !self.girlSport.contains(j){
-                            self.girlSport.append(j)
-                        }
-                    }
-                    
-                    let filterGirlSport = self.girlSport.filter{!$0.hasPrefix(" ")}
-                    
-                    print("All girl sports that has perfix: \(filterGirlSport)")
                     
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
                         
                     }
-                    
-                    print("largest number of student: \(largestStudentNum)")
-                    print("smallest number of studtent: \(leastStudentNum)")
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
                     
                 }
@@ -239,7 +190,6 @@ class BoroViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BoroTableViewCell
         
         let school: School
@@ -270,10 +220,6 @@ class BoroViewController: UITableViewController {
         
         
         return cell
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return self.sections
     }
     
     

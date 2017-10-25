@@ -10,11 +10,66 @@ import UIKit
 
 class FilterResultTableViewController: UITableViewController {
 
+    let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
+    let cellId = "cellId"
+    
+    var boroChoosen: [String] = []
+    var schoolSizeMin: Int?
+    var schoolSizeMax: Int?
+    
+    var filteredSchool: [School] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .red
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        getData()
+        
     }
+    
+    func getData(){
+    
+        APIRequestManager.manager.getData(apiEndPoint: apiEndPoint) { (data) in
+            guard let data = data else { return }
+            
+            do {
+                let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
+                
+                guard let jsonData = jsonDict as? [[String: String]] else { return }
+                
+                for eachSchool in jsonData {
+                    let school = School(dictionary: eachSchool)
+                    
+                    // Perform filter function
+                    
+                    print("printing: \(self.boroChoosen)")
+                    
+                    if self.boroChoosen.contains(school.boro) {
+                        guard let minSchoolSize = self.schoolSizeMin else { return }
+                        guard let maxSchoolSize = self.schoolSizeMax else { return }
+                        if minSchoolSize <= Int(school.total_students)! && Int(school.total_students)! <= maxSchoolSize {
+                            
+                            self.filteredSchool.append(school)
+                        }
+                        
+                    }
+               
+                }
+               
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            } catch {
+                print("There is a promble parsing the data ")
+            }
+        }
+        
+    }
+    
+    // MARK: - filter function
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,23 +80,30 @@ class FilterResultTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return filteredSchool.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        
 
-        // Configure the cell...
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
 
+        print("filter school count: \(filteredSchool.count)")
+        
+        let eachSchoolInCell = filteredSchool[indexPath.row]
+        cell.textLabel?.text = eachSchoolInCell.name
+        cell.detailTextLabel?.text = "\(eachSchoolInCell.boro) - \(eachSchoolInCell.total_students)" 
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
