@@ -21,12 +21,21 @@ class FilterResultTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        
         getData()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(dismissTheVC))
+   
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBackToFilterVC))
     }
+    
+    func dismissTheVC(){
+        self.dismiss(animated: true, completion: nil)
+        print("Removing all existing data")
+    }
+//    func goBackToFilterVC(){
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     func getData(){
     
@@ -45,16 +54,22 @@ class FilterResultTableViewController: UITableViewController {
                     
                     print("printing: \(self.boroChoosen)")
                     
-                    if self.boroChoosen.contains(school.boro) {
-                        guard let minSchoolSize = self.schoolSizeMin else { return }
-                        guard let maxSchoolSize = self.schoolSizeMax else { return }
-                        if minSchoolSize <= Int(school.total_students)! && Int(school.total_students)! <= maxSchoolSize {
+                        if self.schoolSizeMin != nil {
+                            if self.boroChoosen.contains(school.boro) {
+                            guard let minSchoolSize = self.schoolSizeMin else { return }
+                            guard let maxSchoolSize = self.schoolSizeMax else { return }
+                            if minSchoolSize <= Int(school.total_students)! && Int(school.total_students)! <= maxSchoolSize {
+                                self.filteredSchool.append(school)
+                                }
+                            }
+                        }else {
+                            if self.boroChoosen.contains(school.boro){
+                                self.filteredSchool.append(school)
+                            }
+                            // Deal with the issue if boro is not choosen
                             
-                            self.filteredSchool.append(school)
                         }
-                        
-                    }
-               
+                   
                 }
                
                 DispatchQueue.main.async {
@@ -86,6 +101,17 @@ class FilterResultTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return filteredSchool.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedSchool: School
+        
+        let detialVC = DetailViewController()
+        selectedSchool = filteredSchool[indexPath.row]
+        detialVC.detailSchool = selectedSchool
+        self.navigationController?.pushViewController(detialVC, animated: true)
+        
     }
 
     

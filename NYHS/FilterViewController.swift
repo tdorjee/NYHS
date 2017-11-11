@@ -23,6 +23,7 @@ class FilterViewController: UIViewController {
         
         viewHirarchy()
         ConstraintConfiguration()
+        
     }
     
     // Obtain value
@@ -35,12 +36,18 @@ class FilterViewController: UIViewController {
     }
     
     @objc func updateValue(){
+        
+        // if school size is not choosen, alert the user to choose one
+        
         print("start searching for new value")
         let filterVC = FilterResultTableViewController()
         filterVC.boroChoosen = boroChoosen
-        filterVC.schoolSizeMin = Int((schoolSizeRang?.components(separatedBy: " ")[0])!)
-        filterVC.schoolSizeMax = Int((schoolSizeRang?.components(separatedBy: " ")[1])!)
+        if schoolSizeRang != nil {
+            filterVC.schoolSizeMin = Int((schoolSizeRang?.components(separatedBy: " ")[0])!)
+            filterVC.schoolSizeMax = Int((schoolSizeRang?.components(separatedBy: " ")[1])!)
+        }
         self.navigationController?.pushViewController(filterVC, animated: true)
+        
         
     }
     
@@ -317,6 +324,10 @@ class FilterViewController: UIViewController {
         }else{
             sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             buttonCheckStatus = true
+            if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
+                boroChoosen.remove(at: index)
+            }
+            
             print("not selected the boro")
         }
     }
