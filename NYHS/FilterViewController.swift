@@ -37,18 +37,22 @@ class FilterViewController: UIViewController {
     
     @objc func updateValue(){
         
-        // if school size is not choosen, alert the user to choose one
+      
         
         print("start searching for new value")
         let filterVC = FilterResultTableViewController()
         filterVC.boroChoosen = boroChoosen
-        if schoolSizeRang != nil {
+        if schoolSizeRang == ""{
+            // if school size is not choosen, alert the user to choose one
+            
+            let schoolSizeNotChoosenAlert = UIAlertController(title: "School Size", message: "Please choose a school size", preferredStyle: .alert)
+            schoolSizeNotChoosenAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(schoolSizeNotChoosenAlert, animated: true, completion: nil)
+        }else {
             filterVC.schoolSizeMin = Int((schoolSizeRang?.components(separatedBy: " ")[0])!)
             filterVC.schoolSizeMax = Int((schoolSizeRang?.components(separatedBy: " ")[1])!)
+            self.navigationController?.pushViewController(filterVC, animated: true)
         }
-        self.navigationController?.pushViewController(filterVC, animated: true)
-        
-        
     }
     
     func viewHirarchy() {
@@ -315,20 +319,33 @@ class FilterViewController: UIViewController {
     var buttonCheckStatus: Bool = true
     
     @objc func tapedButton(sender: UIButton) {
+      
+        var justSelectedBoro: String?
         
-        if buttonCheckStatus{
+        if buttonCheckStatus {
             sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
             boroChoosen.append(sender.titleLabel?.text ?? "")
             buttonCheckStatus = false
             print("selected the boro")
-        }else{
-            sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-            buttonCheckStatus = true
-            if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
-                boroChoosen.remove(at: index)
+            justSelectedBoro = sender.titleLabel?.text
+        } else {
+            guard justSelectedBoro == sender.titleLabel?.text else {
+                sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+                buttonCheckStatus = true
+                if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
+                    boroChoosen.remove(at: index)
+                }
+                print("not selected the boro")
+                return
             }
             
-            print("not selected the boro")
+            sender.titleLabel?.text! != justSelectedBoro && buttonCheckStatus == false
+            buttonCheckStatus = true
+            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            boroChoosen.append(sender.titleLabel?.text ?? "")
+            justSelectedBoro = sender.titleLabel?.text
+            buttonCheckStatus = false
+    
         }
     }
     
@@ -340,9 +357,9 @@ class FilterViewController: UIViewController {
             buttonCheckStatus = false
             print("selected the school size")
         }else{
-            sender
-                .setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             buttonCheckStatus = true
+            schoolSizeRang = ""
             print("not selected school size")
         }
     }
