@@ -36,13 +36,10 @@ class FilterViewController: UIViewController {
     }
     
     @objc func updateValue(){
-        
-      
-        
         print("start searching for new value")
         let filterVC = FilterResultTableViewController()
         filterVC.boroChoosen = boroChoosen
-        if schoolSizeRang == ""{
+        if schoolSizeRang == nil{
             // if school size is not choosen, alert the user to choose one
             
             let schoolSizeNotChoosenAlert = UIAlertController(title: "School Size", message: "Please choose a school size", preferredStyle: .alert)
@@ -316,51 +313,53 @@ class FilterViewController: UIViewController {
         return button
     }()
     
-    var buttonCheckStatus: Bool = true
+    
     
     @objc func tapedButton(sender: UIButton) {
-      
-        var justSelectedBoro: String?
         
-        if buttonCheckStatus {
-            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
-            boroChoosen.append(sender.titleLabel?.text ?? "")
-            buttonCheckStatus = false
-            print("selected the boro")
-            justSelectedBoro = sender.titleLabel?.text
+            if sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) && !boroChoosen.contains(sender.titleLabel?.text ?? ""){
+                sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+                boroChoosen.append(sender.titleLabel?.text ?? "")
+                print("selected the boro: \(sender.titleLabel?.text ?? "")")
+            
         } else {
-            guard justSelectedBoro == sender.titleLabel?.text else {
+//            guard boroChoosen.contains(sender.titleLabel?.text ?? "") else {
                 sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-                buttonCheckStatus = true
                 if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
                     boroChoosen.remove(at: index)
+                    print("not selected the boro")
                 }
-                print("not selected the boro")
                 return
-            }
+//            }
             
-            sender.titleLabel?.text! != justSelectedBoro && buttonCheckStatus == false
-            buttonCheckStatus = true
-            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
-            boroChoosen.append(sender.titleLabel?.text ?? "")
-            justSelectedBoro = sender.titleLabel?.text
-            buttonCheckStatus = false
-    
+//            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+//            boroChoosen.append(sender.titleLabel?.text ?? "")
+            
         }
     }
     
+    
+    var currentImage: UIImage = #imageLiteral(resourceName: "unchecked")
+    
     @objc func tapedSizeButton(sender: UIButton) {
         
-        if buttonCheckStatus{
-            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
-            schoolSizeRang = sender.titleLabel?.text ?? ""
-            buttonCheckStatus = false
-            print("selected the school size")
+        if sender.titleLabel?.text != schoolSizeRang && sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) {
+            self.button6.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            self.button7.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            self.button8.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            currentImage = #imageLiteral(resourceName: "checked")
+                sender.setImage(currentImage, for: .normal)
+                schoolSizeRang = sender.titleLabel?.text ?? ""
+//                buttonCheckStatus = false
+                print("selected the school size")
+            print("current school size selected: \(sender.titleLabel?.text)")
+            currentImage = #imageLiteral(resourceName: "unchecked")
+            
         }else{
-            sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-            buttonCheckStatus = true
-            schoolSizeRang = ""
-            print("not selected school size")
+            sender.setImage(currentImage, for: .normal)
+//            buttonCheckStatus = true
+            schoolSizeRang = nil
+            print("unselected school size")
         }
     }
 }
