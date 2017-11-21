@@ -60,6 +60,9 @@ class BoroViewController: UITableViewController {
         
         // SetBackBarButtonCustom()
         
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barTintColor = .white
+        
         
     }
     

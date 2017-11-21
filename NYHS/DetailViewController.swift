@@ -11,17 +11,16 @@ import SnapKit
 import GoogleMaps
 import GooglePlaces
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, GMSMapViewDelegate {
     
     var store = DataStore.shareInstnce
-    
     var detailSchool: School!
     var schoolLatAndLng: LatAndLng?
-    
     var mapView: GMSMapView!
     var locationManager = CLLocationManager()
-    
     var allSchoolSoFar: [School] = []
+    
+    var animator = UIViewPropertyAnimator(duration: 0.10, curve: .linear)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +32,7 @@ class DetailViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
+    
         
         
         view.backgroundColor = .white
@@ -46,6 +46,15 @@ class DetailViewController: UIViewController {
         
         print("----------Number of favoriteSchool store in the \(self.store.favoriteSchool.count)------------")
         print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")
+        
+        // Doesn't work yet
+        
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barTintColor = .white
+//        self.edgesForExtendedLayout = []
+        
+        mapView.delegate = self
+    
         
     }
     
@@ -115,7 +124,54 @@ class DetailViewController: UIViewController {
                                               longitude: -73.935365,
                                               zoom: 7)
         self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+        
     }
+    
+    // MARK: - Google map delegate
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        
+        // Expend the map
+        
+        animator.addAnimations {
+            self.mapView.snp.remakeConstraints{ (make) in
+                make.leading.top.trailing.equalToSuperview()
+                make.width.equalTo(self.view.snp.width)
+                make.bottom.equalTo(self.view.snp.bottom)
+            }
+            
+            self.bringMapUp.snp.makeConstraints{ (up) in
+                up.bottom.equalToSuperview().inset(8)
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
+    }
+    
+    // Animate constrian back to normal
+    
+    func animateBackToNormal(){
+        
+        animator.addAnimations {
+            self.mapView.snp.remakeConstraints{ (make) in
+               make.top.equalToSuperview()
+               make.leading.trailing.equalToSuperview()
+               make.height.equalTo(200)
+            }
+            
+            self.bringMapUp.snp.makeConstraints { (up) in
+                up.centerX.equalToSuperview()
+                up.bottom.equalToSuperview().offset(40)
+            }
+            self.view.layoutIfNeeded()
+            
+        }
+        animator.startAnimation()
+    
+    }
+    
+    
     
     func getLatAndLgn(){
         let addr = detailSchool.primary_address_line_1
@@ -151,9 +207,9 @@ class DetailViewController: UIViewController {
                     self.schoolLatAndLng = schoolLocation
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: schoolLocation.lat, longitude: schoolLocation.lng, zoom: 12)
-                        let url = Bundle.main.url(forResource: "mapStyle", withExtension: "json")
-                        let mapStyle = try! GMSMapStyle.init(contentsOfFileURL: url!)
-                        self.mapView.mapStyle = mapStyle
+//                        let url = Bundle.main.url(forResource: "mapStyle", withExtension: "json")
+//                        let mapStyle = try! GMSMapStyle.init(contentsOfFileURL: url!)
+//                        self.mapView.mapStyle = mapStyle
                         
                         
                         let marker = GMSMarker()
@@ -190,6 +246,15 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - Outlets
+
+    // Make mapview smaller
+    
+    internal lazy var bringMapUp: UIButton = {
+       let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "mapUp"), for: .normal)
+        button.addTarget(self, action: #selector(animateBackToNormal), for: .touchUpInside)
+        return button
+    }()
     
     // line separator 
     

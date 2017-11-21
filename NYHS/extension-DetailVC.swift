@@ -19,8 +19,10 @@ extension DetailViewController {
         scroolView.addSubview(mainContainer)
         
         mainContainer.addSubview(mapView!)
-        mainContainer.addSubview(showDirection)
-        mainContainer.addSubview(showWebsite)
+        mapView.addSubview(bringMapUp)
+        
+//        mainContainer.addSubview(showDirection)
+//        mainContainer.addSubview(showWebsite)
         
         mainContainer.addSubview(miniMainViewContainer)
         
@@ -73,37 +75,43 @@ extension DetailViewController {
         
         // mapView
         mapView?.snp.makeConstraints { (map) in
-            map.top.equalToSuperview().offset(100)
+            map.top.equalToSuperview()
             map.leading.trailing.equalToSuperview()
             map.height.equalTo(200)
         }
         
-        //  Show Web
-        showWebsite.snp.makeConstraints { (button) in
-            button.top.equalTo(mapView.snp.bottom).offset(2)
-            button.leading.equalToSuperview()
-            button.width.equalTo(self.view.frame.width/2)
-            button.height.equalTo(40)
+        bringMapUp.snp.makeConstraints { (up) in
+            up.centerX.equalToSuperview()
+            up.bottom.equalToSuperview().offset(40)
+           
         }
         
-        // Show Direction
-        showDirection.snp.makeConstraints { (button) in
-            button.top.equalTo(mapView.snp.bottom).offset(2)
-            button.leading.equalTo(showWebsite.snp.trailing)
-            button.width.equalTo(self.view.frame.width/2)
-            button.height.equalTo(40)
-        }
+//        //  Show Web
+//        showWebsite.snp.makeConstraints { (button) in
+//            button.top.equalTo(mapView.snp.bottom).offset(2)
+//            button.leading.equalToSuperview()
+//            button.width.equalTo(self.view.frame.width/2)
+//            button.height.equalTo(40)
+//        }
+//
+//        // Show Direction
+//        showDirection.snp.makeConstraints { (button) in
+//            button.top.equalTo(mapView.snp.bottom).offset(2)
+//            button.leading.equalTo(showWebsite.snp.trailing)
+//            button.width.equalTo(self.view.frame.width/2)
+//            button.height.equalTo(40)
+//        }
         
         miniMainViewContainer.snp.makeConstraints { (view) in
             view.left.equalToSuperview()
-            view.top.equalTo(showDirection.snp.bottom)
+            view.top.equalTo(mapView.snp.bottom)
             view.right.bottom.equalToSuperview()
         }
         
         // school name
         schoolNameLabel.snp.makeConstraints { (label) in
             label.left.equalToSuperview().offset(12)
-            label.top.equalTo(showDirection.snp.bottom).offset(15)
+            label.top.equalTo(mapView.snp.bottom).offset(15)
             label.right.equalToSuperview().inset(12)
         }
         

@@ -10,10 +10,10 @@ import UIKit
 import SnapKit
 
 class FilterViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         
         self.navigationItem.title = "Filter"
@@ -40,7 +40,6 @@ class FilterViewController: UIViewController {
         let filterVC = FilterResultTableViewController()
         filterVC.boroChoosen = boroChoosen
         if schoolSizeRang == nil{
-            // if school size is not choosen, alert the user to choose one
             
             let schoolSizeNotChoosenAlert = UIAlertController(title: "School Size", message: "Please choose a school size", preferredStyle: .alert)
             schoolSizeNotChoosenAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -76,7 +75,7 @@ class FilterViewController: UIViewController {
         view.addSubview(button7)
         view.addSubview(button8)
         
-
+        
     }
     
     func ConstraintConfiguration() {
@@ -181,16 +180,16 @@ class FilterViewController: UIViewController {
             button.trailing.equalToSuperview().inset(10)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: = Outlets
     
     internal lazy var boroTitle: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Borough"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
@@ -223,7 +222,7 @@ class FilterViewController: UIViewController {
     }()
     
     
-
+    
     internal lazy var schoolSizeTitle: UILabel = {
         let label = UILabel()
         label.text = "School Size"
@@ -250,7 +249,7 @@ class FilterViewController: UIViewController {
     // MARK: - Check button
     
     internal lazy var button1: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         button.titleLabel?.text = "Brooklyn"
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
@@ -317,24 +316,18 @@ class FilterViewController: UIViewController {
     
     @objc func tapedButton(sender: UIButton) {
         
-            if sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) && !boroChoosen.contains(sender.titleLabel?.text ?? ""){
-                sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
-                boroChoosen.append(sender.titleLabel?.text ?? "")
-                print("selected the boro: \(sender.titleLabel?.text ?? "")")
+        if sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) && !boroChoosen.contains(sender.titleLabel?.text ?? ""){
+            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            boroChoosen.append(sender.titleLabel?.text ?? "")
+            print("selected the boro: \(sender.titleLabel?.text ?? "")")
             
         } else {
-//            guard boroChoosen.contains(sender.titleLabel?.text ?? "") else {
-                sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-                if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
-                    boroChoosen.remove(at: index)
-                    print("not selected the boro")
-                }
-                return
-//            }
-            
-//            sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
-//            boroChoosen.append(sender.titleLabel?.text ?? "")
-            
+            sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
+                boroChoosen.remove(at: index)
+                print("not selected the boro")
+            }
+            return
         }
     }
     
@@ -348,16 +341,16 @@ class FilterViewController: UIViewController {
             self.button7.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             self.button8.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             currentImage = #imageLiteral(resourceName: "checked")
-                sender.setImage(currentImage, for: .normal)
-                schoolSizeRang = sender.titleLabel?.text ?? ""
-//                buttonCheckStatus = false
-                print("selected the school size")
+            sender.setImage(currentImage, for: .normal)
+            schoolSizeRang = sender.titleLabel?.text ?? ""
+            //                buttonCheckStatus = false
+            print("selected the school size")
             print("current school size selected: \(sender.titleLabel?.text)")
             currentImage = #imageLiteral(resourceName: "unchecked")
             
         }else{
             sender.setImage(currentImage, for: .normal)
-//            buttonCheckStatus = true
+            //            buttonCheckStatus = true
             schoolSizeRang = nil
             print("unselected school size")
         }
