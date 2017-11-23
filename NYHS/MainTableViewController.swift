@@ -21,10 +21,8 @@ class MainTableViewController: UITableViewController {
         self.tableView.separatorStyle = .none
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPage))
-        
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         
-        //        setUpNavBarStyle()
     }
     
     // MARK: - Display filter page
@@ -34,17 +32,6 @@ class MainTableViewController: UITableViewController {
         self.present(filterNav, animated: true, completion: nil)
     }
     
-    //MARK: Styling Nav Bar
-    
-    func setUpNavBarStyle(){
-        navigationController?.navigationBar.barTintColor = ColorScheme.navColor
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.view.backgroundColor = .clear
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }
@@ -52,7 +39,6 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let labelTitle = boroWithImage[indexPath.row].0
         let mainVC = BoroViewController()
-        
         mainVC.boroSelected = labelTitle
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
@@ -72,11 +58,9 @@ class MainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MainTableViewCell
         
         let thisBoro = boroWithImage[indexPath.row]
-        
         cell.cellImage.image = thisBoro.1
         cell.cellLabel.text = thisBoro.0
         cell.schoolNumberLabel.text = thisBoro.2
-        
         
         return cell
     }

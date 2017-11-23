@@ -62,7 +62,7 @@ class FavouriteTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = barButton
     }
 
-    func onClcikBack(){
+    @objc func onClcikBack(){
         _ = self.navigationController?.popViewController(animated: true)
     }
     

@@ -10,7 +10,6 @@ import UIKit
 
 class BoroTableViewCell: UITableViewCell {
     
-
     internal lazy var labelContainer: UIView = {
         let container = UIView()
         return container
@@ -21,19 +20,19 @@ class BoroTableViewCell: UITableViewCell {
         return label
     }()
     internal lazy var detailLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         return label
     }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-     
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -45,9 +44,6 @@ class BoroTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         // Search highlight
-      
-        
-        
         
         detailLabel.font = UIFont.systemFont(ofSize: 12.0)
         
@@ -74,8 +70,6 @@ class BoroTableViewCell: UITableViewCell {
         }
         
     }
-    
-
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

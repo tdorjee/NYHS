@@ -62,6 +62,7 @@ class MainTableViewCell: UITableViewCell {
     }
     
     // Outlets
+    
     lazy var cellImage: UIImageView  = {
         let image : UIImageView = UIImageView()
         image.contentMode = .scaleToFill

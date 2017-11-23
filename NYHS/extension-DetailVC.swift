@@ -21,9 +21,6 @@ extension DetailViewController {
         mainContainer.addSubview(mapView!)
         mapView.addSubview(bringMapUp)
         
-//        mainContainer.addSubview(showDirection)
-//        mainContainer.addSubview(showWebsite)
-        
         mainContainer.addSubview(miniMainViewContainer)
         
         miniMainViewContainer.addSubview(schoolNameLabel)
@@ -82,25 +79,9 @@ extension DetailViewController {
         
         bringMapUp.snp.makeConstraints { (up) in
             up.centerX.equalToSuperview()
-            up.bottom.equalToSuperview().offset(40)
+            up.bottom.equalToSuperview().offset(80)
            
         }
-        
-//        //  Show Web
-//        showWebsite.snp.makeConstraints { (button) in
-//            button.top.equalTo(mapView.snp.bottom).offset(2)
-//            button.leading.equalToSuperview()
-//            button.width.equalTo(self.view.frame.width/2)
-//            button.height.equalTo(40)
-//        }
-//
-//        // Show Direction
-//        showDirection.snp.makeConstraints { (button) in
-//            button.top.equalTo(mapView.snp.bottom).offset(2)
-//            button.leading.equalTo(showWebsite.snp.trailing)
-//            button.width.equalTo(self.view.frame.width/2)
-//            button.height.equalTo(40)
-//        }
         
         miniMainViewContainer.snp.makeConstraints { (view) in
             view.left.equalToSuperview()

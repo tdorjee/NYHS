@@ -41,10 +41,6 @@ class BoroViewController: UITableViewController {
         } else {
             // Fallback on earlier versions
             
-            // searchController.hidesNavigationBarDuringPresentation = false
-            // navigationItem.titleView = searchController.searchBar
-            // definesPresentationContext = true
-            
         }
         
         searchController.searchBar.searchBarStyle  = .default
@@ -58,24 +54,10 @@ class BoroViewController: UITableViewController {
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
-        // SetBackBarButtonCustom()
-        
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.isTranslucent = false
         
         
-    }
-    
-    //MARK: - Not calling it for second iteration designs
-    
-    func SetBackBarButtonCustom() {
         
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
-        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
     }
     
     @objc func onClcikBack(){
@@ -86,8 +68,6 @@ class BoroViewController: UITableViewController {
     func filterContentInSearchBar(searchText: String, scope: String = "All") {
         filteredSchool = schools.filter { school in
             return school.name.lowercased().contains(searchText.lowercased())
-            //                ||
-            //            school.extracurricular_activities.lowercased().contains(searchText.lowercased()) || school.primary_address_line_1.lowercased().contains(searchText.lowercased())
         }
         
         tableView.reloadData()
@@ -107,8 +87,8 @@ class BoroViewController: UITableViewController {
                     
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
-                        
                     }
+                    
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
                     
                 }
@@ -129,7 +109,7 @@ class BoroViewController: UITableViewController {
         
         let attributedString = NSMutableAttributedString(string: resultString)
         let pattern = searchString.lowercased()
-        let range = NSMakeRange(0, resultString.characters.count)
+        let range = NSMakeRange(0, resultString.count)
         
         let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options())
         
@@ -149,7 +129,7 @@ class BoroViewController: UITableViewController {
         
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: resultString)
         let pattern = searchString.lowercased()
-        let range: NSRange = NSMakeRange(0, resultString.characters.count)
+        let range: NSRange = NSMakeRange(0, resultString.count)
         
         let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options())
         
@@ -173,6 +153,7 @@ class BoroViewController: UITableViewController {
         }
         let detailVC = DetailViewController()
         detailVC.detailSchool = currentSchool
+        
         self.navigationController?.pushViewController(detailVC, animated: true)
         
         
@@ -203,24 +184,16 @@ class BoroViewController: UITableViewController {
             cell.titleLabel.attributedText = hightSearchTitle(searchString: searchController.searchBar.text!, resultString: school.name)
             cell.detailLabel.attributedText = boldSearchResult(searchString: searchController.searchBar.text!, resultString: school.overview_paragraph)
         }else{
-            
-            
             school = sortSchool[indexPath.row]
         }
-        
-        
-        //cell.textLabel?.text = school.name
         
         cell.titleLabel.numberOfLines = 0
         cell.titleLabel.lineBreakMode = .byWordWrapping
         cell.titleLabel.text = school.name
-   
-        
         cell.detailLabel.text = school.overview_paragraph
         cell.detailLabel.lineBreakMode = .byTruncatingTail
         cell.detailLabel.textColor = UIColor(white: 0, alpha: 0.5)
         cell.detailLabel.numberOfLines = 3
-        
         
         return cell
     }

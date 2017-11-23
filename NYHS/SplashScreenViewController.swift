@@ -36,10 +36,8 @@ class SplashScreenViewController: UIViewController {
     
     func viewHierarchy(){
         
-        
         view.addSubview(icon)
         view.addSubview(iconLabel)
-        
         
     }
     

@@ -41,47 +41,14 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
         
         viewHierarchy()
         constraintConfiguration()
-        //        setBackBarButtonCustom()
-        //        setMoreButtonCustom()
-        
-        print("----------Number of favoriteSchool store in the \(self.store.favoriteSchool.count)------------")
-        print("Detail school in printing from viewDidLoad: \(allSchoolSoFar.count)")
-        
-        // Doesn't work yet
-        
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.barTintColor = .white
-//        self.edgesForExtendedLayout = []
         
         mapView.delegate = self
-    
         
-    }
-    
-    func setBackBarButtonCustom() {
-        
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
-        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
     }
     
     @objc func onClcikBack(){
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
-    func setMoreButtonCustom() {
-        
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "customMoreOption2"), for: .normal)
-        btnLeftMenu.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.rightBarButtonItem = barButton
-    }
-    
     
     // MARK: File path
     
@@ -102,9 +69,6 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
     }
     
     // MARK: Load Data
-    
-    
-    
     @objc func addToFavourite(){
         
         self.saveData(item: detailSchool)
@@ -151,7 +115,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
     
     // Animate constrian back to normal
     
-    func animateBackToNormal(){
+    @objc func animateBackToNormal(){
         
         animator.addAnimations {
             self.mapView.snp.remakeConstraints{ (make) in
@@ -162,7 +126,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
             
             self.bringMapUp.snp.makeConstraints { (up) in
                 up.centerX.equalToSuperview()
-                up.bottom.equalToSuperview().offset(40)
+                up.bottom.equalToSuperview().offset(90)
             }
             self.view.layoutIfNeeded()
             
@@ -170,8 +134,6 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
         animator.startAnimation()
     
     }
-    
-    
     
     func getLatAndLgn(){
         let addr = detailSchool.primary_address_line_1
@@ -207,10 +169,6 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
                     self.schoolLatAndLng = schoolLocation
                     DispatchQueue.main.async {
                         self.mapView?.camera = GMSCameraPosition.camera(withLatitude: schoolLocation.lat, longitude: schoolLocation.lng, zoom: 12)
-//                        let url = Bundle.main.url(forResource: "mapStyle", withExtension: "json")
-//                        let mapStyle = try! GMSMapStyle.init(contentsOfFileURL: url!)
-//                        self.mapView.mapStyle = mapStyle
-                        
                         
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: schoolLocation.lat, longitude: schoolLocation.lng )
@@ -223,26 +181,6 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
                 print("Error getting lat and lng")
             }
         }
-    }
-    
-    @objc func toWeb(){
-        
-        let website = WebViewController()
-        website.schoolWebSite = self.detailSchool.website
-        self.navigationController?.pushViewController(website, animated: true)
-        
-    }
-    
-    
-    @objc func toMap(){
-        
-        let googleMap = googleMapVC()
-        googleMap.schoolLat = Float(self.schoolLatAndLng!.lat)
-        
-        googleMap.schoolLog = Float(self.schoolLatAndLng!.lng)
-        googleMap.schoolAddress = (self.detailSchool?.primary_address_line_1)!
-        self.navigationController?.pushViewController(googleMap, animated: true)
-        
     }
     
     //MARK: - Outlets
@@ -399,24 +337,6 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
         return label
     }()
     
-    // More button
-    internal lazy var showWebsite: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = ColorScheme.lineSeparatorColor
-        button.addTarget(self, action: #selector(toWeb), for: .touchUpInside)
-        button.setTitle("Website", for: .normal)
-        return button
-    }()
-    
-    internal lazy var showDirection: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = ColorScheme.lineSeparatorColor
-        button.setTitleColor(.black, for: .normal)
-        button.setTitle("Get Direction", for: .normal)
-        button.addTarget(self, action: #selector(toMap), for: .touchUpInside)
-        return button
-    }()
 }
 
 extension String {

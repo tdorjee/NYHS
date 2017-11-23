@@ -19,6 +19,7 @@ class MainView: UITabBarController {
         let firstNav = UINavigationController(rootViewController: firstVC)
         let secondNav = UINavigationController(rootViewController: secondVC)
         
+        
         let firstBarIcon = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "home"), tag: 0)
         let secondBarIcon = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "favoriteIcon"), tag: 1)
         

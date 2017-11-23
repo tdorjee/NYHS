@@ -319,13 +319,11 @@ class FilterViewController: UIViewController {
         if sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) && !boroChoosen.contains(sender.titleLabel?.text ?? ""){
             sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
             boroChoosen.append(sender.titleLabel?.text ?? "")
-            print("selected the boro: \(sender.titleLabel?.text ?? "")")
             
         } else {
             sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
                 boroChoosen.remove(at: index)
-                print("not selected the boro")
             }
             return
         }
@@ -343,16 +341,11 @@ class FilterViewController: UIViewController {
             currentImage = #imageLiteral(resourceName: "checked")
             sender.setImage(currentImage, for: .normal)
             schoolSizeRang = sender.titleLabel?.text ?? ""
-            //                buttonCheckStatus = false
-            print("selected the school size")
-            print("current school size selected: \(sender.titleLabel?.text)")
             currentImage = #imageLiteral(resourceName: "unchecked")
             
         }else{
             sender.setImage(currentImage, for: .normal)
-            //            buttonCheckStatus = true
             schoolSizeRang = nil
-            print("unselected school size")
         }
     }
 }

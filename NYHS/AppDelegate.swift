@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
         
-//        UITabBar.appearance().tintColor = ColorScheme.navColor
-//        UIApplication.shared.statusBarStyle = .lightContent
-    
         window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainView()
         window?.makeKeyAndVisible()
