@@ -95,6 +95,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
+        self.bringMapUp.setImage(#imageLiteral(resourceName: "mapUp"), for: .normal)
         // Expend the map
         
         animator.addAnimations {
@@ -117,6 +118,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
     
     @objc func animateBackToNormal(){
         
+        self.bringMapUp.setImage(#imageLiteral(resourceName: "mapExpend"), for: .normal)
         animator.addAnimations {
             self.mapView.snp.remakeConstraints{ (make) in
                make.top.equalToSuperview()
@@ -126,7 +128,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
             
             self.bringMapUp.snp.makeConstraints { (up) in
                 up.centerX.equalToSuperview()
-                up.bottom.equalToSuperview().offset(90)
+                up.bottom.equalToSuperview().offset(80)
             }
             self.view.layoutIfNeeded()
             
@@ -189,7 +191,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
     
     internal lazy var bringMapUp: UIButton = {
        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "mapUp"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "mapExpend"), for: .normal)
         button.addTarget(self, action: #selector(animateBackToNormal), for: .touchUpInside)
         return button
     }()
