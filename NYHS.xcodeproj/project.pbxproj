@@ -31,6 +31,9 @@
 		B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */; };
 		B9EE594E1EF78B1500CD1F7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9EE594D1EF78B1500CD1F7C /* Assets.xcassets */; };
 		B9EE59501EF7AC8100CD1F7C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE594F1EF7AC8100CD1F7C /* MainView.swift */; };
+		B9FF75741FD0DE8000B4CFF4 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FF75731FD0DE8000B4CFF4 /* MainCollectionViewController.swift */; };
+		B9FF75761FD0DFC000B4CFF4 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FF75751FD0DFC000B4CFF4 /* MainCollectionViewCell.swift */; };
+		B9FF75781FD0EA4E00B4CFF4 /* myCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FF75771FD0EA4E00B4CFF4 /* myCollectionVC.swift */; };
 		C0D36FBADD14EBB6B8FA5A6A /* Pods_NYHS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		B9EE594D1EF78B1500CD1F7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9EE594F1EF7AC8100CD1F7C /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B9FF75731FD0DE8000B4CFF4 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
+		B9FF75751FD0DFC000B4CFF4 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		B9FF75771FD0EA4E00B4CFF4 /* myCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCollectionVC.swift; sourceTree = "<group>"; };
 		E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYHS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4E15C7B492ACD9350A77E0 /* Pods-NYHS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +102,8 @@
 				B9EE594F1EF7AC8100CD1F7C /* MainView.swift */,
 				B9EE59491EF5796500CD1F7C /* MainTableViewController.swift */,
 				B92D07111F886038009E5234 /* FilterViewController.swift */,
+				B9FF75731FD0DE8000B4CFF4 /* MainCollectionViewController.swift */,
+				B9FF75771FD0EA4E00B4CFF4 /* myCollectionVC.swift */,
 				B9BBF6241F9D547200E368C7 /* FilterResultTableViewController.swift */,
 				B9997D1D1EE227BD00CCFEC2 /* BoroViewController.swift */,
 				B974D6C01ECEBF72006FB89C /* DetailViewController.swift */,
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				B974D6C21ECEBFAE006FB89C /* BoroTableViewCell.swift */,
+				B9FF75751FD0DFC000B4CFF4 /* MainCollectionViewCell.swift */,
 				B9EE59471EF5787C00CD1F7C /* MainTableViewCell.swift */,
 			);
 			name = View;
@@ -334,18 +343,21 @@
 				B9BBF6251F9D547200E368C7 /* FilterResultTableViewController.swift in Sources */,
 				B974D6C31ECEBFAE006FB89C /* BoroTableViewCell.swift in Sources */,
 				B9EE59421EF2DCFD00CD1F7C /* FavouriteTableViewController.swift in Sources */,
+				B9FF75761FD0DFC000B4CFF4 /* MainCollectionViewCell.swift in Sources */,
 				B917DBC91EF98F2A0068A0A6 /* ContactSchoolViewController.swift in Sources */,
 				B952B4E31EE9C720008B80AA /* LatAndLng.swift in Sources */,
 				B9863E801EB97C9C00A00ABD /* AppDelegate.swift in Sources */,
 				B9EE594A1EF5796500CD1F7C /* MainTableViewController.swift in Sources */,
 				B974D6C11ECEBF72006FB89C /* DetailViewController.swift in Sources */,
 				B9EE59501EF7AC8100CD1F7C /* MainView.swift in Sources */,
+				B9FF75741FD0DE8000B4CFF4 /* MainCollectionViewController.swift in Sources */,
 				B97FB5F21F64C018005D5C19 /* DataStore.swift in Sources */,
 				B9863E951EB98A4100A00ABD /* NYHS.swift in Sources */,
 				B9997D1E1EE227BD00CCFEC2 /* BoroViewController.swift in Sources */,
 				B9863E981EBC3B7000A00ABD /* ColorScheme.swift in Sources */,
 				B9997D211EE2290400CCFEC2 /* BoroCatagory.swift in Sources */,
 				B9EE0A2A1F11BC6E0029D7B4 /* extension-DetailVC.swift in Sources */,
+				B9FF75781FD0EA4E00B4CFF4 /* myCollectionVC.swift in Sources */,
 				B937B0D01F22B1F900A0592D /* RevisitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

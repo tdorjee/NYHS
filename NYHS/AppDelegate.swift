@@ -22,8 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = MainView()
         window?.makeKeyAndVisible()
+        let layout = UICollectionViewFlowLayout()
+        let mainCollectionVC =  MainCollectionViewController(collectionViewLayout: layout)
+        window?.rootViewController = UINavigationController(rootViewController: mainCollectionVC)
+        
+//        self.window?.rootViewController = MainView()
         
         return true
     }

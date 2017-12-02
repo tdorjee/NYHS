@@ -20,6 +20,7 @@ class FilterViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissView))
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(updateValue))
+        self.navigationController?.navigationBar.isTranslucent = false
         
         viewHirarchy()
         ConstraintConfiguration()

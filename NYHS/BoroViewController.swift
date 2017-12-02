@@ -156,7 +156,6 @@ class BoroViewController: UITableViewController {
         
         self.navigationController?.pushViewController(detailVC, animated: true)
         
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
