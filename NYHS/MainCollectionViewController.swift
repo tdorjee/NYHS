@@ -16,10 +16,23 @@ class MainCollectionViewController: UICollectionViewController, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "NYCHS"
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filter))
+        
         collectionView?.backgroundColor = .white
         collectionView!.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func filter() {
+        print("This is filter function")
     }
 
     override func didReceiveMemoryWarning() {
