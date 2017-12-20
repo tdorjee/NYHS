@@ -13,9 +13,11 @@ class MainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UI
     
     private let subCellId = "cellId"
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
+        
         backgroundColor = .white
         
     }
@@ -58,25 +60,47 @@ class MainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UI
     }
     
     // MARK: SNEP
+    
+   
  
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        let cellValue = scrollView.contentOffset.x
+        scrollView.isPagingEnabled = true
         
-        switch cellValue {
-        case  0...150.0:
-            print("First cell")
-            scrollView.isPagingEnabled = true
-        case 151.0...300.0:
-            scrollView.isPagingEnabled = true
-        case 301.0...600.0:
-            scrollView.isPagingEnabled = true
-        case 601.0...800.0:
-            scrollView.isPagingEnabled = true
-        default:
-                print("Fivth cell")
-        }
+//        scrollView.contentOffset = CGPoint(x: 10, y: 0)
+//        let cellValue = scrollView.contentOffset.x
+//
+//        switch cellValue {
+//        case  0...50.0:
+//            print("First cell")
+////            scrollView.isPagingEnabled = true
+//            scrollView.isScrollEnabled = true
+//            if #available(iOS 11.0, *) {
+//                scrollView.adjustedContentInsetDidChange()
+//            } else {
+//                // Fallback on earlier versions
+//            }
+////            self.collectionView?.frame = view.frame.insetBy(dx: -20. 0, dy: 0.0)
+//        case 151.0...400.0:
+////            scrollView.isPagingEnabled = true
+//            scrollView.isScrollEnabled = true
+//        case 401.0...450.0:
+//            scrollView.isScrollEnabled = true
+////            scrollView.isPagingEnabled = true
+//        case 601.0...800.0:
+//            scrollView.isScrollEnabled = true
+////            scrollView.isPagingEnabled = true
+//        default:
+//            scrollView.isScrollEnabled = true
+////            scrollView.isPagingEnabled = true
+//        }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    
     
 //    let middlePoint = Int(scrollView.contentOffset.x + UIScreen.main.bounds.width / 2)
 //    if let indexPath = self.cvCollectionView.indexPathForItem(at: CGPoint(x: middlePoint, y: 0)) {
@@ -104,12 +128,17 @@ class MainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: 320, height: 320)
     }
     
+
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
+    
 }
 
 class SubCell: UICollectionViewCell {

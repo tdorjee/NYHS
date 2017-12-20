@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B90B48161FE82F93005C3F45"
+               BuildableName = "secondNYHSTests.xctest"
+               BlueprintName = "secondNYHSTests"
+               ReferencedContainer = "container:NYHS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90B481A1FE82F93005C3F45 /* secondNYHSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90B48191FE82F93005C3F45 /* secondNYHSTests.swift */; };
 		B917DBC91EF98F2A0068A0A6 /* ContactSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */; };
 		B917DBD01EFD7F140068A0A6 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917DBCF1EFD7F140068A0A6 /* SplashScreenViewController.swift */; };
 		B92D07121F886038009E5234 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D07111F886038009E5234 /* FilterViewController.swift */; };
@@ -37,8 +38,37 @@
 		C0D36FBADD14EBB6B8FA5A6A /* Pods_NYHS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A36BD66A6AC48290648576 /* Pods_NYHS.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B90B48091FE81FEA005C3F45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9863E741EB97C9C00A00ABD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9863E7B1EB97C9C00A00ABD;
+			remoteInfo = NYHS;
+		};
+		B90B481C1FE82F93005C3F45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9863E741EB97C9C00A00ABD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9863E7B1EB97C9C00A00ABD;
+			remoteInfo = NYHS;
+		};
+		B90B482A1FE8526D005C3F45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9863E741EB97C9C00A00ABD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9863E7B1EB97C9C00A00ABD;
+			remoteInfo = NYHS;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		941D5E46DF9B06DA95ED8200 /* Pods-NYHS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYHS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NYHS/Pods-NYHS.debug.xcconfig"; sourceTree = "<group>"; };
+		B90B48041FE81FE9005C3F45 /* NYHSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYHSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90B48171FE82F93005C3F45 /* secondNYHSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = secondNYHSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90B48191FE82F93005C3F45 /* secondNYHSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondNYHSTests.swift; sourceTree = "<group>"; };
+		B90B481B1FE82F93005C3F45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B90B48251FE8526D005C3F45 /* NYHSIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYHSIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B917DBC81EF98F2A0068A0A6 /* ContactSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSchoolViewController.swift; sourceTree = "<group>"; };
 		B917DBCF1EFD7F140068A0A6 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		B92D07111F886038009E5234 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +103,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B90B48011FE81FE9005C3F45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B90B48141FE82F93005C3F45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B90B48221FE8526D005C3F45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9863E791EB97C9C00A00ABD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +144,15 @@
 				FF4E15C7B492ACD9350A77E0 /* Pods-NYHS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B90B48181FE82F93005C3F45 /* secondNYHSTests */ = {
+			isa = PBXGroup;
+			children = (
+				B90B48191FE82F93005C3F45 /* secondNYHSTests.swift */,
+				B90B481B1FE82F93005C3F45 /* Info.plist */,
+			);
+			path = secondNYHSTests;
 			sourceTree = "<group>";
 		};
 		B974D6C41ECEC06C006FB89C /* Controller */ = {
@@ -129,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				B9863E7E1EB97C9C00A00ABD /* NYHS */,
+				B90B48181FE82F93005C3F45 /* secondNYHSTests */,
 				B9863E7D1EB97C9C00A00ABD /* Products */,
 				B974D6C71ED028D1006FB89C /* Frameworks */,
 				2CA80C2964B02A37D42D0F7B /* Pods */,
@@ -139,6 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				B9863E7C1EB97C9C00A00ABD /* NYHS.app */,
+				B90B48041FE81FE9005C3F45 /* NYHSTests.xctest */,
+				B90B48171FE82F93005C3F45 /* secondNYHSTests.xctest */,
+				B90B48251FE8526D005C3F45 /* NYHSIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +263,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B90B48031FE81FE9005C3F45 /* NYHSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B90B480D1FE81FEA005C3F45 /* Build configuration list for PBXNativeTarget "NYHSTests" */;
+			buildPhases = (
+				B90B48001FE81FE9005C3F45 /* Sources */,
+				B90B48011FE81FE9005C3F45 /* Frameworks */,
+				B90B48021FE81FE9005C3F45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B90B480A1FE81FEA005C3F45 /* PBXTargetDependency */,
+			);
+			name = NYHSTests;
+			productName = NYHSTests;
+			productReference = B90B48041FE81FE9005C3F45 /* NYHSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B90B48161FE82F93005C3F45 /* secondNYHSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B90B481E1FE82F93005C3F45 /* Build configuration list for PBXNativeTarget "secondNYHSTests" */;
+			buildPhases = (
+				B90B48131FE82F93005C3F45 /* Sources */,
+				B90B48141FE82F93005C3F45 /* Frameworks */,
+				B90B48151FE82F93005C3F45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B90B481D1FE82F93005C3F45 /* PBXTargetDependency */,
+			);
+			name = secondNYHSTests;
+			productName = secondNYHSTests;
+			productReference = B90B48171FE82F93005C3F45 /* secondNYHSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B90B48241FE8526D005C3F45 /* NYHSIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B90B482C1FE8526D005C3F45 /* Build configuration list for PBXNativeTarget "NYHSIntegrationTests" */;
+			buildPhases = (
+				B90B48211FE8526D005C3F45 /* Sources */,
+				B90B48221FE8526D005C3F45 /* Frameworks */,
+				B90B48231FE8526D005C3F45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B90B482B1FE8526D005C3F45 /* PBXTargetDependency */,
+			);
+			name = NYHSIntegrationTests;
+			productName = NYHSIntegrationTests;
+			productReference = B90B48251FE8526D005C3F45 /* NYHSIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B9863E7B1EB97C9C00A00ABD /* NYHS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9863E8E1EB97C9C00A00ABD /* Build configuration list for PBXNativeTarget "NYHS" */;
@@ -225,10 +343,27 @@
 		B9863E741EB97C9C00A00ABD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = C4Q;
 				TargetAttributes = {
+					B90B48031FE81FE9005C3F45 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B9863E7B1EB97C9C00A00ABD;
+					};
+					B90B48161FE82F93005C3F45 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B9863E7B1EB97C9C00A00ABD;
+					};
+					B90B48241FE8526D005C3F45 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B9863E7B1EB97C9C00A00ABD;
+					};
 					B9863E7B1EB97C9C00A00ABD = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = GFV556FHMF;
@@ -256,11 +391,35 @@
 			projectRoot = "";
 			targets = (
 				B9863E7B1EB97C9C00A00ABD /* NYHS */,
+				B90B48031FE81FE9005C3F45 /* NYHSTests */,
+				B90B48161FE82F93005C3F45 /* secondNYHSTests */,
+				B90B48241FE8526D005C3F45 /* NYHSIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B90B48021FE81FE9005C3F45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B90B48151FE82F93005C3F45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B90B48231FE8526D005C3F45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9863E7A1EB97C9C00A00ABD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +491,28 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B90B48001FE81FE9005C3F45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B90B48131FE82F93005C3F45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B90B481A1FE82F93005C3F45 /* secondNYHSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B90B48211FE8526D005C3F45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9863E781EB97C9C00A00ABD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,6 +545,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B90B480A1FE81FEA005C3F45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9863E7B1EB97C9C00A00ABD /* NYHS */;
+			targetProxy = B90B48091FE81FEA005C3F45 /* PBXContainerItemProxy */;
+		};
+		B90B481D1FE82F93005C3F45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9863E7B1EB97C9C00A00ABD /* NYHS */;
+			targetProxy = B90B481C1FE82F93005C3F45 /* PBXContainerItemProxy */;
+		};
+		B90B482B1FE8526D005C3F45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9863E7B1EB97C9C00A00ABD /* NYHS */;
+			targetProxy = B90B482A1FE8526D005C3F45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B9863E881EB97C9C00A00ABD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -376,6 +575,132 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B90B480B1FE81FEA005C3F45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NYHSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dorjee.thinley.com.NYHSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYHS.app/NYHS";
+			};
+			name = Debug;
+		};
+		B90B480C1FE81FEA005C3F45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NYHSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dorjee.thinley.com.NYHSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYHS.app/NYHS";
+			};
+			name = Release;
+		};
+		B90B481F1FE82F93005C3F45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = secondNYHSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dorjee.thinley.com.secondNYHSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYHS.app/NYHS";
+			};
+			name = Debug;
+		};
+		B90B48201FE82F93005C3F45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = secondNYHSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dorjee.thinley.com.secondNYHSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYHS.app/NYHS";
+			};
+			name = Release;
+		};
+		B90B482D1FE8526D005C3F45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NYHSIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dorjee.thinley.com.NYHSIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYHS.app/NYHS";
+			};
+			name = Debug;
+		};
+		B90B482E1FE8526D005C3F45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NYHSIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dorjee.thinley.com.NYHSIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYHS.app/NYHS";
+			};
+			name = Release;
+		};
 		B9863E8C1EB97C9C00A00ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -524,6 +849,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B90B480D1FE81FEA005C3F45 /* Build configuration list for PBXNativeTarget "NYHSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90B480B1FE81FEA005C3F45 /* Debug */,
+				B90B480C1FE81FEA005C3F45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B90B481E1FE82F93005C3F45 /* Build configuration list for PBXNativeTarget "secondNYHSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90B481F1FE82F93005C3F45 /* Debug */,
+				B90B48201FE82F93005C3F45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B90B482C1FE8526D005C3F45 /* Build configuration list for PBXNativeTarget "NYHSIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90B482D1FE8526D005C3F45 /* Debug */,
+				B90B482E1FE8526D005C3F45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B9863E771EB97C9C00A00ABD /* Build configuration list for PBXProject "NYHS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
