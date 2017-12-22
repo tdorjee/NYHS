@@ -1,5 +1,5 @@
 //
-//  RevisitViewController.swift
+//  RevisitVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 7/21/17.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class RevisitViewController: UIViewController {
+class RevisitVC: UIViewController {
 
     var school: School?
     

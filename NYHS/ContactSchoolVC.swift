@@ -1,5 +1,5 @@
 //
-//  ContactSchoolViewController.swift
+//  ContactSchoolVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 6/20/17.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import MessageUI
 
-class ContactSchoolViewController: UIViewController {
+class ContactSchoolVC: UIViewController {
     
     
     var schoolFromDetailSchool: School?
@@ -223,7 +223,7 @@ class ContactSchoolViewController: UIViewController {
     }()
 }
 
-extension ContactSchoolViewController: MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+extension ContactSchoolVC: MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         

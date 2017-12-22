@@ -1,5 +1,5 @@
 //
-//  FilterViewController.swift
+//  FilterVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 10/6/17.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class FilterViewController: UIViewController {
+class FilterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class FilterViewController: UIViewController {
     
     @objc func updateValue(){
         print("start searching for new value")
-        let filterVC = FilterResultTableViewController()
+        let filterVC = FilterResultVC()
         filterVC.boroChoosen = boroChoosen
         if schoolSizeRang == nil{
             

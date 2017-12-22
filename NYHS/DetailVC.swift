@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  DetailVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 5/19/17.
@@ -11,7 +11,7 @@ import SnapKit
 import GoogleMaps
 import GooglePlaces
 
-class DetailViewController: UIViewController, GMSMapViewDelegate {
+class DetailVC: UIViewController, GMSMapViewDelegate {
     
     var store = DataStore.shareInstnce
     var detailSchool: School!
@@ -77,7 +77,7 @@ class DetailViewController: UIViewController, GMSMapViewDelegate {
     
     func contactSchool(){
         
-        let contactVC = ContactSchoolViewController()
+        let contactVC = ContactSchoolVC()
         contactVC.schoolFromDetailSchool = self.detailSchool
         self.present(contactVC, animated: true, completion: nil)
     }

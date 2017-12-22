@@ -18,14 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        let layout = UICollectionViewFlowLayout()
-        let mainCollectionVC =  MainCollectionViewController(collectionViewLayout: layout)
-        window?.rootViewController = UINavigationController(rootViewController: mainCollectionVC)
+        
+        
+        window?.rootViewController = UINavigationController(rootViewController: MainTabVC())
         
 //        self.window?.rootViewController = MainView()
         
@@ -60,4 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension UIApplication {
+    
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+    
+}
+
 

@@ -1,5 +1,5 @@
 //
-//  FilterResultTableViewController.swift
+//  FilterResultVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 10/22/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterResultTableViewController: UITableViewController {
+class FilterResultVC: UITableViewController {
 
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     let cellId = "cellId"
@@ -92,7 +92,7 @@ class FilterResultTableViewController: UITableViewController {
         
         let selectedSchool: School
         
-        let detialVC = DetailViewController()
+        let detialVC = DetailVC()
         selectedSchool = filteredSchool[indexPath.row]
         detialVC.detailSchool = selectedSchool
         self.navigationController?.pushViewController(detialVC, animated: true)

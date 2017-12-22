@@ -60,13 +60,13 @@ class SplashScreenViewController: UIViewController {
     }
     
     @objc func splashTimeOut(sender: Timer){
-        AppDelegate.sharedInstance().window?.rootViewController = MainView()
+        AppDelegate.sharedInstance().window?.rootViewController = MainTabVC()
     }
     
     func SegueToOnboardVc(){
         _ = UserDefaults.standard
         
-        let onboardVC = MainView()
+        let onboardVC = MainTabVC()
         self.navigationController?.pushViewController(onboardVC, animated: true)
         
     }

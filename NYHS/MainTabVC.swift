@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  MainTabVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 6/19/17.
@@ -8,17 +8,19 @@
 
 import UIKit
 
-class MainView: UITabBarController {
+class MainTabVC: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let firstVC = MainTableViewController()
-        let secondVC = FavouriteTableViewController()
+        let layout = UICollectionViewFlowLayout()
+        let mainCollectionVC =  HomeCollectionVC(collectionViewLayout: layout)
+        
+        let firstVC = mainCollectionVC
+        let secondVC = FavouriteTableVC()
         
         let firstNav = UINavigationController(rootViewController: firstVC)
         let secondNav = UINavigationController(rootViewController: secondVC)
-        
         
         let firstBarIcon = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "home"), tag: 0)
         let secondBarIcon = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "favoriteIcon"), tag: 1)
@@ -28,6 +30,11 @@ class MainView: UITabBarController {
         
         tabBar.isTranslucent = false
         viewControllers = [firstNav, secondNav]
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
 }

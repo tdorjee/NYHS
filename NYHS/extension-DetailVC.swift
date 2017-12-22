@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension DetailViewController {
+extension DetailVC {
     
     // MARK - View Hierarchy
     

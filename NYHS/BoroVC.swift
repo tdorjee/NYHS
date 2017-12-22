@@ -1,5 +1,5 @@
 //
-//  BoroViewController.swift
+//  BoroVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 6/2/17.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class BoroViewController: UITableViewController {
+class BoroVC: UITableViewController {
     
     let cellId = "MainCellId"
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
@@ -32,6 +32,7 @@ class BoroViewController: UITableViewController {
         navigationItem.title = "Schools"
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
+        
         } else {
             // Fallback on earlier versions
         }
@@ -48,15 +49,13 @@ class BoroViewController: UITableViewController {
         
         
         // Search stuffs
-        searchController.searchResultsUpdater = self as UISearchResultsUpdating
+        searchController.searchResultsUpdater = self as! UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
 
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
         
         self.navigationController?.navigationBar.isTranslucent = false
-        
-        
         
     }
     
@@ -151,7 +150,7 @@ class BoroViewController: UITableViewController {
         }else{
             currentSchool = sortSchool[indexPath.row]
         }
-        let detailVC = DetailViewController()
+        let detailVC = DetailVC()
         detailVC.detailSchool = currentSchool
         
         self.navigationController?.pushViewController(detailVC, animated: true)
@@ -237,7 +236,7 @@ class BoroViewController: UITableViewController {
 
 // MARK: Extension
 
-extension BoroViewController: UISearchResultsUpdating {
+extension BoroVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentInSearchBar(searchText: searchController.searchBar.text!)
     }

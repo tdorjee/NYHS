@@ -11,15 +11,12 @@ import XCTest
 
 class secondNYHSTests: XCTestCase {
     
-    var boroVC: BoroViewController!
+    var boroVC: BoroVC!
     
     override func setUp() {
         super.setUp()
         
-        boroVC = BoroViewController()
-//        countTest()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        boroVC = BoroVC()
     }
     
     override func tearDown() {

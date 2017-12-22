@@ -1,5 +1,5 @@
 //
-//  FavouriteTableViewController.swift
+//  FavouriteTableVC.swift
 //  NYHS
 //
 //  Created by Thinley Dorjee on 6/15/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouriteTableViewController: UITableViewController {
+class FavouriteTableVC: UITableViewController {
 
     let cellId = "cellId"
     
@@ -34,7 +34,7 @@ class FavouriteTableViewController: UITableViewController {
 
     }
     
-    var fromDetailVC = DetailViewController()
+    var fromDetailVC = DetailVC()
     
     private func loadData(){
         
@@ -82,7 +82,7 @@ class FavouriteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let backToDetailVc = DetailViewController()
+        let backToDetailVc = DetailVC()
         backToDetailVc.detailSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
         self.navigationController?.pushViewController(backToDetailVc, animated: true)
         
