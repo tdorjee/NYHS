@@ -12,7 +12,6 @@ class MainTabVC: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let layout = UICollectionViewFlowLayout()
         let mainCollectionVC =  HomeCollectionVC(collectionViewLayout: layout)
         
@@ -27,14 +26,11 @@ class MainTabVC: UITabBarController {
         
         firstNav.tabBarItem = firstBarIcon
         secondVC.tabBarItem = secondBarIcon
-        
-        tabBar.isTranslucent = false
         viewControllers = [firstNav, secondNav]
+        
+         self.tabBarController?.tabBar.isTranslucent = false
+
     }
     
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-    }
     
 }

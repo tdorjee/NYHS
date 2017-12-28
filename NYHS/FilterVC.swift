@@ -17,6 +17,8 @@ class FilterVC: UIViewController {
         view.backgroundColor = .white
         
         self.navigationItem.title = "Filter"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissView))
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(updateValue))
@@ -25,11 +27,16 @@ class FilterVC: UIViewController {
         viewHirarchy()
         ConstraintConfiguration()
         
+        
     }
     
     // Obtain value
     
-    var boroChoosen: [String] = []
+    var
+    
+    
+    
+    boroChoosen: [String] = []
     var schoolSizeRang: String?
     
     @objc func dismissView(){
@@ -37,14 +44,18 @@ class FilterVC: UIViewController {
     }
     
     @objc func updateValue(){
-        print("start searching for new value")
+        
         let filterVC = FilterResultVC()
         filterVC.boroChoosen = boroChoosen
         if schoolSizeRang == nil{
-            
             let schoolSizeNotChoosenAlert = UIAlertController(title: "School Size", message: "Please choose a school size", preferredStyle: .alert)
             schoolSizeNotChoosenAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
             self.present(schoolSizeNotChoosenAlert, animated: true, completion: nil)
+        }else if boroChoosen.isEmpty {
+            let boroNotChoosenAlert = UIAlertController(title: "Borough ", message: "Please choose a borough", preferredStyle: .alert)
+            boroNotChoosenAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(boroNotChoosenAlert, animated: true, completion: nil)
+            
         }else {
             filterVC.schoolSizeMin = Int((schoolSizeRang?.components(separatedBy: " ")[0])!)
             filterVC.schoolSizeMax = Int((schoolSizeRang?.components(separatedBy: " ")[1])!)

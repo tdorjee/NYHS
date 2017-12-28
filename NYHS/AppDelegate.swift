@@ -18,17 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
         GMSServices.provideAPIKey("AIzaSyDDQoigYktTRrieAf8-J3ZJJeBgB-MkLI8")
         GMSPlacesClient.provideAPIKey("AIzaSyAKy5znlGQfMUm1UkPh_l_bSu0HDBcsnfc")
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        
-        window?.rootViewController = UINavigationController(rootViewController: MainTabVC())
-        
-//        self.window?.rootViewController = MainView()
+        self.window?.rootViewController = MainTabVC()
         
         return true
     }

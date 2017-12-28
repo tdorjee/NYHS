@@ -17,37 +17,23 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filter))
-        
-        navigationItem.title = "NYCHS"
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        UIApplication.shared.statusBarView?.backgroundColor = .white
-        
         self.edgesForExtendedLayout = []
-        self.navigationController?.navigationBar.isTranslucent = false
-   
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filter))
+        navigationItem.title = "NYCHS"
         collectionView?.backgroundColor = .white
         collectionView!.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-
+        
+        navigationController?.navigationBar.isTranslucent = false
+        self.tabBarController?.tabBar.isTranslucent = false
     }
-    
     
     @objc func filter() {
         let filterVC = UINavigationController(rootViewController: FilterVC())
         self.present(filterVC, animated: true, completion: nil)
-        print("This is filter function")
     }
-   
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-  
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 450)

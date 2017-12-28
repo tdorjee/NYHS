@@ -22,10 +22,12 @@ class FilterResultVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Search Results"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         getData()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(dismissTheVC))
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     @objc func dismissTheVC(){
@@ -95,6 +97,7 @@ class FilterResultVC: UITableViewController {
         let detialVC = DetailVC()
         selectedSchool = filteredSchool[indexPath.row]
         detialVC.detailSchool = selectedSchool
+        detialVC.senderVC = "FilterResultVC"
         self.navigationController?.pushViewController(detialVC, animated: true)
         
     }

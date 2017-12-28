@@ -20,13 +20,18 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     var locationManager = CLLocationManager()
     var allSchoolSoFar: [School] = []
     
+    var senderVC = ""
+    
     var animator = UIViewPropertyAnimator(duration: 0.10, curve: .linear)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Fav.", style: .plain, target: self, action: #selector(addToFavourite))
+        if senderVC == "BoroVC" {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Fav.", style: .plain, target: self, action: #selector(addToFavourite))    
+        }
         
+        navigationController?.navigationBar.isTranslucent = false
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         } else {
@@ -44,6 +49,10 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         
         mapView.delegate = self
         
+    }
+    
+    func superView(sender: UIViewController) -> UIViewController {
+        return sender
     }
     
     @objc func onClcikBack(){

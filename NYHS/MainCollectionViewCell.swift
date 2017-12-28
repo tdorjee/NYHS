@@ -27,16 +27,21 @@ class MainCollectionViewCell: UICollectionViewCell{
   
     // MARK: UI
     
+
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 16
-        iv.clipsToBounds = true
+        iv.clipsToBounds = true // set it false for shadow
+//        iv.layer.shadowColor = UIColor.black.cgColor
+//        iv.layer.shadowOpacity = 1
+//        iv.layer.shadowOffset = CGSize.zero
+//        iv.layer.shadowRadius = 10
+//        iv.layer.shadowOffset = CGSize.zero
         iv.layer.masksToBounds = true
         return iv
     }()
-    
-    
     
     let borough: UILabel = {
         let label = UILabel()

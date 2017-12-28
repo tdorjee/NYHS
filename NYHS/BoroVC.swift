@@ -15,52 +15,26 @@ class BoroVC: UITableViewController {
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     
     var boroSelected: String = ""
-    
     var schools: [School] = []
-    
     var sortSchool: [School] = []
-    
     var filteredSchool: [School] = []
+    
     
     let searchController = UISearchController(searchResultsController: nil)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
-        navigationItem.title = "Schools"
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
-        } else {
-            // Fallback on earlier versions
-            
-        }
-        
-        searchController.searchBar.searchBarStyle  = .default
+        self.title = boroSelected
+//        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Try Name, Address, Sports"
-        
-        
-        // Search stuffs
-        searchController.searchResultsUpdater = self as! UISearchResultsUpdating
-        searchController.dimsBackgroundDuringPresentation = false
-
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        
-    }
-    
-    @objc func onClcikBack(){
-        _ = self.navigationController?.popViewController(animated: true)
     }
     
     // Search func
@@ -68,7 +42,6 @@ class BoroVC: UITableViewController {
         filteredSchool = schools.filter { school in
             return school.name.lowercased().contains(searchText.lowercased())
         }
-        
         tableView.reloadData()
     }
     
@@ -152,6 +125,7 @@ class BoroVC: UITableViewController {
         }
         let detailVC = DetailVC()
         detailVC.detailSchool = currentSchool
+        detailVC.senderVC = "BoroVC"
         
         self.navigationController?.pushViewController(detailVC, animated: true)
         

@@ -17,16 +17,11 @@ class FavouriteTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Favorite Schools"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.tableView.separatorStyle = .singleLine
-            self.title = "Favorite Schools"
-      
         navigationItem.rightBarButtonItem = editButtonItem
-        
-        // SetBackBarButtonCustom()
-        
-        // setUpNavBarStyle()
         
         loadData()
         
@@ -42,24 +37,6 @@ class FavouriteTableVC: UITableViewController {
             fromDetailVC.store.favoriteSchool = ourData
         }
         
-    }
-    
-    func setUpNavBarStyle(){
-    
-        navigationController?.navigationBar.barTintColor = ColorScheme.navColor
-        navigationController?.navigationBar.isTranslucent = true
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-    }
-    
-    func SetBackBarButtonCustom() {
-        
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(#imageLiteral(resourceName: "customBackButton2"), for: .normal)
-        btnLeftMenu.addTarget(self, action: #selector(onClcikBack), for: .touchUpInside)
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 50/2, height: 50/2)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
     }
 
     @objc func onClcikBack(){
