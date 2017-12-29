@@ -70,38 +70,22 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
         if !mapViewDidExpend {
-            
-            self.bringMapUp.setImage(#imageLiteral(resourceName: "slideUp"), for: .normal)
-            // Expend the map
-            
             animator.addAnimations {
                 self.mapView.snp.remakeConstraints{ (make) in
                     make.leading.top.trailing.equalToSuperview()
                     make.width.equalTo(self.view.snp.width)
                     make.bottom.equalTo(self.view.snp.bottom)
                 }
-                
-                self.bringMapUp.snp.makeConstraints{ (up) in
-                    up.bottom.equalToSuperview().inset(8)
-                }
-                
                 self.view.layoutIfNeeded()
             }
             animator.startAnimation()
             mapViewDidExpend = true
         }else{
-            
-            self.bringMapUp.setImage(nil, for: .normal)
             animator.addAnimations {
                 self.mapView.snp.remakeConstraints{ (make) in
                     make.top.equalToSuperview()
                     make.leading.trailing.equalToSuperview()
                     make.height.equalTo(200)
-                }
-                
-                self.bringMapUp.snp.makeConstraints { (up) in
-                    up.centerX.equalToSuperview()
-                    up.bottom.equalToSuperview().offset(80)
                 }
                 self.view.layoutIfNeeded()
                 
@@ -111,44 +95,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         }
     }
     
-    // Animate constrian back to normal
-    
-    @objc func animateBackToNormal(){
-        
-        print("This is map shrink function")
-//        self.bringMapUp.setImage(nil, for: .normal)
-//        animator.addAnimations {
-//            self.mapView.snp.remakeConstraints{ (make) in
-//                make.top.equalToSuperview()
-//                make.leading.trailing.equalToSuperview()
-//                make.height.equalTo(200)
-//            }
-//
-//            self.bringMapUp.snp.makeConstraints { (up) in
-//                up.centerX.equalToSuperview()
-//                up.bottom.equalToSuperview().offset(80)
-//            }
-//            self.view.layoutIfNeeded()
-//
-//        }
-//        animator.startAnimation()
-        
-    }
-    
-    
     //MARK: - Outlets
-    
-    // Make mapview smaller
-    
-    internal lazy var bringMapUp: UIButton = {
-        let button = UIButton()
-        //        button.setImage(#imageLiteral(resourceName: "mapExpend"), for: .normal)
-        button.addTarget(self, action: #selector(animateBackToNormal), for: .touchUpInside)
-        return button
-    }()
-    
-    // line separator 
-    
     internal lazy var lineSeparator1: UIView = {
         let line = UIView()
         line.backgroundColor = ColorScheme.lineSeparatorColor
@@ -289,7 +236,6 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         label.numberOfLines = 0
         return label
     }()
-    
 }
 
 extension String {

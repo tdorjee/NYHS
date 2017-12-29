@@ -19,8 +19,6 @@ extension DetailVC {
         scroolView.addSubview(mainContainer)
         
         mainContainer.addSubview(mapView!)
-        mapView.addSubview(bringMapUp)
-        
         mainContainer.addSubview(miniMainViewContainer)
         
         miniMainViewContainer.addSubview(schoolNameLabel)
@@ -75,12 +73,6 @@ extension DetailVC {
             map.top.equalToSuperview()
             map.leading.trailing.equalToSuperview()
             map.height.equalTo(200)
-        }
-        
-        bringMapUp.snp.makeConstraints { (up) in
-            up.centerX.equalToSuperview()
-            up.bottom.equalToSuperview().offset(80)
-           
         }
         
         miniMainViewContainer.snp.makeConstraints { (view) in
