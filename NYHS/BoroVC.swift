@@ -19,15 +19,12 @@ class BoroVC: UITableViewController {
     var sortSchool: [School] = []
     var filteredSchool: [School] = []
     
-    
     let searchController = UISearchController(searchResultsController: nil)
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.title = boroSelected
-//        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Try Name, Address, Sports"
@@ -35,6 +32,7 @@ class BoroVC: UITableViewController {
         definesPresentationContext = true
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
         loadData()
+        
     }
     
     // Search func
@@ -53,12 +51,11 @@ class BoroVC: UITableViewController {
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let jsonData = jsonDict as? [[String: String]] else { return }
                 
-                
                 for eachSchool in jsonData {
                     let school = School(dictionary: eachSchool)
-                    
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
+                        
                     }
                     
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
@@ -92,7 +89,7 @@ class BoroVC: UITableViewController {
         }
         
         return attributedString
-    
+        
     }
     
     // MARK: - Bold search result

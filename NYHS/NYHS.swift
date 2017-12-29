@@ -12,7 +12,6 @@ class School: NSObject, NSCoding{
     
     let name: String
     let boro: String
-    
     let overview_paragraph: String
     let total_students: String
     let start_time: String
@@ -28,6 +27,8 @@ class School: NSObject, NSCoding{
     let fax_number: String
     let school_email: String
     let website: String
+    let latitude: String
+    let longitude: String
  
     init(dictionary: [String: String]) {
         self.name = dictionary["school_name"] ?? ""
@@ -47,13 +48,14 @@ class School: NSObject, NSCoding{
         self.fax_number = dictionary["fax_number"] ?? ""
         self.school_email = dictionary["school_email"] ?? ""
         self.website = dictionary["website"] ?? ""
+        self.latitude = dictionary["latitude"] ?? ""
+        self.longitude = dictionary["longitude"] ?? ""
    
     }
     
     required init(coder decoder: NSCoder) {
         self.name = decoder.decodeObject(forKey: "school_name") as? String ?? ""
         self.boro = decoder.decodeObject(forKey: "boro") as? String ?? ""
-
         self.diplomaendorsements = decoder.decodeObject(forKey: "diplomaendorsements") as? String ?? ""
         self.overview_paragraph = decoder.decodeObject(forKey: "overview_paragraph") as? String ?? ""
         self.total_students = decoder.decodeObject(forKey: "total_students") as? String ?? ""
@@ -69,6 +71,9 @@ class School: NSObject, NSCoding{
         self.fax_number = decoder.decodeObject(forKey: "fax_number") as? String ?? ""
         self.school_email = decoder.decodeObject(forKey: "school_email") as? String ?? ""
         self.website = decoder.decodeObject(forKey: "website") as? String ?? ""
+        self.latitude = decoder.decodeObject(forKey: "latitude") as? String ?? ""
+        self.longitude = decoder.decodeObject(forKey: "longitude") as? String ?? ""
+        
     }
     
     func encode(with coder: NSCoder) {
@@ -88,6 +93,7 @@ class School: NSObject, NSCoding{
         coder.encode(fax_number, forKey: "fax_number")
         coder.encode(school_email, forKey: "school_email")
         coder.encode(website, forKey: "website")
-        
+        coder.encode(latitude, forKey: "latitude")
+        coder.encode(longitude, forKey: "longitude")
     }
 }

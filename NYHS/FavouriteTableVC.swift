@@ -12,8 +12,6 @@ class FavouriteTableVC: UITableViewController {
 
     let cellId = "cellId"
     
-    var theFavouriteSchools = DataStore.shareInstnce
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,23 +27,11 @@ class FavouriteTableVC: UITableViewController {
 
     }
     
-    var fromDetailVC = DetailVC()
-    
     private func loadData(){
-        
-        if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: fromDetailVC.filePath) as? [School] {
-            fromDetailVC.store.favoriteSchool = ourData
-        }
+        print("load data")
         
     }
 
-    @objc func onClcikBack(){
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-   override func viewDidAppear(_ animated: Bool) {
-    tableView.reloadData()
-  }
   
     // MARK: - Table view data source
 
@@ -54,25 +40,20 @@ class FavouriteTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return theFavouriteSchools.favoriteSchool.count
+            return 1
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let backToDetailVc = DetailVC()
-        backToDetailVc.detailSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
-        self.navigationController?.pushViewController(backToDetailVc, animated: true)
-        
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let backToDetailVc = DetailVC()
+//        backToDetailVc.detailSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
+//        self.navigationController?.pushViewController(backToDetailVc, animated: true)
+//
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
 
-        let thisSchool = theFavouriteSchools.favoriteSchool[indexPath.row]
-        cell.textLabel?.text = thisSchool.name
-        cell.detailTextLabel?.text = thisSchool.boro
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
 
         return cell
     }
@@ -87,12 +68,6 @@ class FavouriteTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
-        case .delete:
-            
-            theFavouriteSchools.favoriteSchool.remove(at: indexPath.row)
-            
-            tableView.reloadData()
-            UserDefaults.standard.data(forKey: "favSchoolAdd")
     
         default:
             break

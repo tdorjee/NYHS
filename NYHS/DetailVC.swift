@@ -9,17 +9,11 @@
 import UIKit
 import SnapKit
 import GoogleMaps
-import GooglePlaces
 
 class DetailVC: UIViewController, GMSMapViewDelegate {
     
-    var store = DataStore.shareInstnce
     var detailSchool: School!
-    var schoolLatAndLng: LatAndLng?
     var mapView: GMSMapView!
-    var locationManager = CLLocationManager()
-    var allSchoolSoFar: [School] = []
-    
     var senderVC = ""
     
     var animator = UIViewPropertyAnimator(duration: 0.10, curve: .linear)
@@ -27,6 +21,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMaps()
         if senderVC == "BoroVC" {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Fav.", style: .plain, target: self, action: #selector(addToFavourite))    
         }
@@ -37,51 +32,28 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         } else {
             // Fallback on earlier versions
         }
-    
-        
-        
         view.backgroundColor = .white
-        getLatAndLgn()
-        setupMaps()
-        
         viewHierarchy()
         constraintConfiguration()
-        
         mapView.delegate = self
         
     }
     
-    func superView(sender: UIViewController) -> UIViewController {
-        return sender
-    }
-    
-    @objc func onClcikBack(){
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    // MARK: File path
-    
-    var filePath: String {
+    func setupMaps() {
         
-        let manager = FileManager.default
-        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-        return (url!.appendingPathComponent("Data").path)
+        let camera = GMSCameraPosition.camera(withLatitude: Double(self.detailSchool.latitude)!, longitude: Double(self.detailSchool.longitude)!, zoom: 12)
         
+        self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: Double(self.detailSchool.latitude)!, longitude: Double(self.detailSchool.longitude)! )
+        marker.title = self.detailSchool.name
+        marker.snippet = self.detailSchool.boro
+        marker.map = self.mapView
     }
     
-    // MARK: Save Data
-    
-    private func saveData(item: School) {
-        self.store.favoriteSchool.append(item)
-        NSKeyedArchiver.archiveRootObject(self.store.favoriteSchool, toFile: filePath)
-        
-    }
-    
-    // MARK: Load Data
     @objc func addToFavourite(){
-        
-        self.saveData(item: detailSchool)
-        
+        print("Save data in coreData")
     }
     
     func contactSchool(){
@@ -91,116 +63,86 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         self.present(contactVC, animated: true, completion: nil)
     }
     
-    func setupMaps() {
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 40.742362,
-                                              longitude: -73.935365,
-                                              zoom: 7)
-        self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-        
-    }
-    
     // MARK: - Google map delegate
+    
+    var mapViewDidExpend = false
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
-        self.bringMapUp.setImage(#imageLiteral(resourceName: "slideUp"), for: .normal)
-        // Expend the map
-        
-        animator.addAnimations {
-            self.mapView.snp.remakeConstraints{ (make) in
-                make.leading.top.trailing.equalToSuperview()
-                make.width.equalTo(self.view.snp.width)
-                make.bottom.equalTo(self.view.snp.bottom)
-            }
+        if !mapViewDidExpend {
             
-            self.bringMapUp.snp.makeConstraints{ (up) in
-                up.bottom.equalToSuperview().inset(8)
-            }
+            self.bringMapUp.setImage(#imageLiteral(resourceName: "slideUp"), for: .normal)
+            // Expend the map
             
-            self.view.layoutIfNeeded()
+            animator.addAnimations {
+                self.mapView.snp.remakeConstraints{ (make) in
+                    make.leading.top.trailing.equalToSuperview()
+                    make.width.equalTo(self.view.snp.width)
+                    make.bottom.equalTo(self.view.snp.bottom)
+                }
+                
+                self.bringMapUp.snp.makeConstraints{ (up) in
+                    up.bottom.equalToSuperview().inset(8)
+                }
+                
+                self.view.layoutIfNeeded()
+            }
+            animator.startAnimation()
+            mapViewDidExpend = true
+        }else{
+            
+            self.bringMapUp.setImage(nil, for: .normal)
+            animator.addAnimations {
+                self.mapView.snp.remakeConstraints{ (make) in
+                    make.top.equalToSuperview()
+                    make.leading.trailing.equalToSuperview()
+                    make.height.equalTo(200)
+                }
+                
+                self.bringMapUp.snp.makeConstraints { (up) in
+                    up.centerX.equalToSuperview()
+                    up.bottom.equalToSuperview().offset(80)
+                }
+                self.view.layoutIfNeeded()
+                
+            }
+            animator.startAnimation()
+            mapViewDidExpend = false
         }
-        animator.startAnimation()
     }
     
     // Animate constrian back to normal
     
     @objc func animateBackToNormal(){
         
-        self.bringMapUp.setImage(nil, for: .normal)
-        animator.addAnimations {
-            self.mapView.snp.remakeConstraints{ (make) in
-               make.top.equalToSuperview()
-               make.leading.trailing.equalToSuperview()
-               make.height.equalTo(200)
-            }
-            
-            self.bringMapUp.snp.makeConstraints { (up) in
-                up.centerX.equalToSuperview()
-                up.bottom.equalToSuperview().offset(80)
-            }
-            self.view.layoutIfNeeded()
-            
-        }
-        animator.startAnimation()
-    
+        print("This is map shrink function")
+//        self.bringMapUp.setImage(nil, for: .normal)
+//        animator.addAnimations {
+//            self.mapView.snp.remakeConstraints{ (make) in
+//                make.top.equalToSuperview()
+//                make.leading.trailing.equalToSuperview()
+//                make.height.equalTo(200)
+//            }
+//
+//            self.bringMapUp.snp.makeConstraints { (up) in
+//                up.centerX.equalToSuperview()
+//                up.bottom.equalToSuperview().offset(80)
+//            }
+//            self.view.layoutIfNeeded()
+//
+//        }
+//        animator.startAnimation()
+        
     }
     
-    func getLatAndLgn(){
-        let addr = detailSchool.primary_address_line_1
-        
-        let separatedAddr = addr.components(separatedBy: " ")
-        
-        var addressStrSearch = ""
-        
-        for i in 0..<separatedAddr.count {
-            if i == separatedAddr.count - 1 {
-                addressStrSearch.append(separatedAddr[i])
-            }else{
-                addressStrSearch.append(separatedAddr[i]+"+")
-            }
-        }
-        
-        
-        APIRequestManager.manager.getData(apiEndPoint: "https://maps.googleapis.com/maps/api/geocode/json?address=\(addressStrSearch)&key=AIzaSyDMS1l_U5Zswy_ZH51EJUNGBz-Tr-W6iCQ") { (data) in
-            
-            guard let data = data else { print("Something is going wrong here guard data")
-                return }
-            
-            do{
-                
-                guard let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return }
-                
-                guard let results = jsonDict["results"] as? [[String: Any]] else { return}
-                for result in results {
-                    guard let geometry = result["geometry"] as? [String: Any] else { return }
-                    guard let location = geometry["location"] as? [String: Double] else { return }
-                    
-                    let schoolLocation = LatAndLng(dictionary: location)
-                    self.schoolLatAndLng = schoolLocation
-                    DispatchQueue.main.async {
-                        self.mapView?.camera = GMSCameraPosition.camera(withLatitude: schoolLocation.lat, longitude: schoolLocation.lng, zoom: 12)
-                        
-                        let marker = GMSMarker()
-                        marker.position = CLLocationCoordinate2D(latitude: schoolLocation.lat, longitude: schoolLocation.lng )
-                        marker.title = self.detailSchool.name
-                        marker.snippet = self.detailSchool.boro
-                        marker.map = self.mapView
-                    }
-                }
-            } catch {
-                print("Error getting lat and lng")
-            }
-        }
-    }
     
     //MARK: - Outlets
-
+    
     // Make mapview smaller
     
     internal lazy var bringMapUp: UIButton = {
-       let button = UIButton()
-//        button.setImage(#imageLiteral(resourceName: "mapExpend"), for: .normal)
+        let button = UIButton()
+        //        button.setImage(#imageLiteral(resourceName: "mapExpend"), for: .normal)
         button.addTarget(self, action: #selector(animateBackToNormal), for: .touchUpInside)
         return button
     }()
