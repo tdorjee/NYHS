@@ -37,14 +37,14 @@ class MainCollectionViewCell: UICollectionViewCell{
     let borough: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 35, weight: .bold)
         return label
     }()
     
     let totalNumberOfSchool: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 28)
-        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.textColor = ColorScheme.lightGrey
         label.numberOfLines = 2
         return label
     }()

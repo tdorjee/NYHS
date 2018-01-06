@@ -55,7 +55,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     }
     
     @objc func showAlertVC(){
-        let showAlertVC = UIAlertController(title: "Alredy added to the Favorite School List", message: "View all your favorite school by tapping on Favorite Schools below", preferredStyle: .alert)
+        let showAlertVC = UIAlertController(title: "Already added to the Favorite School List", message: "View all your favorite school by tapping on Favorite Schools below", preferredStyle: .alert)
         showAlertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(showAlertVC, animated: true, completion: nil)
     }
@@ -68,7 +68,6 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
             let starBecomeYellow = UIImage(named: "favourited")?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: starBecomeYellow, style: .plain, target: nil, action: nil)
         }))
-        //        favoritedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(favoritedAlert, animated: true, completion: nil)
     }
     
@@ -94,15 +93,6 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         marker.title = self.detailSchool.name
         marker.snippet = self.detailSchool.boro
         marker.map = self.mapView
-    }
-    
-    
-    
-    func contactSchool(){
-        
-        let contactVC = ContactSchoolVC()
-        contactVC.schoolFromDetailSchool = self.detailSchool
-        self.present(contactVC, animated: true, completion: nil)
     }
     
     // MARK: - Google map delegate
@@ -278,6 +268,22 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         label.numberOfLines = 0
         return label
     }()
+    
+    internal lazy var contactButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Call", for: .normal)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = ColorScheme.navColor
+        button.addTarget(self, action: #selector(callSchool), for: .touchUpInside)
+        return button
+    }()
+    
+    // MARK: - Call school
+    
+    @objc func callSchool(){
+        guard let number = URL(string: "telprompt://" + (detailSchool?.phone_number)!) else { return }
+        UIApplication.shared.open(number, options: [:], completionHandler: nil)
+    }
 }
 
 extension String {

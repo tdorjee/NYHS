@@ -12,7 +12,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     
     private let cellId = "cellId"
     
-    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "boroOne"), "Schools: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "boroTwo"), "Schools: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "boroSix"), "Schools: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "boroFour"), "Schools: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "boroFive"), "Schools: \(10)")]
+    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "boroOne"), "SCHOOLS: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "boroTwo"), "SCHOOLS: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "boroSix"), "SCHOOLS: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "boroFour"), "SCHOOLS: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "boroFive"), "SCHOOLS: \(10)")]
     
     override func viewDidLoad() {
         super.viewDidLoad()

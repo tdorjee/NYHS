@@ -170,28 +170,6 @@ class BoroVC: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let email = UITableViewRowAction(style: .normal, title: "Mail") { action, index in
-            print("Mail button pressed")
-        }
-        email.backgroundColor = .red
-        
-        let phone = UITableViewRowAction(style: .normal, title: "Call") { action, index in
-            print("Make phone call")
-            
-            //        guard let number = URL(string: "telprompt://" + (schoolFromdetailSchool?.phone_number)!) else { return }
-            //        UIApplication.shared.open(number, options: [:], completionHandler: nil)
-            
-            if let phoneUrl = URL(string: self.sortSchool[indexPath.row].phone_number){                UIApplication.shared.open(phoneUrl, options: [:], completionHandler: nil)
-            }
-        }
-        phone.backgroundColor = .green
-        
-        return [email, phone]
-    }
-    
 }
 
 // MARK: Extension

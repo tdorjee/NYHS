@@ -12,7 +12,6 @@ extension DetailVC {
     
     // MARK - View Hierarchy
     
-    
     func viewHierarchy(){
         
         view.addSubview(scroolView)
@@ -45,8 +44,7 @@ extension DetailVC {
         miniMainViewContainer.addSubview(extracurricularActiviesText)
         
         miniMainViewContainer.addSubview(lineSeparator4)
-        
-        
+        miniMainViewContainer.addSubview(contactButton)
         
     }
     
@@ -182,10 +180,20 @@ extension DetailVC {
         
         lineSeparator4.snp.makeConstraints { (line) in
             line.top.equalTo(extracurricularActiviesText.snp.bottom).offset(15)
+            line.height.equalTo(0.5)
             line.left.equalTo(schoolNameLabel.snp.left)
             line.right.equalTo(schoolNameLabel.snp.right)
-            line.height.equalTo(0.5)
-            line.bottom.equalToSuperview().inset(8)
+//            line.bottom.equalToSuperview().inset(8)
+        }
+        
+        // contact button
+        
+        contactButton.snp.makeConstraints { (btn) in
+            btn.top.equalTo(lineSeparator4.snp.bottom).offset(15)
+            btn.height.equalTo(50)
+           btn.left.equalTo(schoolNameLabel.snp.left)
+           btn.right.equalTo(schoolNameLabel.snp.right)
+           btn.bottom.equalToSuperview().inset(8)
         }
     } 
 }
