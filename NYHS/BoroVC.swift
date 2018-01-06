@@ -44,7 +44,6 @@ class BoroVC: UITableViewController {
     }
     
     func loadData(){
-        
         APIRequestManager.manager.getData(apiEndPoint: apiEndPoint) { (data) in
             guard let data = data else { return }
             do{
@@ -55,17 +54,13 @@ class BoroVC: UITableViewController {
                     let school = School(dictionary: eachSchool)
                     if school.boro == self.boroSelected {
                         self.schools.append(school)
-                        
                     }
-                    
                     self.sortSchool = self.schools.sorted(by: { $0.name < $1.name })
-                    
                 }
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             }catch{
                 print("Error encountered at do & chatch")
             }
@@ -87,7 +82,6 @@ class BoroVC: UITableViewController {
             let subRange = textCheckingResult?.range
             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: subRange!)
         }
-        
         return attributedString
         
     }
@@ -106,7 +100,6 @@ class BoroVC: UITableViewController {
             let subRange = textCheckingResult?.range
             attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.boldSystemFont(ofSize: 15.0), range: subRange!)
         }
-        
         return attributedString
         
     }
@@ -133,11 +126,9 @@ class BoroVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredSchool.count
         }
-        
         return self.sortSchool.count
     }
     
@@ -169,7 +160,6 @@ class BoroVC: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        
         return index
     }
     
@@ -205,7 +195,6 @@ class BoroVC: UITableViewController {
 }
 
 // MARK: Extension
-
 extension BoroVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentInSearchBar(searchText: searchController.searchBar.text!)

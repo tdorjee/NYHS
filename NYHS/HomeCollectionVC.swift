@@ -8,27 +8,25 @@
 
 import UIKit
 
-
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     private let cellId = "cellId"
     
-         let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "boroOne"), "Schools: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "boroTwo"), "Schools: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "boroSix"), "Schools: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "boroFour"), "Schools: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "boroFive"), "Schools: \(10)")]
+    let boroWithImage = [(Boro.Bronx.rawValue, #imageLiteral(resourceName: "boroOne"), "Schools: \(119)"), (Boro.Brooklyn.rawValue, #imageLiteral(resourceName: "boroTwo"), "Schools: \(121)"), (Boro.Manhattan.rawValue, #imageLiteral(resourceName: "boroSix"), "Schools: \(107)"), (Boro.Queens.rawValue, #imageLiteral(resourceName: "boroFour"), "Schools: \(80)"), (Boro.StatenIsland.rawValue, #imageLiteral(resourceName: "boroFive"), "Schools: \(10)")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = []
         
+        self.edgesForExtendedLayout = []
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.largeTitleDisplayMode = .never
         let filterImage = UIImage(named: "filterIcon")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterImage, style: .plain, target: self, action: #selector(filter))
         navigationItem.title = "NYCHS"
         collectionView?.backgroundColor = .white
         collectionView!.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        
         navigationController?.navigationBar.isTranslucent = false
         self.tabBarController?.tabBar.isTranslucent = false
+        
     }
     
     @objc func filter() {
@@ -49,10 +47,8 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return boroWithImage.count
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MainCollectionViewCell
@@ -65,5 +61,5 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         
         return cell
     }
-
+    
 }

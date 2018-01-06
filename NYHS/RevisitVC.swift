@@ -10,8 +10,6 @@ import UIKit
 import SnapKit
 
 class RevisitVC: UIViewController {
-
-    
     
     var school: School?
     
@@ -25,10 +23,8 @@ class RevisitVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
         viewHierarchy()
         constraintConfiguration()
-        
         
     }
     
@@ -59,5 +55,5 @@ class RevisitVC: UIViewController {
         return button
     }()
     
-
+    
 }

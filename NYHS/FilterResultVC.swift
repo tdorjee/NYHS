@@ -9,7 +9,7 @@
 import UIKit
 
 class FilterResultVC: UITableViewController {
-
+    
     let apiEndPoint: String = "https://data.cityofnewyork.us/resource/4isn-xf7m.json"
     let cellId = "cellId"
     
@@ -37,7 +37,7 @@ class FilterResultVC: UITableViewController {
     }
     
     func getData(){
-    
+        
         APIRequestManager.manager.getData(apiEndPoint: apiEndPoint) { (data) in
             guard let data = data else { return }
             
@@ -49,22 +49,22 @@ class FilterResultVC: UITableViewController {
                 for eachSchool in jsonData {
                     let school = School(dictionary: eachSchool)
                     
-                        if self.schoolSizeMin != nil {
-                            if self.boroChoosen.contains(school.boro) {
+                    if self.schoolSizeMin != nil {
+                        if self.boroChoosen.contains(school.boro) {
                             guard let minSchoolSize = self.schoolSizeMin else { return }
                             guard let maxSchoolSize = self.schoolSizeMax else { return }
                             if minSchoolSize <= Int(school.total_students)! && Int(school.total_students)! <= maxSchoolSize {
                                 self.filteredSchool.append(school)
-                                }
-                            }
-                        }else {
-                            if self.boroChoosen.contains(school.boro){
-                                self.filteredSchool.append(school)
                             }
                         }
-                   
+                    }else {
+                        if self.boroChoosen.contains(school.boro){
+                            self.filteredSchool.append(school)
+                        }
+                    }
+                    
                 }
-               
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -75,18 +75,18 @@ class FilterResultVC: UITableViewController {
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredSchool.count
     }
@@ -102,16 +102,11 @@ class FilterResultVC: UITableViewController {
         self.navigationController?.pushViewController(detialVC, animated: true)
         
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        
-
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
-
-        print("filter school count: \(filteredSchool.count)")
-        
+        cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         let eachSchoolInCell = filteredSchool[indexPath.row]
         cell.textLabel?.text = eachSchoolInCell.name
         cell.detailTextLabel?.text = "\(eachSchoolInCell.boro) - \(eachSchoolInCell.total_students)" 
@@ -119,5 +114,5 @@ class FilterResultVC: UITableViewController {
         return cell
         
     }
-
+    
 }

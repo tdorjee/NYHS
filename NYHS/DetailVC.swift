@@ -61,14 +61,14 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     }
     
     @objc func addToFavourite(){
-            favSchoolSoFar.append(detailSchool)
-            encodeSchoolData()
+        favSchoolSoFar.append(detailSchool)
+        encodeSchoolData()
         let favoritedAlert = UIAlertController(title: "Added to favorite list", message: "View all your favorite school by tapping on Favorite Schools below", preferredStyle: .alert)
         favoritedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
             let starBecomeYellow = UIImage(named: "favourited")?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: starBecomeYellow, style: .plain, target: nil, action: nil)
         }))
-//        favoritedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        //        favoritedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(favoritedAlert, animated: true, completion: nil)
     }
     
@@ -96,7 +96,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         marker.map = self.mapView
     }
     
-   
+    
     
     func contactSchool(){
         

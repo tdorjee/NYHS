@@ -27,16 +27,9 @@ class FilterVC: UIViewController {
         viewHirarchy()
         ConstraintConfiguration()
         
-        
     }
     
-    // Obtain value
-    
-    var
-    
-    
-    
-    boroChoosen: [String] = []
+    var boroChoosen: [String] = []
     var schoolSizeRang: String?
     
     @objc func dismissView(){
@@ -323,8 +316,6 @@ class FilterVC: UIViewController {
         button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
         return button
     }()
-    
-    
     
     @objc func tapedButton(sender: UIButton) {
         

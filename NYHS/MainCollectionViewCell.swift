@@ -13,32 +13,23 @@ class MainCollectionViewCell: UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-   
+        
         backgroundColor = .white
         setUp()
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
-    // MARK: UI
     
-
+    // MARK: - UI
     
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 16
-        iv.clipsToBounds = true// set it false for shadow
-//        iv.layer.shadowColor = UIColor.black.cgColor
-//        iv.layer.shadowOpacity = 1
-//        iv.layer.shadowOffset = CGSize.zero
-//        iv.layer.shadowRadius = 10
-//        iv.layer.shadowOffset = CGSize.zero
+        iv.clipsToBounds = true
         iv.layer.masksToBounds = true
         return iv
     }()
