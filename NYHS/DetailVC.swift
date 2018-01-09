@@ -55,7 +55,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     }
     
     @objc func showAlertVC(){
-        let showAlertVC = UIAlertController(title: "Already added to the Favorite School List", message: "View all your favorite school by tapping on Favorite Schools below", preferredStyle: .alert)
+        let showAlertVC = UIAlertController(title: "Already added to your Favorite list", message: "View all your favorite schools by tapping on Favorite below", preferredStyle: .alert)
         showAlertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(showAlertVC, animated: true, completion: nil)
     }
@@ -63,7 +63,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     @objc func addToFavourite(){
         favSchoolSoFar.append(detailSchool)
         encodeSchoolData()
-        let favoritedAlert = UIAlertController(title: "Added to favorite list", message: "View all your favorite school by tapping on Favorite Schools below", preferredStyle: .alert)
+        let favoritedAlert = UIAlertController(title: "Added to your Favorite list", message: "View all your favorite schools by tapping on Favorite below", preferredStyle: .alert)
         favoritedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
             let starBecomeYellow = UIImage(named: "favourited")?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: starBecomeYellow, style: .plain, target: nil, action: nil)
@@ -272,7 +272,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     internal lazy var contactButton: UIButton = {
         let button = UIButton()
         button.setTitle("Call", for: .normal)
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 5
         button.backgroundColor = ColorScheme.navColor
         button.addTarget(self, action: #selector(callSchool), for: .touchUpInside)
         return button

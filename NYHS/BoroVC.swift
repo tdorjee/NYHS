@@ -21,16 +21,30 @@ class BoroVC: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    
+    // MARK: - Shimmering
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        self.tableView.reloadData()
+//        Loader.addLoaderTo(self.tableView)
+//        Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(BoroVC.loaded), userInfo: nil, repeats: false)
+//
+//    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.title = boroSelected
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Try Name, Address, Sports"
+        searchController.searchBar.placeholder = "Try keyword"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         tableView.register(BoroTableViewCell.self, forCellReuseIdentifier: cellId)
+        
         loadData()
         
     }
