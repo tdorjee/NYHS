@@ -21,19 +21,6 @@ class BoroVC: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    
-    // MARK: - Shimmering
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        self.tableView.reloadData()
-//        Loader.addLoaderTo(self.tableView)
-//        Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(BoroVC.loaded), userInfo: nil, repeats: false)
-//
-//    }
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -58,7 +45,9 @@ class BoroVC: UITableViewController {
     }
     
     func loadData(){
-        APIRequestManager.manager.getData(apiEndPoint: apiEndPoint) { (data) in
+        // show
+        APIRequestManager.manager.getData(apiEndPoint: apiEndPoint) { (data) in // takes time here
+            // hide
             guard let data = data else { return }
             do{
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
@@ -76,6 +65,7 @@ class BoroVC: UITableViewController {
                     self.tableView.reloadData()
                 }
             }catch{
+                // hide
                 print("Error encountered at do & chatch")
             }
         }
@@ -178,7 +168,7 @@ class BoroVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 110
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
