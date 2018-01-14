@@ -26,7 +26,7 @@ class FilterResultVC: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         getData()
         
-        let cancelIcon = UIImage(named: "cancelIcon")?.withRenderingMode(.alwaysOriginal)
+        let cancelIcon = UIImage(named: "cancel")?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: cancelIcon, style: .plain, target: self, action: #selector(dismissTheVC))
         navigationController?.navigationBar.isTranslucent = false
     }

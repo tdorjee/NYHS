@@ -38,10 +38,10 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
         
         ifDetailSchoolAddedToFavSchoo = favSchoolSoFar.map{$0.name}.contains(detailSchool.name)
         if senderVC == "addFav" && !ifDetailSchoolAddedToFavSchoo! {
-            let starIcon = UIImage(named: "starIcon")?.withRenderingMode(.alwaysOriginal)
+            let starIcon = UIImage(named: "toFavourite")?.withRenderingMode(.alwaysOriginal)
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: starIcon, style: .plain, target: self, action: #selector(addToFavourite))
         }else{
-            let favoriteImage = UIImage(named: "favorited")?.withRenderingMode(.alwaysOriginal)
+            let favoriteImage = UIImage(named: "favourited")?.withRenderingMode(.alwaysOriginal)
             navigationItem.rightBarButtonItem =  UIBarButtonItem(image: favoriteImage, style: .plain, target: self, action: #selector(showAlertVC))
         }
         
@@ -185,7 +185,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     
     internal lazy var diplomaImage: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "diplomaIcon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "graduation"), for: .normal)
         return button
     }()
     
@@ -200,7 +200,7 @@ class DetailVC: UIViewController, GMSMapViewDelegate {
     // school size
     internal lazy var schoolSizeImage: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "schoolSizeIcon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "classSize"), for: .normal)
         return button
     }()
     

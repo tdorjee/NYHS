@@ -20,7 +20,7 @@ class FilterVC: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissView))
-        let searchIcon = UIImage(named: "searchIcon")?.withRenderingMode(.alwaysOriginal)
+        let searchIcon = UIImage(named: "search")?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchIcon, style: .plain, target: self, action: #selector(updateValue))
         self.navigationController?.navigationBar.isTranslucent = false
         
@@ -255,7 +255,7 @@ class FilterVC: UIViewController {
     
     internal lazy var button1: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.titleLabel?.text = "Brooklyn"
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         return button
@@ -264,7 +264,7 @@ class FilterVC: UIViewController {
     internal lazy var button2: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "Bronx"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         return button
     }()
@@ -272,7 +272,7 @@ class FilterVC: UIViewController {
     internal lazy var button3: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "Manhattan"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         return button
     }()
@@ -280,7 +280,7 @@ class FilterVC: UIViewController {
     internal lazy var button4: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "Queens"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         return button
     }()
@@ -288,7 +288,7 @@ class FilterVC: UIViewController {
     internal lazy var button5: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "Staten Island"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         return button
     }()
@@ -296,7 +296,7 @@ class FilterVC: UIViewController {
     internal lazy var button6: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "1 1000"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
         return button
     }()
@@ -304,7 +304,7 @@ class FilterVC: UIViewController {
     internal lazy var button7: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "1001 3000"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
         return button
     }()
@@ -312,19 +312,19 @@ class FilterVC: UIViewController {
     internal lazy var button8: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "3001 6000"
-        button.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
         button.addTarget(self, action: #selector(tapedSizeButton), for: .touchUpInside)
         return button
     }()
     
     @objc func tapedButton(sender: UIButton) {
         
-        if sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) && !boroChoosen.contains(sender.titleLabel?.text ?? ""){
+        if sender.currentImage!.isEqual(#imageLiteral(resourceName: "uncheck")) && !boroChoosen.contains(sender.titleLabel?.text ?? ""){
             sender.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
             boroChoosen.append(sender.titleLabel?.text ?? "")
             
         } else {
-            sender.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
             if let index = boroChoosen.index(of: (sender.titleLabel?.text)!) {
                 boroChoosen.remove(at: index)
             }
@@ -333,18 +333,18 @@ class FilterVC: UIViewController {
     }
     
     
-    var currentImage: UIImage = #imageLiteral(resourceName: "unchecked")
+    var currentImage: UIImage = #imageLiteral(resourceName: "uncheck")
     
     @objc func tapedSizeButton(sender: UIButton) {
         
-        if sender.titleLabel?.text != schoolSizeRang && sender.currentImage!.isEqual(#imageLiteral(resourceName: "unchecked")) {
-            self.button6.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-            self.button7.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-            self.button8.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        if sender.titleLabel?.text != schoolSizeRang && sender.currentImage!.isEqual(#imageLiteral(resourceName: "uncheck")) {
+            self.button6.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
+            self.button7.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
+            self.button8.setImage(#imageLiteral(resourceName: "uncheck"), for: .normal)
             currentImage = #imageLiteral(resourceName: "checked")
             sender.setImage(currentImage, for: .normal)
             schoolSizeRang = sender.titleLabel?.text ?? ""
-            currentImage = #imageLiteral(resourceName: "unchecked")
+            currentImage = #imageLiteral(resourceName: "uncheck")
             
         }else{
             sender.setImage(currentImage, for: .normal)
